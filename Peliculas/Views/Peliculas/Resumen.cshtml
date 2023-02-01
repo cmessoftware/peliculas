@@ -1,0 +1,50 @@
+﻿@model Peliculas.DTOs.PeliculaDto
+@using Peliculas.Extensiones;
+
+
+
+<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+    <div class="col-sm-6">
+        <div class="row d-flex list-unstyled mt-auto">
+            <div class="col-sm-12 d-flex align-items-center me-3">
+                <small class="me-3">Genero: </small> <strong>@Model.Genero.Nombre </strong>
+            </div>
+        </div>
+        <div class="row d-flex list-unstyled mt-auto">
+            <div class="col-sm-12 d-flex align-items-center me-3">
+                <small class="me-3">Director: </small><strong>@Model.Director</strong>
+            </div>
+        </div>
+        <div class="row d-flex list-unstyled mt-auto">
+            <div class="col-sm-12 d-flex align-items-center me-3">
+                <small class="me-3">Actores: </small><strong>@Model.Actores.JoinString(x => x.Nombre)</strong>
+            </div>
+        </div>
+        <div class="row d-flex align-items-center me-3">
+            <div class="col-sm-12 d-flex align-items-center me-3 mb-10">
+                <small class="me-3">Pais Origen: </small>
+                <strong>@Model.PaisOrigen</strong>
+            </div>
+        </div>
+        <div class="row d-flex align-items-center mt-3">
+            <div class="col-sm-12 d-flex align-items-center me-3 mb-10">
+                <strong class="me-3">@Model.Resumen</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                <div class="row d-flex list-unstyled mt-auto">
+                    <div class="col-sm-12 d-flex align-items-center mb-3">
+                        <strong>@Model.Nombre</strong>
+                    </div>
+                </div>
+                <img src="~/img/@Model.PosterLink" asp-append-version style="width:50px height:100px" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-1">
+    <input type="button" class="btn btn-primary" onclick="history.back()" value="Volver" />
+</div>

@@ -1,0 +1,63 @@
+﻿@model List<Peliculas.DTOs.PeliculaDto>
+@using Microsoft.AspNetCore;
+@using Peliculas.Extensiones;
+ 
+
+<h1>Peliculas</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+           El mejor catálogo de peliculas de la argentina y del mundo!!
+        </div>
+    </div>
+    <div class="container px-4 py-5" id="custom-cards">
+        <h2 class="pb-2 border-bottom">Estrenos</h2>
+
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        @foreach(var m in Model)
+        {
+                <div class="col-4">
+                    <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg">
+                        <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                            <img src="~/img/@m.PosterLink" asp-append-version style="width:50px height:100px" />
+                            <div class="row d-flex list-unstyled mt-auto">
+                                <div class="col-sm-12 d-flex align-items-center me-3">
+                                    <small>Nombre: </small> <strong>@m.Nombre</strong>
+                                </div>
+                            </div>
+                           <div class="row d-flex list-unstyled mt-auto">
+                                <div class="col-sm-12 d-flex align-items-center me-3">
+                                    <small>Director: </small><strong>@m.Director</strong>
+                                </div>
+                            </div>
+                            <div class="row d-flex list-unstyled mt-auto">
+                                <div class="col-sm-12 d-flex align-items-center me-3">
+                                    <small>Actores: </small><strong>@m.Actores.JoinString(x => x.Nombre)</strong>
+                                </div>
+                            </div>
+                            <div class="row d-flex list-unstyled mt-auto">
+                                <div class="col-sm-12 d-flex align-items-center me-3">
+                                    <small>Genero: </small> <strong>@m.Genero.Nombre</strong>
+                                </div>
+                             </div>
+                             <div class="row d-flex align-items-center me-3">
+                                <div class="col-sm-12 d-flex align-items-center me-3 mb-10">
+                                    <small>Pais Origen: </small>
+                                    <strong>@m.PaisOrigen</strong>
+                              </div>
+                            </div>
+                            <div class="d-flex list-unstyled mt-3">
+                                <a href="~/resumen/@m.Id" class="btn btn-primary mt-10">Ver Resumen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        }
+        </div>
+    </div>
+
+
+
+
+
