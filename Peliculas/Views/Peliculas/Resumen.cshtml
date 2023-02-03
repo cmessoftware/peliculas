@@ -26,6 +26,26 @@
                 <strong>@Model.PaisOrigen</strong>
             </div>
         </div>
+        <strong class="mb-3 mt-3">Critica de experto</strong>
+
+        @if (Model.Criticas != null)
+        {
+            @foreach (var c in Model.Criticas)
+            {
+                <div class="row d-flex align-items-center mt-3">
+                    <div class="col-sm-12 d-flex align-items-center me-3 mb-10">
+                        <cite class="me-3">@c.Contenido</cite>
+                    </div>
+                </div>
+                <div class="row d-flex align-items-center mt-3">
+                    <div class="col-sm-12 d-flex align-items-end me-3 mb-20">
+                        <strong class="me-3">@c.Autor</strong>
+                    </div>
+                </div>
+            }
+        }
+
+        <strong class="mb-3 mt-3">Sinopsis</strong>
         <div class="row d-flex align-items-center mt-3">
             <div class="col-sm-12 d-flex align-items-center me-3 mb-10">
                 <strong class="me-3">@Model.Resumen</strong>
@@ -44,6 +64,32 @@
             </div>
         </div>
     </div>
+</div>
+<strong class="mb-3 mt-3">Critica de experto</strong>
+<div class="row row-cols-1 row-cols-lg-12 align-items-stretch g-4 py-5">
+    @if (Model.Comentarios != null)
+    {
+        @foreach (var c in Model.Comentarios)
+        {
+            <div class="row">
+                <div class="col-3 d-flex align-items-center me-3 mb-20">
+                    <div class="row">
+                        <div class="col-12">
+                          <strong class="me-3">@c.Usuario</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="~/resumen/@Model.Id/@c.Id"><img src="~/img/like.png" width="50" height="60" /></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9 d-flex align-items-center me-3 mb-10">
+                    <p class="me-3">@c.Contenido</p>
+                </div>
+            </div>
+        }
+    }
 </div>
 <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-1">
     <input type="button" class="btn btn-primary" onclick="history.back()" value="Volver" />
