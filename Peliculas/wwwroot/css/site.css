@@ -57,3 +57,7 @@ div .overFlow {
     color: white;
     background-color: red;
 }
+
+div .img-portada-index{
+    max-height: 350px;    
+}
