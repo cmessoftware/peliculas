@@ -16,3 +16,48 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+div .titulo {
+    -webkit-text-stroke: 1px #111111;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-size: 60px;
+    font-family: fantasy;    
+}
+
+div .overFlow {
+    width: 600px;
+    height: 45px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+
+.like{
+    color: blue;
+    background-color:white;
+    padding: 5px;
+    border-radius:50px;
+}
+
+.like:hover {
+    color: white;
+    background-color: blue;   
+}
+
+.dont-like {
+    color: red;
+    background-color: white;
+    padding: 5px;
+    border-radius: 50px;
+}
+
+.dont-like:hover {
+    color: white;
+    background-color: red;
+}
+
+div .img-portada-index{
+    max-height: 350px;    
+}
