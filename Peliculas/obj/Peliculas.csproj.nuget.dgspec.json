@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lisandro\\fuentes\\Peliculas\\Peliculas\\Peliculas\\Peliculas.csproj": {}
+    "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lisandro\\fuentes\\Peliculas\\Peliculas\\Peliculas\\Peliculas.csproj": {
+    "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lisandro\\fuentes\\Peliculas\\Peliculas\\Peliculas\\Peliculas.csproj",
+        "projectUniqueName": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj",
         "projectName": "Peliculas",
-        "projectPath": "C:\\Users\\Lisandro\\fuentes\\Peliculas\\Peliculas\\Peliculas\\Peliculas.csproj",
-        "packagesPath": "C:\\Users\\Lisandro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lisandro\\fuentes\\Peliculas\\Peliculas\\Peliculas\\obj\\",
+        "projectPath": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj",
+        "packagesPath": "C:\\Users\\sergi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Lisandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\sergi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -62,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
