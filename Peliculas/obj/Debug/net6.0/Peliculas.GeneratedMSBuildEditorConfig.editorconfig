@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\sergi\fuentes\Peliculas\Peliculas
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/sergi/fuentes/Peliculas/Peliculas/Views/Peliculas/CrearPelicula.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVsaWN1bGFzXENyZWFyUGVsaWN1bGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/sergi/fuentes/Peliculas/Peliculas/Views/Peliculas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVsaWN1bGFzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -25,6 +29,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/sergi/fuentes/Peliculas/Peliculas/Views/Peliculas/Resumen.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVsaWN1bGFzXFJlc3VtZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sergi/fuentes/Peliculas/Peliculas/Views/Peliculas/_Cines.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVsaWN1bGFzXF9DaW5lcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/sergi/fuentes/Peliculas/Peliculas/Views/Shared/Error.cshtml]

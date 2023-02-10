@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
+using Peliculas.DTOs;
 
 namespace Peliculas.Entidades
 {
@@ -28,6 +29,6 @@ namespace Peliculas.Entidades
 
         public List<Cine> Cines { get; set; }
 
-
+        public List<Critica> Criticas { get; set; }
     }
 }

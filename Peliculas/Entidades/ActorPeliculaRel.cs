@@ -6,9 +6,9 @@ namespace Peliculas.Entidades
     {
         public int Id { get; set; }
 
-        public Actor Actor { get; set; }
+        public int ActorId { get; set; }
 
-        public Pelicula Pelicula { get; set; }
+        public int PeliculaID { get; set; }
 
         public bool EsPrincipal { get; set; }
     }

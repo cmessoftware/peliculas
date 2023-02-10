@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Peliculas.DTOs;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Peliculas.Entidades
@@ -14,7 +15,6 @@ namespace Peliculas.Entidades
         public int Edad { get; set; }
 
         public string Pais { get; set; }
-
-        public bool EsPrincipal { get; set; }
+        public ActorPeliculaRel ActorPeliculaRel { get; set; }
     }
 }

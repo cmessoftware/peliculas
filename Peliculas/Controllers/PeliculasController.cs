@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Peliculas.DTOs;
 using Peliculas.Models;
 using Peliculas.Servicios;
 using System.Diagnostics;
@@ -53,7 +54,14 @@ namespace Peliculas.Controllers
 
         }
 
-       
+        
+        public IActionResult CrearPelicula(PeliculaDto pelicula)
+        {
+            _servicioPelicula.CrearPelicula(pelicula);
+
+            return View();
+
+        }
 
         public IActionResult Privacy()
         {

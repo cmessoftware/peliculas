@@ -1,4 +1,5 @@
 ﻿using Peliculas.DTOs;
+using Peliculas.Entidades;
 
 namespace Peliculas.Servicios
 {
@@ -172,16 +173,26 @@ namespace Peliculas.Servicios
                         Id = 113,
                         Nombre = "Emma Watson",
                         Edad = 15,
-                        Pais = "Francia",
-                        EsPrincipal = true
+                        Pais = "Francia"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 113,
+                        //   PeliculaID = 2,
+                        //   EsPrincipal = true
+                        //}
                     },
                     new ActorDto()
                     {
                         Id = 114,
                         Nombre = "James Phelps",
                         Edad = 19,
-                        Pais = "Inglaterra",
-                        EsPrincipal = false
+                        Pais = "Inglaterra"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 114,
+                        //   PeliculaID = 2,
+                        //   EsPrincipal = false
+                        //}
                     }
                 },
                 Genero = new GeneroDto()
@@ -294,16 +305,26 @@ namespace Peliculas.Servicios
                         Id = 115,
                         Nombre = "Jessica Alba",
                         Edad = 24,
-                        Pais = "Estados Unidos",
-                        EsPrincipal = true
+                        Pais = "Estados Unidos"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 115,
+                        //   PeliculaID = 2,
+                        //   EsPrincipal = false
+                        //}
                     },
                     new ActorDto()
                     {
                         Id = 116,
                         Nombre = "Stan Lee",
                         Edad = 78,
-                        Pais = "Estados Unidos",
-                        EsPrincipal = false
+                        Pais = "Estados Unidos"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 116,
+                        //   PeliculaID = 2,
+                        //   EsPrincipal = false
+                        //}
                     }
                 },
                 Genero = new GeneroDto()
@@ -415,16 +436,26 @@ namespace Peliculas.Servicios
                         Id = 117,
                         Nombre = "Ben Stiller (Voz de Alex el León)",
                         Edad = 40,
-                        Pais = "Estados Unidos",
-                        EsPrincipal = true
+                        Pais = "Estados Unidos"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 117,
+                        //   PeliculaID = 4,
+                        //   EsPrincipal = true
+                        //}
                     },
                     new ActorDto()
                     {
                         Id = 118,
                         Nombre = "Sacha Baron Cohen (Voz del Rey Julien)",
                         Edad = 34,
-                        Pais = "Inglaterra",
-                        EsPrincipal = false
+                        Pais = "Inglaterra"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 118,
+                        //   PeliculaID = 4,
+                        //   EsPrincipal = true
+                        //}
                     }
                 },
                 Genero = new GeneroDto()
@@ -536,16 +567,26 @@ namespace Peliculas.Servicios
                         Id = 119,
                         Nombre = "Mike Myers (Voz de Shrek)",
                         Edad = 38,
-                        Pais = "Canadá",
-                        EsPrincipal = true
+                        Pais = "Canadá"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 119,
+                        //   PeliculaID = 5,
+                        //   EsPrincipal = true
+                        //}
                     },
                     new ActorDto()
                     {
                         Id = 120,
                         Nombre = "Cameron Díaz (Voz de Fiona)",
                         Edad = 29,
-                        Pais = "Estados Unidos",
-                        EsPrincipal = true
+                        Pais = "Estados Unidos"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 120,
+                        //   PeliculaID = 5,
+                        //   EsPrincipal = true
+                        //}
                     }
                 },
                 Genero = new GeneroDto()
@@ -657,16 +698,26 @@ namespace Peliculas.Servicios
                         Id = 121,
                         Nombre = "Georgina Helen Henley",
                         Edad = 15,
-                        Pais = "Inglaterra",
-                        EsPrincipal = true
+                        Pais = "Inglaterra"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 121,
+                        //   PeliculaID = 6,
+                        //   EsPrincipal = true
+                        //}
                     },
                     new ActorDto()
                     {
                         Id = 122,
                         Nombre = "Liam Neeson (Voz de Aslan)",
                         Edad = 58,
-                        Pais = "Reino Unido",
-                        EsPrincipal = false
+                        Pais = "Reino Unido"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 122,
+                        //   PeliculaID = 6,
+                        //   EsPrincipal = false
+                        //}
                     }
                 },
                 Genero = new GeneroDto()
@@ -778,16 +829,26 @@ namespace Peliculas.Servicios
                         Id = 123,
                         Nombre = "Bruce Davison",
                         Edad = 64,
-                        Pais = "Estados Unidos",
-                        EsPrincipal = true
+                        Pais = "Estados Unidos"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 123,
+                        //   PeliculaID = 7,
+                        //   EsPrincipal = true
+                        //}
                     },
                     new ActorDto()
                     {
                         Id = 124,
                         Nombre = "Brooke Burns",
                         Edad = 32,
-                        Pais = "Estados Unidos",
-                        EsPrincipal = true
+                        Pais = "Estados Unidos"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 124,
+                        //   PeliculaID = 7,
+                        //   EsPrincipal = false
+                        //}
                     }
                 },
                 Genero = new GeneroDto()
@@ -899,16 +960,26 @@ namespace Peliculas.Servicios
                         Id = 125,
                         Nombre = "Joaquin Rafael Bottom",
                         Edad = 45,
-                        Pais = "Puerto Rico",
-                        EsPrincipal = true
+                        Pais = "Puerto Rico"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 125,
+                        //   PeliculaID = 8,
+                        //   EsPrincipal = true
+                        //}
                     },
                     new ActorDto()
                     {
                         Id = 126,
                         Nombre = "Robert De Niro",
                         Edad = 76,
-                        Pais = "Inglaterra",
-                        EsPrincipal = true
+                        Pais = "Inglaterra"
+                        //ActorPeliculaRel = new ActorPeliculaRel()
+                        //{
+                        //   ActorId = 126,
+                        //   PeliculaID = 8,
+                        //   EsPrincipal = true
+                        //}
                     }
                 },
                 Genero = new GeneroDto()
@@ -1015,5 +1086,120 @@ namespace Peliculas.Servicios
             return pelicula;
         }
 
+        public void CrearPelicula(PeliculaDto peliculaDto)
+        {
+            //Mapeo lo que recibo de la vista a la entidad a esas en la base de datos.
+            var pelicula = new Pelicula()
+            {
+                Id = 8,
+                Director = peliculaDto.Director,
+                Nombre = peliculaDto.Nombre,
+                PaisOrigen = peliculaDto.PaisOrigen,
+                PosterLink = peliculaDto.PosterLink,
+                FechaEstreno = peliculaDto.FechaEstreno,
+                Resumen = peliculaDto.Resumen
+            };
+
+            pelicula.Actores = new List<Actor>();
+
+            foreach (var a in peliculaDto.Actores)
+            {
+                var actor = new Actor()
+                {
+                    Id = a.Id,
+                    Nombre = a.Nombre,
+                    Edad = a.Edad,
+                    Pais = a.Pais,
+                    ActorPeliculaRel = new ActorPeliculaRel()
+                    {
+                        ActorId = a.ActorPeliculaRel.ActorId,
+                        Id = a.ActorPeliculaRel.Id,
+                        PeliculaID = a.ActorPeliculaRel.PeliculaID,
+                        EsPrincipal = a.ActorPeliculaRel.EsPrincipal
+                    }
+                };
+
+                pelicula.Actores.Add(actor);
+             }
+
+            pelicula.Genero = new Genero()
+            {
+                Nombre = peliculaDto.Genero.Nombre
+            };
+
+            #region Cargo Cines con sus salas.
+            pelicula.Cines = new List<Cine>();
+
+            foreach (var c in peliculaDto.Cines)
+            {
+                var cine = new Cine()
+                {
+                    Cadena = c.Cadena,
+                    Nombre = c.Nombre,
+                    Direccion = new Direccion()
+                    {
+                        Calle = c.Direccion.Calle,
+                        Numero = c.Direccion.Numero,
+                        Ciudad = c.Direccion.Ciudad,
+                        Pais = c.Direccion.Pais,
+                        CP = c.Direccion.CP,
+                        Provincia = c.Direccion.Provincia
+                    }
+                };
+
+                cine.Salas = new List<Sala>();
+
+                foreach (var s in c.Salas)
+                {
+                    var sala = new Sala()
+                    {
+                        Nombre = s.Nombre,
+                        Tipo = new Tipo()
+                        {
+                            Nombre = s.Tipo.Nombre
+                        }
+                    };
+
+                    cine.Salas.Add(sala);
+                }
+
+                pelicula.Cines.Add(cine);
+            }
+            #endregion
+
+            pelicula.Comentarios = new List<Comentario>();
+
+            foreach (var com in peliculaDto.Comentarios)
+            {
+                var comentario = new Comentario()
+                {
+                    Id = com.Id,
+                    Contenido = com.Contenido,
+                    Usuario = com.Usuario,
+                    MeGustaCantidad = com.MeGustaCantidad
+                };
+
+                pelicula.Comentarios.Add(comentario);
+
+            }
+
+            foreach (var cri in peliculaDto.Criticas)
+            {
+                var critica = new Critica()
+                {
+                    Autor = cri.Autor,
+                    Contenido = cri.Contenido
+
+                };
+            }
+
+            //Persistir en la base de datos.
+
+        }
+
+        PeliculaDto IServicioPelicula.CrearPelicula(PeliculaDto pelicula)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

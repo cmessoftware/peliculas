@@ -13,7 +13,7 @@ namespace Peliculas.Entidades
         public string Cadena { get; set; }
         public List<Pelicula> Peliculas { get; set; }
 
-        public List<Sala> Sala { get; set; }
+        public List<Sala> Salas { get; set; }
 
         public Direccion Direccion { get; set; }
     }
