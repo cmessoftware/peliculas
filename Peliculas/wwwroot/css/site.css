@@ -79,5 +79,12 @@ div .img-portada-index {
     padding-top: .5rem;
     padding-bottom: 1rem;
 }
+.resumenCrearPelicula{
+    height 18rem !important;
+}
 
 /*#endregion */
+.btnGuardarCrearPelicula {
+    text-align: justify-all !important;
+   
+}
