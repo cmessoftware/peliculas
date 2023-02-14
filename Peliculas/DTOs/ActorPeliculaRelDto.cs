@@ -2,7 +2,7 @@
 
 namespace Peliculas.DTOs
 {
-    public class ActorPeliculaRel
+    public class ActorPeliculaRelDto
     {
         public int Id { get; set; }
 

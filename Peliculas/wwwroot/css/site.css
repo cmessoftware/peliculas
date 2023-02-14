@@ -58,6 +58,33 @@ div .overFlow {
     background-color: red;
 }
 
-div .img-portada-index{
-    max-height: 350px;    
+div .img-portada-index {
+    max-height: 350px;
+}
+
+/*#region resumen */
+
+.list-group-item.resumen {
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.card.resumen {
+    width: 100%;
+    margin-bottom: .25rem;
+}
+
+.accordion-body.resumen {
+    padding: 0%;
+    padding-top: .5rem;
+    padding-bottom: 1rem;
+}
+.resumenCrearPelicula{
+    height 18rem !important;
+}
+
+/*#endregion */
+.btnGuardarCrearPelicula {
+    text-align: justify-all !important;
+   
 }
