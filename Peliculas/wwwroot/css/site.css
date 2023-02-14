@@ -61,3 +61,31 @@ div .overFlow {
 div .img-portada-index{
     max-height: 350px;    
 }
+
+.boton-cadena-cine {
+    color: rgba(0, 0, 0, 0.9) !important;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background-color: rgba(255, 255, 255, 1);
+    border: 2px solid;
+    border-color: rgba(255, 255, 255, 1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    border: 0;
+    border-radius: 0;
+    
+}
+
+.boton-cadena-cine:hover {
+    color: rgba(0, 0, 0, 1) !important;
+    box-shadow: 0 4px 16px rgb(157, 102, 4);
+    transition: all 0.2s ease;
+}

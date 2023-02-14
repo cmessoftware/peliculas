@@ -20,6 +20,5 @@ namespace Peliculas.DTOs
         public List<CineDto> Cines { get; set; }
 
         public List<CriticaDto> Criticas { get; set; }
-
     }
 }
