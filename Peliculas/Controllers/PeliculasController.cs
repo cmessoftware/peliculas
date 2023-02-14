@@ -53,6 +53,12 @@ namespace Peliculas.Controllers
             return View("Resumen", resumen);
 
         }
+        
+        [HttpGet]
+        public IActionResult Historial()
+        {
+            return View();
+        }
 
         [HttpGet]
         [Route ( "CrearPeliculas" )]
