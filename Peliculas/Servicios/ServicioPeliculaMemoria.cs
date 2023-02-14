@@ -38,25 +38,25 @@ namespace Peliculas.Servicios
 
             #region #1 Película
 
-            var pelicula = new PeliculaDto()
+            var pelicula = new PeliculaDto ()
             {
                 Id = 1,
                 Director = "Colin Trevorrow",
                 Nombre = "Jurassic World - Dominion",
                 PaisOrigen = "Estados Unidos",
                 PosterLink = "000001.png",
-                FechaEstreno = new DateTime(2022, 06, 02),
+                FechaEstreno = new DateTime ( 2022, 06, 02 ),
                 Resumen = "Tiempo después de los sucesos de Fallen Kingdom, los dinosaurios han vuelto a tomar el dominio en toda la tierra y los humanos tendrán que aprender a convivir con ellos mientras que un nuevo problema pondrá alta tensión a la situación. Owen Grady y Claire Dearing unirán fuerzas junto con la ayuda del famoso paleontólogo Alan Grant, la doctora Ellie Satler y el Doctor Ian Malcolm para resolverlo.",
-                Actores = new List<ActorDto>()
+                Actores = new List<ActorDto> ()
                 {
-                    new ActorDto()
+                    new ActorDto ()
                     {
                         Id = 111,
                         Nombre = "Chris Pratt",
                         Edad = 43,
                         Pais = "Estados Unidos",
                     },
-                    new ActorDto()
+                    new ActorDto ()
                     {
                         Id = 112,
                         Nombre = "Laura Dern",
@@ -64,18 +64,18 @@ namespace Peliculas.Servicios
                         Pais = "Estados Unidos",
                     }
                 },
-                Genero = new GeneroDto()
+                Genero = new GeneroDto ()
                 {
                     Nombre = "Ciencia Ficción"
                 },
-                Cines = new List<CineDto>()
+                Cines = new List<CineDto> ()
                 {
 
-                    new CineDto()
+                    new CineDto ()
                     {
                         Cadena = "ShowCase",
                         Nombre = "Alto Rosario",
-                        Direccion = new DireccionDto()
+                        Direccion = new DireccionDto ()
                         {
                             Calle = "Junin",
                             Numero = 501,
@@ -84,28 +84,28 @@ namespace Peliculas.Servicios
                             CP = "S2000",
                             Provincia = "Santa Fe"
                         },
-                        Salas = new List<SalaDto>()
+                        Salas = new List<SalaDto> ()
                         {
-                            new SalaDto()
+                            new SalaDto ()
                             {
                                 Nombre = "Sala 1",
-                                Tipo = new TipoDto()
+                                Tipo = new TipoDto ()
                                 {
                                     Nombre = "3D"
                                 }
                             },
-                            new SalaDto()
+                            new SalaDto ()
                             {
                                 Nombre = "Sala 2",
-                                Tipo = new TipoDto()
+                                Tipo = new TipoDto ()
                                 {
                                     Nombre = "2D"
                                 }
                             },
-                            new SalaDto()
+                            new SalaDto ()
                             {
                                 Nombre = "Sala 3",
-                                Tipo = new TipoDto()
+                                Tipo = new TipoDto ()
                                 {
                                     Nombre = "3D"
                                 }
@@ -113,23 +113,23 @@ namespace Peliculas.Servicios
                         }
                     }
                 },
-                Comentarios = new List<ComentarioDto>()
+                Comentarios = new List<ComentarioDto> ()
                 {
-                    new ComentarioDto()
+                    new ComentarioDto ()
                     {
                         Id = 1,
                         Contenido = "Me ha encantado la película de principio a fin. Mucho al aire libre y muchos dinosaurios locura de película, el guión muy bien hecho. La recomiendo 100%",
                         Usuario = "Sergio Boscoscuro",
                         MeGustaCantidad = 2
                     },
-                     new ComentarioDto()
+                    new ComentarioDto ()
                     {
                         Id = 2,
                         Contenido = "Me ha encantado, nunca había visto ninguna película de Jurassic y m ha dejado con sabor de querer verme todas las demás. nada aburrida y dinámica. la recomiendo.",
                         Usuario = "Paula Rodríguez Correa",
                         MeGustaCantidad = 0
                     },
-                      new ComentarioDto()
+                    new ComentarioDto ()
                     {
                         Id = 3,
                         Contenido = "Me fascinó!!!! Ayer en la sala hasta aplaudió el público cuando terminó la cinta, había jóvenes, adultos!!!! Los fans nos encantó, \"X\" los críticos, al final es una pelí para disfrutar entre la acción y la nostalgia, no es un documental de la vida en la tierra!!!!",
@@ -137,19 +137,21 @@ namespace Peliculas.Servicios
                         MeGustaCantidad = 3
                     }
                 },
-                Criticas = new List<CriticaDto>()
+                Criticas = new List<CriticaDto> ()
                 {
-                    new CriticaDto()
+                    new CriticaDto ()
                     {
                         Autor = "Sandro Doreste Bermúdez",
                         Contenido = "Aunque sonnde agradecer los muchos guiños a Jurassic Park, la película no profundiza lo suficiente ni en los personajes ni en la trama ni, y esto podría haberla salvado entre su público objetivo, el nuevo tipo de dinosaurio introducido. Esperé casi toda la película, al menos mientras tuve esperanza, para ver cuál sería el giro que justificaría una producción así, como lograron hacer en Fallen Kingdom al sacar a los dinosaurios de la isla. Pero es que no lo hay. La historia promete sin llegar a dar nunca, pues la escena de acción de todo el elenco reunido es tensa, sí, pero con graves errores en los tiempos y, al igual que esta película para la saga Jurassic, omitible por falta de aportar a la trama general. Lo mejor: la primera y la última escena con las langostas y la persecución en Malta por la novedad del escenario."
                     },
-                    new CriticaDto()
+                    new CriticaDto ()
                     {
                         Autor = "Ruth Estefany Gutierrez Santander",
                         Contenido = "Soy super fan de la saga y esta ultima pelicula me hizo soltar algunas lagrimas es cierto q algunos detalles hubiera querido diferentes pero se guarda la esencia y para mi no pudo haber mejor final q este ame la pelicula y la animacion y el mensajed q transmite un buen final para la saga sus 5 estrellas merecidas."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/fb5ELWi-ekk"
+
             };
 
             peliculas.Add(pelicula);
@@ -280,7 +282,8 @@ namespace Peliculas.Servicios
                         Autor = "Carlos Ramírez",
                         Contenido = "La mejor película de la saga a juicio personal. Acción desde el 1er minuto, puedo verla muchas veces y no me aburriría de verla."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/wX5dWfUKGPg"
             };
 
             peliculas.Add(pelicula);
@@ -411,7 +414,8 @@ namespace Peliculas.Servicios
                         Autor = "Diego Rojas",
                         Contenido = "A pesar de ser un intento mediocre, me resulta ser una película muy entretenida, a la cual le guardo cariño. \r\n\r\nHay una buena química entre los personajes, se siente real el sentimiento de fraternidad y amistad en una historia defectuosa, pero con agradables momentos de acción y de humor. Gran parte del guion es muy torpe, el CGI no se ve tan mal y la narrativa decae, desfigurándose ridícula cada vez que avanza."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/ulfOrOlZTf0"
             };
 
             peliculas.Add(pelicula);
@@ -542,7 +546,8 @@ namespace Peliculas.Servicios
                         Autor = "Nicole Klein",
                         Contenido = "Me parece una excelente cinematografía. Me recuerda a momentos en mi infancia en los que la vida era feliz y no tenía preocupaciones. Volverla a ver es un trago de alegría. Amo esta película. Y los amo a ustedes. Gracias."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/fq5zU9T_Hl4"
             };
 
             peliculas.Add(pelicula);
@@ -673,7 +678,8 @@ namespace Peliculas.Servicios
                         Autor = "Marcela Tavella",
                         Contenido = "Está película toca serios problemas del mundo y eso hace que te profundizes con ella, los personajes tienen un excelente desarrollo y aparte, cada uno es usado en un buen contexto. Esta película es bastante triste ya que hay escenas dolorosas, no es apta para una persona sensible, aún así, se lleva mis dieces."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/CwXOrWvPBPk"
             };
 
             peliculas.Add(pelicula);
@@ -804,7 +810,9 @@ namespace Peliculas.Servicios
                         Autor = "Anto Figueroa",
                         Contenido = "Narnia es una de las mejor sagas que e visto y la recomiendo a todos porque te puede llegar a hacer llorar por un rinoceronte y ademas los actores son muy bonitos."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/o81F2hvmYJQ"
+
             };
 
             peliculas.Add(pelicula);
@@ -1066,7 +1074,8 @@ namespace Peliculas.Servicios
                         Autor = "Adiel Leonardo Apaza Carpio",
                         Contenido = "Joaquin Phoenix convierte las carcajadas en tos nerviosa, y la sonrisa en el primer síntoma de una enfermedad que se extiende mucho más allá de su cuerpo.  Lo mejor de ‘Joker’ es que detrás esconde a un cineasta utilizando el universo prestado... y que nunca es la adaptación la que le está utilizando a él. Una película amoral, que nos recuerda que la anarquía tiene un componente humorístico irresistible, incluso liberador."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/TobNCFMK_bs"
             };
 
             peliculas.Add(pelicula);
