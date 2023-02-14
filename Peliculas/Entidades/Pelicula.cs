@@ -30,5 +30,7 @@ namespace Peliculas.Entidades
         public List<Cine> Cines { get; set; }
 
         public List<Critica> Criticas { get; set; }
+
+        public string TrailerLink { get; set; }
     }
 }
