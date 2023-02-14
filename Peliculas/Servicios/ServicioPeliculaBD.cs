@@ -9,17 +9,17 @@ namespace Peliculas.Servicios
             throw new NotImplementedException();
         }
 
-        public PeliculaDto CrearPelicula(PeliculaDto pelicula)
-        {
-            throw new NotImplementedException();
-        }
-
         public PeliculaDto GetPeliculaEstrenoById(int id)
         {
             throw new NotImplementedException();
         }
 
         public List<PeliculaDto> GetPeliculasEstreno()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CrearPelicula(PeliculaDto pelicula)
         {
             throw new NotImplementedException();
         }

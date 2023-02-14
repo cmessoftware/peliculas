@@ -1,10 +1,22 @@
 ﻿using Peliculas.DTOs;
-using Peliculas.Entidades;
+using Peliculas.Mapeos;
+using Peliculas.Repositorio;
 
 namespace Peliculas.Servicios
 {
     public class ServicioPeliculaMemoria : IServicioPelicula
     {
+        //private readonly ILogger _logger;
+        private readonly IRepositorioPeliculas _repositorioPeliculas;
+
+     
+        public ServicioPeliculaMemoria(//ILogger logger,
+                                       IRepositorioPeliculas repositorioPeliculas)
+        {
+   //         _logger = logger;
+            _repositorioPeliculas = repositorioPeliculas;
+        }
+
         public PeliculaDto GetPeliculaEstrenoById(int Id)
         {
             var peliculas = GetPeliculasEstreno();
@@ -1088,118 +1100,14 @@ namespace Peliculas.Servicios
 
         public void CrearPelicula(PeliculaDto peliculaDto)
         {
-            //Mapeo lo que recibo de la vista a la entidad a esas en la base de datos.
-            var pelicula = new Pelicula()
-            {
-                Id = 8,
-                Director = peliculaDto.Director,
-                Nombre = peliculaDto.Nombre,
-                PaisOrigen = peliculaDto.PaisOrigen,
-                PosterLink = peliculaDto.PosterLink,
-                FechaEstreno = peliculaDto.FechaEstreno,
-                Resumen = peliculaDto.Resumen
-            };
 
-            pelicula.Actores = new List<Actor>();
+            var pelicula = MapeosPeliculas.Map(peliculaDto);
 
-            foreach (var a in peliculaDto.Actores)
-            {
-                var actor = new Actor()
-                {
-                    Id = a.Id,
-                    Nombre = a.Nombre,
-                    Edad = a.Edad,
-                    Pais = a.Pais,
-                    ActorPeliculaRel = new ActorPeliculaRel()
-                    {
-                        ActorId = a.ActorPeliculaRel.ActorId,
-                        Id = a.ActorPeliculaRel.Id,
-                        PeliculaID = a.ActorPeliculaRel.PeliculaID,
-                        EsPrincipal = a.ActorPeliculaRel.EsPrincipal
-                    }
-                };
+            _repositorioPeliculas.CrearPelicula(pelicula);
 
-                pelicula.Actores.Add(actor);
-             }
-
-            pelicula.Genero = new Genero()
-            {
-                Nombre = peliculaDto.Genero.Nombre
-            };
-
-            #region Cargo Cines con sus salas.
-            pelicula.Cines = new List<Cine>();
-
-            foreach (var c in peliculaDto.Cines)
-            {
-                var cine = new Cine()
-                {
-                    Cadena = c.Cadena,
-                    Nombre = c.Nombre,
-                    Direccion = new Direccion()
-                    {
-                        Calle = c.Direccion.Calle,
-                        Numero = c.Direccion.Numero,
-                        Ciudad = c.Direccion.Ciudad,
-                        Pais = c.Direccion.Pais,
-                        CP = c.Direccion.CP,
-                        Provincia = c.Direccion.Provincia
-                    }
-                };
-
-                cine.Salas = new List<Sala>();
-
-                foreach (var s in c.Salas)
-                {
-                    var sala = new Sala()
-                    {
-                        Nombre = s.Nombre,
-                        Tipo = new Tipo()
-                        {
-                            Nombre = s.Tipo.Nombre
-                        }
-                    };
-
-                    cine.Salas.Add(sala);
-                }
-
-                pelicula.Cines.Add(cine);
-            }
-            #endregion
-
-            pelicula.Comentarios = new List<Comentario>();
-
-            foreach (var com in peliculaDto.Comentarios)
-            {
-                var comentario = new Comentario()
-                {
-                    Id = com.Id,
-                    Contenido = com.Contenido,
-                    Usuario = com.Usuario,
-                    MeGustaCantidad = com.MeGustaCantidad
-                };
-
-                pelicula.Comentarios.Add(comentario);
-
-            }
-
-            foreach (var cri in peliculaDto.Criticas)
-            {
-                var critica = new Critica()
-                {
-                    Autor = cri.Autor,
-                    Contenido = cri.Contenido
-
-                };
-            }
-
-            //Persistir en la base de datos.
 
         }
 
-        PeliculaDto IServicioPelicula.CrearPelicula(PeliculaDto pelicula)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

@@ -5,10 +5,10 @@ namespace Peliculas.Entidades
 {
     public class Genero
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Required]
+     //   [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int Id { get; set; }
         public string Nombre { get; set; }
+
+        public List<Pelicula> Peliculas { get; set; }
     }
 }
