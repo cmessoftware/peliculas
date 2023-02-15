@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas\\Peliculas.csproj": {}
+    "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas\\Peliculas.csproj": {
+    "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas\\Peliculas.csproj",
+        "projectUniqueName": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj",
         "projectName": "Peliculas",
-        "projectPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas\\Peliculas.csproj",
+        "projectPath": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj",
         "packagesPath": "C:\\Users\\sergi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas\\obj\\",
+        "outputPath": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sergi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,24 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.11, )"

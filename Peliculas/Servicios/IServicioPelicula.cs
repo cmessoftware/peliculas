@@ -1,4 +1,5 @@
 ﻿using Peliculas.DTOs;
+using Peliculas.Entidades;
 
 namespace Peliculas.Servicios
 {
@@ -7,6 +8,6 @@ namespace Peliculas.Servicios
         public PeliculaDto GetPeliculaEstrenoById(int id);
         public void ActualizarComentarioLike(ComentarioDto? comentario, string idLike);
         public List<PeliculaDto> GetPeliculasEstreno();
-        public PeliculaDto CrearPelicula(PeliculaDto pelicula);
+        public void InsertarPelicula(Pelicula pelicula);
     }
 }

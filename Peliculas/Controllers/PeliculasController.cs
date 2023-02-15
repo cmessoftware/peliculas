@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Peliculas.Data;
 using Peliculas.DTOs;
+using Peliculas.Entidades;
+using Peliculas.Mapeos;
 using Peliculas.Models;
 using Peliculas.Servicios;
 using System.Diagnostics;
@@ -60,10 +63,40 @@ namespace Peliculas.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        [Route("datospelicula")]
+        public IActionResult GetDatosPelicula()
+        {
+            //Devolver objetos Actores, Cines etc
+
+            return View();
+
+        }
+
+        [HttpPost]
+        [Route("peliculas")]
+        public IActionResult CrearPelicula([FromBody] PeliculaDto nuevaPelicula)
+        {
+
+            //Mapeo a entidad Pelicula,  PeliculaDto --> Pelicula
+
+            Pelicula pelicula = MapeoPelicula.Map(nuevaPelicula);
+
+            _servicioPelicula.InsertarPelicula(pelicula);
+
+
+            return View();
+
+        }
+
         [HttpGet]
         [Route ( "CrearPeliculas" )]
         public IActionResult CrearPelicula()
         {
+
+            //Creo el objeto de Peliculas.
+
             #region Actores
             var _lactores = new List<ActorDto> ();
             ActorDto leo = new ActorDto
@@ -71,7 +104,7 @@ namespace Peliculas.Controllers
                 Id = 1,
                 Nombre = "Leo",
                 Edad = 50,
-                Pais = "EEUU",
+                Pais = EnumPais.USA,
                 ActorPeliculaRel= new ActorPeliculaRelDto()
             };
             _lactores.Add(leo); 
@@ -81,7 +114,7 @@ namespace Peliculas.Controllers
                 Id = 1,
                 Nombre = "Rose",
                 Edad = 50,
-                Pais = "EEUU",
+                Pais = EnumPais.USA,
                 ActorPeliculaRel = new ActorPeliculaRelDto ()
             };
             _lactores.Add(rose);                        
@@ -91,7 +124,7 @@ namespace Peliculas.Controllers
                 Id = 1,
                 Nombre = "Andy Garcia",
                 Edad = 80,
-                Pais = "EEUU",
+                Pais = EnumPais.USA,
                 ActorPeliculaRel = new ActorPeliculaRelDto ()
             };
             _lactores.Add ( Andy );
@@ -100,10 +133,11 @@ namespace Peliculas.Controllers
                 Id = 1,
                 Nombre = "Al Paccino",
                 Edad = 80,
-                Pais = "EEUU",
+                Pais = EnumPais.USA,
                 ActorPeliculaRel = new ActorPeliculaRelDto ()
             };
             _lactores.Add ( Alpa );
+
             #endregion
 
             #region Generos
@@ -205,6 +239,7 @@ namespace Peliculas.Controllers
             _lCines.Add ( Cinepolis );
             #endregion
 
+            //Inserter en DB.
 
             ViewBag.actores = _lactores;
             ViewBag.generos = _lgeneros;
