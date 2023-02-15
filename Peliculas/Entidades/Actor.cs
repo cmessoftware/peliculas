@@ -1,4 +1,5 @@
-﻿using Peliculas.DTOs;
+﻿using Peliculas.Data;
+using Peliculas.DTOs;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,7 +15,12 @@ namespace Peliculas.Entidades
 
         public int Edad { get; set; }
 
-        public string Pais { get; set; }
-        public ActorPeliculaRel ActorPeliculaRel { get; set; }
+        public string FotoURL { get; set; }
+
+        public EnumPais PaisOrigen { get; set; }
+
+        public string Biografia { get; set; }
+
+        public List<PeliculaActor> PeliculaActores { get; set; }
     }
 }

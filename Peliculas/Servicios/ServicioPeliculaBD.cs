@@ -1,4 +1,5 @@
 ﻿using Peliculas.DTOs;
+using Peliculas.Entidades;
 
 namespace Peliculas.Servicios
 {
@@ -20,6 +21,11 @@ namespace Peliculas.Servicios
         }
 
         public List<PeliculaDto> GetPeliculasEstreno()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertarPelicula(Pelicula pelicula)
         {
             throw new NotImplementedException();
         }
