@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LuchettaHectorSeba\\source\\repos\\DPCSuite\\Peliculas\\Peliculas\\Peliculas.csproj": {}
+    "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LuchettaHectorSeba\\source\\repos\\DPCSuite\\Peliculas\\Peliculas\\Peliculas.csproj": {
+    "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LuchettaHectorSeba\\source\\repos\\DPCSuite\\Peliculas\\Peliculas\\Peliculas.csproj",
+        "projectUniqueName": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj",
         "projectName": "Peliculas",
-        "projectPath": "C:\\Users\\LuchettaHectorSeba\\source\\repos\\DPCSuite\\Peliculas\\Peliculas\\Peliculas.csproj",
-        "packagesPath": "C:\\Users\\LuchettaHectorSeba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LuchettaHectorSeba\\source\\repos\\DPCSuite\\Peliculas\\Peliculas\\obj\\",
+        "projectPath": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj",
+        "packagesPath": "C:\\Users\\sergi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\LuchettaHectorSeba\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\sergi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
