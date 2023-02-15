@@ -35,6 +35,8 @@ namespace Peliculas.Controllers
         [Route("{resumen}/{id}")]
         public IActionResult Resumen(int Id)
         {
+            if (Id == 0) { return View ( Index ); }
+                            
             var resumen = _servicioPelicula.GetPeliculaEstrenoById(Id);
 
             return View(resumen);
