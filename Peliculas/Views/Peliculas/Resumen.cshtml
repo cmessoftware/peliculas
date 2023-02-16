@@ -99,9 +99,105 @@
     </div>
 </div>
 
+<div class="accordion mt-5 mb-5" id="accordionResumen">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <strong><span style="font-size: 20px">Trailer</span></strong>
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionResumen">
+            <div class="accordion-body resumen">
+                <div>
+                    <div class="row d-flex align-items-center mt-3">
+                        <div class="col-sm-12 d-flex align-items-center me-3">
+                            <iframe width="560" height="560" src="@Model.TrailerLink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <strong><span style="font-size: 20px">Crítica experta</span></strong>
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionResumen">
+            <div class="accordion-body resumen">
+                @if (Model.Criticas != null)
+                {
+                    @foreach (var c in Model.Criticas)
+                    {
+                        <div>
+                            <div class="row d-flex align-items-center mt-3">
+                                <div class="col-sm-12 d-flex align-items-center me-3">
+                                    <cite class="me-3 overFlow" style="font-size: 15px; font-family: 'Lucida Calligraphy';">
+                                        @c.Contenido
+                                    </cite>
+                                </div>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-sm-12 d-flex me-3">
+                                    <span style="font-size: 15px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">@c.Autor</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <strong> <span style="font-size: 20px">Comentarios de usuarios</span></strong>
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionResumen">
+            <div class="accordion-body resumen">
+                @if (Model.Comentarios != null)
+                {
+                    @foreach (var c in Model.Comentarios)
+                    {
+                        <div>
+                            <div class="row d-flex align-items-center mt-3">
+                                <div class="col-12">
+                                    <span style="font-size: 15px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                        <i class="fa-regular fa-face-smile"></i>
+                                        @c.Usuario
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row d-flex align-items-center mb-0">
+                                <div class="col-12">
+                                    <p class="me-3 " style="font-size: 15px;">
+                                        @c.Contenido
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-12">
+                                    <p class="me-3 " style="font-size: 15px;">
+                                        <a href="~/resumen/@Model.Id/@c.Id/idLike" class="like"><i class="fa-regular fa-thumbs-up"></i></a>
+                                        <a href="~/resumen/@Model.Id/@c.Id/idDontLike" class="dont-like"><i class="fa-regular fa-thumbs-down "></i></a>
+                                        @c.MeGustaCantidad
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="container pt-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif">
+@*Ejemplo lisandro*@
+
+@*<div class="container pt-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif">
     <div class="row">
         <div class="col-12">
             <strong>
@@ -138,7 +234,7 @@
                         </div>                        
                     </div>
                     #region Ejemplo profe
-                    @*<div class="mt-3">
+                    <div class="mt-3">
                         <div class="row d-flex align-items-center">
                             <div class="col-2">
                                 <span style="font-size: 15px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
@@ -155,12 +251,13 @@
                                 </p>
                             </div>
                         </div>
-                    </div>*@
+                    </div>
                     #endregion
                 }
             }
         </div>
     </div>
 </div>
+*@
 
 <a href="~/Peliculas" class="btn btn-primary justify-content-center">Volver</a>

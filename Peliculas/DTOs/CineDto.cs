@@ -4,6 +4,7 @@
     {
         public string Nombre { get; set; }
         public string Cadena { get; set; }
+        public string CodigoCine { get; set; }
         public List<SalaDto> Salas { get; set; }
         public DireccionDto Direccion { get; set; }
         public string LogoCine { get; set; }

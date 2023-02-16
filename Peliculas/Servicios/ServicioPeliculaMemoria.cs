@@ -82,9 +82,9 @@ namespace Peliculas.Servicios
                 },
                 Cines = new List<CineDto>()
                 {
-
                     new CineDto()
                     {
+                        CodigoCine = "SHOWCASE",
                         Cadena = "ShowCase",
                         Nombre = "Alto Rosario",
                         LogoCine = "Cine001.png",
@@ -127,6 +127,7 @@ namespace Peliculas.Servicios
                     },
                     new CineDto()
                     {
+                        CodigoCine = "CINEDUCAL",
                         Cadena = "Cine Ducal",
                         Nombre = "Cine Ducal",
                         LogoCine = "Cine002.png",
@@ -163,6 +164,92 @@ namespace Peliculas.Servicios
                                 Tipo = new TipoDto()
                                 {
                                     Nombre = "2D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEPOLIS",
+                        Cadena = "Cinepolis Cine",
+                        Nombre = "Cinepolis",
+                        LogoCine = "Cine003.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Av. Eva Perón",
+                            Numero = 5856,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "HOYTS",
+                        Cadena = "Hoyts",
+                        Nombre = "Palace Garden",
+                        LogoCine = "Cine004.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Mar del Plata",
+                            Numero = 809,
+                            Ciudad = "Palermo",
+                            Pais = "Argentina",
+                            CP = "C1179",
+                            Provincia = "Buenos Aires"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
                                 }
                             }
                         }
@@ -204,7 +291,8 @@ namespace Peliculas.Servicios
                         Autor = "Ruth Estefany Gutierrez Santander",
                         Contenido = "Soy super fan de la saga y esta ultima pelicula me hizo soltar algunas lagrimas es cierto q algunos detalles hubiera querido diferentes pero se guarda la esencia y para mi no pudo haber mejor final q este ame la pelicula y la animacion y el mensajed q transmite un buen final para la saga sus 5 estrellas merecidas."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/fb5ELWi-ekk"
             };
 
             peliculas.Add(pelicula);
@@ -259,6 +347,7 @@ namespace Peliculas.Servicios
 
                     new CineDto()
                     {
+                        CodigoCine = "SHOWCASE",
                         Cadena = "ShowCase",
                         Nombre = "Alto Rosario",
                         LogoCine = "Cine001.png",
@@ -287,6 +376,135 @@ namespace Peliculas.Servicios
                                 Tipo = new TipoDto()
                                 {
                                     Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEDUCAL",
+                        Cadena = "Cine Ducal",
+                        Nombre = "Cine Ducal",
+                        LogoCine = "Cine002.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Lavalle",
+                            Numero = 750,
+                            Ciudad = "Rivadavia",
+                            Pais = "Argentina",
+                            CP = "M5567",
+                            Provincia = "Mendoza"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEPOLIS",
+                        Cadena = "Cinepolis Cine",
+                        Nombre = "Cinepolis",
+                        LogoCine = "Cine003.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Av. Eva Perón",
+                            Numero = 5856,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "HOYTS",
+                        Cadena = "Hoyts",
+                        Nombre = "Palace Garden",
+                        LogoCine = "Cine004.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Mar del Plata",
+                            Numero = 809,
+                            Ciudad = "Palermo",
+                            Pais = "Argentina",
+                            CP = "C1179",
+                            Provincia = "Buenos Aires"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
                                 }
                             },
                             new SalaDto()
@@ -336,7 +554,8 @@ namespace Peliculas.Servicios
                         Autor = "Carlos Ramírez",
                         Contenido = "La mejor película de la saga a juicio personal. Acción desde el 1er minuto, puedo verla muchas veces y no me aburriría de verla."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/wX5dWfUKGPg"
             };
 
             peliculas.Add(pelicula);
@@ -391,6 +610,93 @@ namespace Peliculas.Servicios
                 {
                     new CineDto()
                     {
+                        CodigoCine = "SHOWCASE",
+                        Cadena = "ShowCase",
+                        Nombre = "Alto Rosario",
+                        LogoCine = "Cine001.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Junin",
+                            Numero = 501,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEDUCAL",
+                        Cadena = "Cine Ducal",
+                        Nombre = "Cine Ducal",
+                        LogoCine = "Cine002.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Lavalle",
+                            Numero = 750,
+                            Ciudad = "Rivadavia",
+                            Pais = "Argentina",
+                            CP = "M5567",
+                            Provincia = "Mendoza"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEPOLIS",
                         Cadena = "Cinepolis Cine",
                         Nombre = "Cinepolis",
                         LogoCine = "Cine003.png",
@@ -411,6 +717,49 @@ namespace Peliculas.Servicios
                                 Tipo = new TipoDto()
                                 {
                                     Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "HOYTS",
+                        Cadena = "Hoyts",
+                        Nombre = "Palace Garden",
+                        LogoCine = "Cine004.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Mar del Plata",
+                            Numero = 809,
+                            Ciudad = "Palermo",
+                            Pais = "Argentina",
+                            CP = "C1179",
+                            Provincia = "Buenos Aires"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
                                 }
                             },
                             new SalaDto()
@@ -468,7 +817,8 @@ namespace Peliculas.Servicios
                         Autor = "Diego Rojas",
                         Contenido = "A pesar de ser un intento mediocre, me resulta ser una película muy entretenida, a la cual le guardo cariño. \r\n\r\nHay una buena química entre los personajes, se siente real el sentimiento de fraternidad y amistad en una historia defectuosa, pero con agradables momentos de acción y de humor. Gran parte del guion es muy torpe, el CGI no se ve tan mal y la narrativa decae, desfigurándose ridícula cada vez que avanza."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/ulfOrOlZTf0"
             };
 
             peliculas.Add(pelicula);
@@ -523,6 +873,93 @@ namespace Peliculas.Servicios
                 {
                     new CineDto()
                     {
+                        CodigoCine = "SHOWCASE",
+                        Cadena = "ShowCase",
+                        Nombre = "Alto Rosario",
+                        LogoCine = "Cine001.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Junin",
+                            Numero = 501,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEDUCAL",
+                        Cadena = "Cine Ducal",
+                        Nombre = "Cine Ducal",
+                        LogoCine = "Cine002.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Lavalle",
+                            Numero = 750,
+                            Ciudad = "Rivadavia",
+                            Pais = "Argentina",
+                            CP = "M5567",
+                            Provincia = "Mendoza"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEPOLIS",
                         Cadena = "Cinepolis Cine",
                         Nombre = "Cinepolis",
                         LogoCine = "Cine003.png",
@@ -565,6 +1002,7 @@ namespace Peliculas.Servicios
                     },
                     new CineDto()
                     {
+                        CodigoCine = "HOYTS",
                         Cadena = "Hoyts",
                         Nombre = "Palace Garden",
                         LogoCine = "Cine004.png",
@@ -642,7 +1080,8 @@ namespace Peliculas.Servicios
                         Autor = "Nicole Klein",
                         Contenido = "Me parece una excelente cinematografía. Me recuerda a momentos en mi infancia en los que la vida era feliz y no tenía preocupaciones. Volverla a ver es un trago de alegría. Amo esta película. Y los amo a ustedes. Gracias."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/fq5zU9T_Hl4"
             };
 
             peliculas.Add(pelicula);
@@ -697,6 +1136,50 @@ namespace Peliculas.Servicios
                 {
                     new CineDto()
                     {
+                        CodigoCine = "SHOWCASE",
+                        Cadena = "ShowCase",
+                        Nombre = "Alto Rosario",
+                        LogoCine = "Cine001.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Junin",
+                            Numero = 501,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEDUCAL",
                         Cadena = "Cine Ducal",
                         Nombre = "Cine Ducal",
                         LogoCine = "Cine002.png",
@@ -733,6 +1216,92 @@ namespace Peliculas.Servicios
                                 Tipo = new TipoDto()
                                 {
                                     Nombre = "2D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEPOLIS",
+                        Cadena = "Cinepolis Cine",
+                        Nombre = "Cinepolis",
+                        LogoCine = "Cine003.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Av. Eva Perón",
+                            Numero = 5856,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "HOYTS",
+                        Cadena = "Hoyts",
+                        Nombre = "Palace Garden",
+                        LogoCine = "Cine004.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Mar del Plata",
+                            Numero = 809,
+                            Ciudad = "Palermo",
+                            Pais = "Argentina",
+                            CP = "C1179",
+                            Provincia = "Buenos Aires"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
                                 }
                             }
                         }
@@ -774,7 +1343,8 @@ namespace Peliculas.Servicios
                         Autor = "Marcela Tavella",
                         Contenido = "Está película toca serios problemas del mundo y eso hace que te profundizes con ella, los personajes tienen un excelente desarrollo y aparte, cada uno es usado en un buen contexto. Esta película es bastante triste ya que hay escenas dolorosas, no es apta para una persona sensible, aún así, se lleva mis dieces."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/CwXOrWvPBPk"
             };
 
             peliculas.Add(pelicula);
@@ -829,6 +1399,50 @@ namespace Peliculas.Servicios
                 {
                     new CineDto()
                     {
+                        CodigoCine = "SHOWCASE",
+                        Cadena = "ShowCase",
+                        Nombre = "Alto Rosario",
+                        LogoCine = "Cine001.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Junin",
+                            Numero = 501,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEDUCAL",
                         Cadena = "Cine Ducal",
                         Nombre = "Cine Ducal",
                         LogoCine = "Cine002.png",
@@ -865,6 +1479,92 @@ namespace Peliculas.Servicios
                                 Tipo = new TipoDto()
                                 {
                                     Nombre = "2D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEPOLIS",
+                        Cadena = "Cinepolis Cine",
+                        Nombre = "Cinepolis",
+                        LogoCine = "Cine003.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Av. Eva Perón",
+                            Numero = 5856,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "HOYTS",
+                        Cadena = "Hoyts",
+                        Nombre = "Palace Garden",
+                        LogoCine = "Cine004.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Mar del Plata",
+                            Numero = 809,
+                            Ciudad = "Palermo",
+                            Pais = "Argentina",
+                            CP = "C1179",
+                            Provincia = "Buenos Aires"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
                                 }
                             }
                         }
@@ -906,7 +1606,8 @@ namespace Peliculas.Servicios
                         Autor = "Anto Figueroa",
                         Contenido = "Narnia es una de las mejor sagas que e visto y la recomiendo a todos porque te puede llegar a hacer llorar por un rinoceronte y ademas los actores son muy bonitos."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/o81F2hvmYJQ"
             };
 
             peliculas.Add(pelicula);
@@ -961,6 +1662,136 @@ namespace Peliculas.Servicios
                 {
                     new CineDto()
                     {
+                        CodigoCine = "SHOWCASE",
+                        Cadena = "ShowCase",
+                        Nombre = "Alto Rosario",
+                        LogoCine = "Cine001.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Junin",
+                            Numero = 501,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEDUCAL",
+                        Cadena = "Cine Ducal",
+                        Nombre = "Cine Ducal",
+                        LogoCine = "Cine002.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Lavalle",
+                            Numero = 750,
+                            Ciudad = "Rivadavia",
+                            Pais = "Argentina",
+                            CP = "M5567",
+                            Provincia = "Mendoza"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEPOLIS",
+                        Cadena = "Cinepolis Cine",
+                        Nombre = "Cinepolis",
+                        LogoCine = "Cine003.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Av. Eva Perón",
+                            Numero = 5856,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "HOYTS",
                         Cadena = "Hoyts",
                         Nombre = "Palace Garden",
                         LogoCine = "Cine004.png",
@@ -1038,7 +1869,8 @@ namespace Peliculas.Servicios
                         Autor = "Nicolás Escalada",
                         Contenido = "No entiendo como puede ser tan mala y con tanta falla en las ediciones. Son muy notables. A mi gusto, arruinaron una buena historia que fue Titanic haciendo la 2."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/watch?v=QWpYA2Qu4Zg"
             };
 
             peliculas.Add(pelicula);
@@ -1093,6 +1925,136 @@ namespace Peliculas.Servicios
                 {
                     new CineDto()
                     {
+                        CodigoCine = "SHOWCASE",
+                        Cadena = "ShowCase",
+                        Nombre = "Alto Rosario",
+                        LogoCine = "Cine001.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Junin",
+                            Numero = 501,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEDUCAL",
+                        Cadena = "Cine Ducal",
+                        Nombre = "Cine Ducal",
+                        LogoCine = "Cine002.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Lavalle",
+                            Numero = 750,
+                            Ciudad = "Rivadavia",
+                            Pais = "Argentina",
+                            CP = "M5567",
+                            Provincia = "Mendoza"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "CINEPOLIS",
+                        Cadena = "Cinepolis Cine",
+                        Nombre = "Cinepolis",
+                        LogoCine = "Cine003.png",
+                        Direccion = new DireccionDto()
+                        {
+                            Calle = "Av. Eva Perón",
+                            Numero = 5856,
+                            Ciudad = "Rosario",
+                            Pais = "Argentina",
+                            CP = "S2000",
+                            Provincia = "Santa Fe"
+                        },
+                        Salas = new List<SalaDto>()
+                        {
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 1",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "2D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 2",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            },
+                            new SalaDto()
+                            {
+                                Nombre = "Sala 3",
+                                Tipo = new TipoDto()
+                                {
+                                    Nombre = "3D"
+                                }
+                            }
+                        }
+                    },
+                    new CineDto()
+                    {
+                        CodigoCine = "HOYTS",
                         Cadena = "Hoyts",
                         Nombre = "Palace Garden",
                         LogoCine = "Cine004.png",
@@ -1170,7 +2132,8 @@ namespace Peliculas.Servicios
                         Autor = "Adiel Leonardo Apaza Carpio",
                         Contenido = "Joaquin Phoenix convierte las carcajadas en tos nerviosa, y la sonrisa en el primer síntoma de una enfermedad que se extiende mucho más allá de su cuerpo.  Lo mejor de ‘Joker’ es que detrás esconde a un cineasta utilizando el universo prestado... y que nunca es la adaptación la que le está utilizando a él. Una película amoral, que nos recuerda que la anarquía tiene un componente humorístico irresistible, incluso liberador."
                     }
-                }
+                },
+                TrailerLink = "https://www.youtube.com/embed/TobNCFMK_bs"
             };
 
             peliculas.Add(pelicula);

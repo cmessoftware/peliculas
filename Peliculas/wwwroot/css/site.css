@@ -89,3 +89,19 @@ div .img-portada-index{
     box-shadow: 0 4px 16px rgb(157, 102, 4);
     transition: all 0.2s ease;
 }
+
+.btnGuardarCrearPelicula {
+    text-align: justify-all !important;
+}
+
+.btn-ciudades {
+    background-color: rgba(157, 102, 4, 0.7);
+    color: rgb(255, 255, 255);
+    border: none;
+}
+
+.btn-ciudades:hover {
+    background-color: rgb(157, 102, 4);
+    color: rgb(255, 255, 255);
+}
+
