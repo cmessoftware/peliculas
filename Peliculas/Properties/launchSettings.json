@@ -14,7 +14,11 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7161;http://localhost:5254",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "API_KEY_V3": "455c292866726fdc5e8a6dca468b5b75",
+        "API_READ_ACCESS_TOKEN_v4": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NTVjMjkyODY2NzI2ZmRjNWU4YTZkY2E0NjhiNWI3NSIsInN1YiI6IjYzZWM2OTRiMWYzZTYwMDA3OWRmZGY5NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IrxfxafcFyn_CFawnPBGw2GZsI0L4RsiSIMG_w9In7Y",
+        "API_BASE_URL_V3": "https://api.themoviedb.org/3/movie",
+        "API_IMAGES_BASE_URL": "https://image.tmdb.org/t/p/original"
       }
     },
     "IIS Express": {
