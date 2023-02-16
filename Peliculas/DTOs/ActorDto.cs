@@ -1,4 +1,6 @@
-﻿namespace Peliculas.DTOs
+﻿using Peliculas.Data;
+
+namespace Peliculas.DTOs
 {
     public class ActorDto
     {
@@ -10,6 +12,6 @@
 
         public int Edad { get; set; }
 
-        public string Pais { get; set; }
+        public EnumPais Pais { get; set; }
     }
 }

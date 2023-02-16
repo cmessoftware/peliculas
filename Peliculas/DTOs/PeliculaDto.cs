@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Peliculas.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace Peliculas.DTOs
 {
@@ -10,7 +11,7 @@ namespace Peliculas.DTOs
         [Display(Name = "Dia de estreno")]
         [DataType(DataType.Date)]
         public DateTime FechaEstreno { get; set; }
-        public string PaisOrigen { get; set; }
+        public EnumPais PaisOrigen { get; set; }
         public string Resumen { get; set; }
         public string PosterLink { get; set; }
         public string Director { get; set; }
@@ -21,5 +22,7 @@ namespace Peliculas.DTOs
 
         public List<CriticaDto> Criticas { get; set; }
         public string TrailerLink { get; set; }
+
+        public bool EnCartelara { get; set; }
     }
 }

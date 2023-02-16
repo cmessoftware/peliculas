@@ -1,4 +1,5 @@
-﻿using Peliculas.DTOs;
+﻿using Peliculas.Data;
+using Peliculas.DTOs;
 using Peliculas.Entidades;
 
 namespace Peliculas.Servicios
@@ -43,7 +44,7 @@ namespace Peliculas.Servicios
                 Id = 1,
                 Director = "Colin Trevorrow",
                 Nombre = "Jurassic World - Dominion",
-                PaisOrigen = "Estados Unidos",
+                PaisOrigen = EnumPais.USA,
                 PosterLink = "000001.png",
                 FechaEstreno = new DateTime ( 2022, 06, 02 ),
                 Resumen = "Tiempo después de los sucesos de Fallen Kingdom, los dinosaurios han vuelto a tomar el dominio en toda la tierra y los humanos tendrán que aprender a convivir con ellos mientras que un nuevo problema pondrá alta tensión a la situación. Owen Grady y Claire Dearing unirán fuerzas junto con la ayuda del famoso paleontólogo Alan Grant, la doctora Ellie Satler y el Doctor Ian Malcolm para resolverlo.",
@@ -54,14 +55,14 @@ namespace Peliculas.Servicios
                         Id = 111,
                         Nombre = "Chris Pratt",
                         Edad = 43,
-                        Pais = "Estados Unidos",
+                        Pais = EnumPais.USA,
                     },
                     new ActorDto ()
                     {
                         Id = 112,
                         Nombre = "Laura Dern",
                         Edad = 55,
-                        Pais = "Estados Unidos",
+                        Pais = EnumPais.USA,
                     }
                 },
                 Genero = new GeneroDto ()
@@ -75,6 +76,7 @@ namespace Peliculas.Servicios
                     {
                         Cadena = "ShowCase",
                         Nombre = "Alto Rosario",
+                        LogoCine = "cine001.png",
                         Direccion = new DireccionDto ()
                         {
                             Calle = "Junin",
@@ -164,7 +166,7 @@ namespace Peliculas.Servicios
                 Id = 2,
                 Director = "Mike Newell",
                 Nombre = "Harry Potter y el cáliz de fuego",
-                PaisOrigen = "Inglaterra - Estados Unidos",
+                PaisOrigen = EnumPais.USA,
                 PosterLink = "000002.png",
                 FechaEstreno = new DateTime(2005, 11, 18),
                 Resumen = "Hogwarts se prepara para el Torneo de los Tres Magos, en el que competirán tres escuelas de hechicería. Para sorpresa de todos, Harry Potter es elegido para participar en la competencia, en la que deberá luchar contra dragones, internarse en el agua y enfrentarse a sus mayores miedos.",
@@ -175,7 +177,7 @@ namespace Peliculas.Servicios
                         Id = 113,
                         Nombre = "Emma Watson",
                         Edad = 15,
-                        Pais = "Francia"
+                        Pais = EnumPais.FRA
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 113,
@@ -188,7 +190,7 @@ namespace Peliculas.Servicios
                         Id = 114,
                         Nombre = "James Phelps",
                         Edad = 19,
-                        Pais = "Inglaterra"
+                        Pais = EnumPais.USA
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 114,
@@ -208,6 +210,7 @@ namespace Peliculas.Servicios
                     {
                         Cadena = "ShowCase",
                         Nombre = "Alto Rosario",
+                        LogoCine = "cine001.png",
                         Direccion = new DireccionDto()
                         {
                             Calle = "Junin",
@@ -297,7 +300,7 @@ namespace Peliculas.Servicios
                 Id = 3,
                 Director = "Tim Story",
                 Nombre = "Los 4 fantásticos",
-                PaisOrigen = "Estados Unidos",
+                PaisOrigen = EnumPais.USA,
                 PosterLink = "000003.png",
                 FechaEstreno = new DateTime(2005, 07, 08),
                 Resumen = "Reed Richards. El piloto Ben Grimm y los miembros de la tripulación Susan Storm y su hermano Johnny Storm sobreviven a un aterrizaje de emergencia en un campo en la Tierra. Al salir del cohete, los cuatro descubren que han desarrollado superpoderes increíbles, y deciden usar estos poderes para ayudar a otros.",
@@ -308,7 +311,7 @@ namespace Peliculas.Servicios
                         Id = 115,
                         Nombre = "Jessica Alba",
                         Edad = 24,
-                        Pais = "Estados Unidos"
+                        Pais = EnumPais.USA
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 115,
@@ -321,7 +324,7 @@ namespace Peliculas.Servicios
                         Id = 116,
                         Nombre = "Stan Lee",
                         Edad = 78,
-                        Pais = "Estados Unidos"
+                        Pais = EnumPais.USA
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 116,
@@ -340,6 +343,7 @@ namespace Peliculas.Servicios
                     {
                         Cadena = "Cinepolis Cine",
                         Nombre = "Cinepolis",
+                        LogoCine = "cine002.png",
                         Direccion = new DireccionDto()
                         {
                             Calle = "Av. Eva Perón",
@@ -429,7 +433,7 @@ namespace Peliculas.Servicios
                 Id = 4,
                 Director = "Eric Darnell",
                 Nombre = "Madagascar",
-                PaisOrigen = "Estados Unidos",
+                PaisOrigen = EnumPais.USA,
                 PosterLink = "000004.png",
                 FechaEstreno = new DateTime(2005, 05, 27),
                 Resumen = "Cuatro animales muy mimados del zoo de Nueva York naufragan en la isla de Madagascar y deben aprender a sobrevivir en un mundo salvaje.",
@@ -440,7 +444,7 @@ namespace Peliculas.Servicios
                         Id = 117,
                         Nombre = "Ben Stiller (Voz de Alex el León)",
                         Edad = 40,
-                        Pais = "Estados Unidos"
+                        Pais = EnumPais.USA
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 117,
@@ -453,7 +457,7 @@ namespace Peliculas.Servicios
                         Id = 118,
                         Nombre = "Sacha Baron Cohen (Voz del Rey Julien)",
                         Edad = 34,
-                        Pais = "Inglaterra"
+                        Pais = EnumPais.USA
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 118,
@@ -472,6 +476,7 @@ namespace Peliculas.Servicios
                     {
                         Cadena = "Cinepolis Cine",
                         Nombre = "Cinepolis",
+                        LogoCine = "cine003.png",
                         Direccion = new DireccionDto()
                         {
                             Calle = "Av. Eva Perón",
@@ -561,7 +566,7 @@ namespace Peliculas.Servicios
                 Id = 5,
                 Director = "Andrew Adamson, Vicky Jenson",
                 Nombre = "Shrek",
-                PaisOrigen = "Estados Unidos",
+                PaisOrigen = EnumPais.USA,
                 PosterLink = "000005.png",
                 FechaEstreno = new DateTime(2001, 06, 27),
                 Resumen = "Hace mucho tiempo, en una lejana ciénaga, vivía un ogro llamado Shrek. Un día, su preciada soledad se ve interrumpida por un montón de personajes de cuento de hadas que invaden su casa. Todos fueron desterrados de su reino por el malvado Lord Farquaad. Decidido a devolverles su reino y recuperar la soledad de su ciénaga, Shrek llega a un acuerdo con Lord Farquaad y va a rescatar a la princesa Fiona, la futura esposa del rey. Sin embargo, la princesa esconde un oscuro secreto.",
@@ -572,7 +577,7 @@ namespace Peliculas.Servicios
                         Id = 119,
                         Nombre = "Mike Myers (Voz de Shrek)",
                         Edad = 38,
-                        Pais = "Canadá"
+                        Pais = EnumPais.CAN,
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 119,
@@ -585,7 +590,7 @@ namespace Peliculas.Servicios
                         Id = 120,
                         Nombre = "Cameron Díaz (Voz de Fiona)",
                         Edad = 29,
-                        Pais = "Estados Unidos"
+                        Pais = EnumPais.USA
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 120,
@@ -604,6 +609,7 @@ namespace Peliculas.Servicios
                     {
                         Cadena = "Cine Ducal",
                         Nombre = "Cine Ducal",
+                        LogoCine = "cine004.png",
                         Direccion = new DireccionDto()
                         {
                             Calle = "Lavalle",
@@ -693,7 +699,7 @@ namespace Peliculas.Servicios
                 Id = 6,
                 Director = "Michael Apted",
                 Nombre = "Las crónicas de Narnia: la travesía del Viajero del Alba",
-                PaisOrigen = "Inglaterra - Estados Unidos",
+                PaisOrigen = EnumPais.USA,
                 PosterLink = "000006.png",
                 FechaEstreno = new DateTime(2010, 11, 30),
                 Resumen = "Edmundo y Lucía junto con su primo Eustaquio emprenderán una nueva aventura con Caspian para explorar los desconocidos mares de Narnia. Recorriendo muchas islas que no aparecen en los mapas y enfrentando grandes peligros llegaran al fin del mundo para conocer el resto de su historia.",
@@ -704,7 +710,7 @@ namespace Peliculas.Servicios
                         Id = 121,
                         Nombre = "Georgina Helen Henley",
                         Edad = 15,
-                        Pais = "Inglaterra"
+                        Pais = EnumPais.USA
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 121,
@@ -717,7 +723,7 @@ namespace Peliculas.Servicios
                         Id = 122,
                         Nombre = "Liam Neeson (Voz de Aslan)",
                         Edad = 58,
-                        Pais = "Reino Unido"
+                        Pais = EnumPais.GBR,
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 122,
@@ -736,6 +742,7 @@ namespace Peliculas.Servicios
                     {
                         Cadena = "Cine Ducal",
                         Nombre = "Cine Ducal",
+                        LogoCine = "cine001.png",
                         Direccion = new DireccionDto()
                         {
                             Calle = "Lavalle",
@@ -826,8 +833,8 @@ namespace Peliculas.Servicios
                 Id = 7,
                 Director = "Shane Van Dyke",
                 Nombre = "Titanic II",
-                PaisOrigen = "Estados Unidos",
-                PosterLink = "000007.png",
+                PaisOrigen = EnumPais.USA,
+                PosterLink = "000002.png",
                 FechaEstreno = new DateTime(2010, 08, 24),
                 Resumen = "Amy Maine ha sido contratada para trabajar en el Titanic 2, el trasatlántico más moderno y sofisticado de todos los tiempos, que inicia un viaje inaugural por el oceáno Atlántico. Cuando el padre de Amy, un geólogo, detecta el derrumbe de un glacial en Groenlandia, prevee que las consecuencias de este desastre natural serán fatales para el Titanic 2. El fragmento de hielo desprendido tiene el tamaño de Manhattan y se sitúa en el trayecto del buque.",
                 Actores = new List<ActorDto>()
@@ -837,7 +844,7 @@ namespace Peliculas.Servicios
                         Id = 123,
                         Nombre = "Bruce Davison",
                         Edad = 64,
-                        Pais = "Estados Unidos"
+                        Pais = EnumPais.USA
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 123,
@@ -850,7 +857,7 @@ namespace Peliculas.Servicios
                         Id = 124,
                         Nombre = "Brooke Burns",
                         Edad = 32,
-                        Pais = "Estados Unidos"
+                        Pais = EnumPais.USA
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 124,
@@ -869,6 +876,7 @@ namespace Peliculas.Servicios
                     {
                         Cadena = "Hoyts",
                         Nombre = "Palace Garden",
+                        LogoCine = "cine003.png",
                         Direccion = new DireccionDto()
                         {
                             Calle = "Mar del Plata",
@@ -957,7 +965,7 @@ namespace Peliculas.Servicios
                 Id = 8,
                 Director = "Todd Phillips",
                 Nombre = "Guasón",
-                PaisOrigen = "Estados Unidos",
+                PaisOrigen = EnumPais.USA,
                 PosterLink = "000008.png",
                 FechaEstreno = new DateTime(2019, 10, 03),
                 Resumen = "Arthur Fleck adora hacer reír a la gente, pero su carrera como comediante es un fracaso. El repudio social, la marginación y una serie de trágicos acontecimientos lo conducen por el sendero de la locura y, finalmente, cae en el mundo del crimen.",
@@ -968,7 +976,7 @@ namespace Peliculas.Servicios
                         Id = 125,
                         Nombre = "Joaquin Rafael Bottom",
                         Edad = 45,
-                        Pais = "Puerto Rico"
+                        Pais = EnumPais.PRI
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 125,
@@ -981,7 +989,7 @@ namespace Peliculas.Servicios
                         Id = 126,
                         Nombre = "Robert De Niro",
                         Edad = 76,
-                        Pais = "Inglaterra"
+                        Pais = EnumPais.USA
                         //ActorPeliculaRel = new ActorPeliculaRel()
                         //{
                         //   ActorId = 126,
@@ -1000,6 +1008,7 @@ namespace Peliculas.Servicios
                     {
                         Cadena = "Hoyts",
                         Nombre = "Palace Garden",
+                        LogoCine = "cine004.png",
                         Direccion = new DireccionDto()
                         {
                             Calle = "Mar del Plata",
@@ -1102,14 +1111,14 @@ namespace Peliculas.Servicios
             {
                 Id = 8,
                 Director = peliculaDto.Director,
-                Nombre = peliculaDto.Nombre,
+                Titulo = peliculaDto.Nombre,
                 PaisOrigen = peliculaDto.PaisOrigen,
                 PosterLink = peliculaDto.PosterLink,
                 FechaEstreno = peliculaDto.FechaEstreno,
                 Resumen = peliculaDto.Resumen
             };
 
-            pelicula.Actores = new List<Actor>();
+            pelicula.PeliculaActores = new List<PeliculaActor>();
 
             foreach (var a in peliculaDto.Actores)
             {
@@ -1118,26 +1127,27 @@ namespace Peliculas.Servicios
                     Id = a.Id,
                     Nombre = a.Nombre,
                     Edad = a.Edad,
-                    Pais = a.Pais,
-                    ActorPeliculaRel = new ActorPeliculaRel()
-                    {
-                        ActorId = a.ActorPeliculaRel.ActorId,
-                        Id = a.ActorPeliculaRel.Id,
-                        PeliculaID = a.ActorPeliculaRel.PeliculaID,
-                        EsPrincipal = a.ActorPeliculaRel.EsPrincipal
-                    }
+                    PaisOrigen = a.Pais,
+                    //PeliculaActores = new List<PeliculaActores>
+                    //{
+                    //    new 
+                    //    ActorId = a.ActorPeliculaRel.ActorId,
+                    //    Id = a.ActorPeliculaRel.Id,
+                    //    PeliculaId = a.ActorPeliculaRel.PeliculaId,
+                    //    EsPrincipal = a.ActorPeliculaRel.EsPrincipal
+                    //}
                 };
 
-                pelicula.Actores.Add(actor);
+                //pelicula.PeliculaActores.Add(actor);
              }
 
-            pelicula.Genero = new Genero()
-            {
-                Nombre = peliculaDto.Genero.Nombre
-            };
+            //pelicula.Genero = new Genero()
+            //{
+            //    Nombre = peliculaDto.Genero.Nombre
+            //};
 
             #region Cargo Cines con sus salas.
-            pelicula.Cines = new List<Cine>();
+           // pelicula.Cines = new List<Cine>();
 
             foreach (var c in peliculaDto.Cines)
             {
@@ -1145,34 +1155,34 @@ namespace Peliculas.Servicios
                 {
                     Cadena = c.Cadena,
                     Nombre = c.Nombre,
-                    Direccion = new Direccion()
-                    {
-                        Calle = c.Direccion.Calle,
-                        Numero = c.Direccion.Numero,
-                        Ciudad = c.Direccion.Ciudad,
-                        Pais = c.Direccion.Pais,
-                        CP = c.Direccion.CP,
-                        Provincia = c.Direccion.Provincia
-                    }
+                    //Direccion = new Direccion()
+                    //{
+                    //    Calle = c.Direccion.Calle,
+                    //    Numero = c.Direccion.Numero,
+                    //    Ciudad = c.Direccion.Ciudad,
+                    //    Pais = c.Direccion.Pais,
+                    //    CP = c.Direccion.CP,
+                    //    Provincia = c.Direccion.Provincia
+                    //}
                 };
 
-                cine.Salas = new List<Sala>();
+                //cine.Salas = new List<SalaCine>();
 
                 foreach (var s in c.Salas)
                 {
-                    var sala = new Sala()
-                    {
-                        Nombre = s.Nombre,
-                        Tipo = new Tipo()
-                        {
-                            Nombre = s.Tipo.Nombre
-                        }
-                    };
+                    //var sala = new SalaCine()
+                    //{
+                    //    Nombre = s.Nombre,
+                    //    Tipo = new Tipo()
+                    //    {
+                    //        Nombre = s.Tipo.Nombre
+                    //    }
+                    //};
 
-                    cine.Salas.Add(sala);
+                   // cine.Salas.Add(sala);
                 }
 
-                pelicula.Cines.Add(cine);
+               // pelicula.Cines.Add(cine);
             }
             #endregion
 
@@ -1206,9 +1216,10 @@ namespace Peliculas.Servicios
 
         }
 
-        PeliculaDto IServicioPelicula.CrearPelicula(PeliculaDto pelicula)
+
+        public void InsertarPelicula(Pelicula pelicula)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

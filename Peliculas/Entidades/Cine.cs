@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using NetTopologySuite.Geometries;
 
 namespace Peliculas.Entidades
 { 
@@ -13,8 +14,7 @@ namespace Peliculas.Entidades
         public string Cadena { get; set; }
         public List<Pelicula> Peliculas { get; set; }
 
-        public List<Sala> Salas { get; set; }
-
-        public Direccion Direccion { get; set; }
+        //public Direccion Direccion { get; set; }
+        public Point Ubicacion { get; set; }
     }
 }
