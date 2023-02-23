@@ -10755,19 +10755,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sergi\\.nuget\\packages\\": {}
+    "C:\\Users\\Lu.Roma\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj",
+      "projectUniqueName": "C:\\Users\\Lu.Roma\\fuentes\\peliculas\\Peliculas\\Peliculas.csproj",
       "projectName": "Peliculas",
-      "projectPath": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj",
-      "packagesPath": "C:\\Users\\sergi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\obj\\",
+      "projectPath": "C:\\Users\\Lu.Roma\\fuentes\\peliculas\\Peliculas\\Peliculas.csproj",
+      "packagesPath": "C:\\Users\\Lu.Roma\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Lu.Roma\\fuentes\\peliculas\\Peliculas\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sergi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Lu.Roma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10835,7 +10835,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

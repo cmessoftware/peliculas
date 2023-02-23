@@ -1,0 +1,222 @@
+﻿@page
+@model Peliculas.Views.Peliculas.GenActoGeneSalaCineDirModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js"></script>
+    <title>ABM GENERO - ACTOR - TIPO DE SALA - SALA - DIRECCION - CINE</title>
+</head>
+
+<body class="p-3 m-0 border-0 ">
+
+
+    <div class="row">
+        <a href="#generoCard" class="btn mt-3 btn-secondary" tabindex="-1" role="button" aria-disabled="true">CARGAR GENERO</a>
+        <a href="#actorCard" class="btn mt-3 btn-secondary " tabindex="-1" role="button" aria-disabled="true">CARGAR ACTOR</a>
+        <a href="#tipoSalaCard" class="btn mt-3 btn-secondary " tabindex="-1" role="button" aria-disabled="true">CARGAR TIPO DE SALA</a>
+        <a href="#salaCard" class="btn mt-3 btn-secondary " tabindex="-1" role="button" aria-disabled="true">CARGAR SALA</a>
+        <a href="#direccionCard" class="btn mt-3 btn-secondary " tabindex="-1" role="button" aria-disabled="true">CARGAR DIRECCIÓN</a>
+        <a href="#cineCard" class="btn mt-3 btn-secondary " tabindex="-1" role="button" aria-disabled="true">CARGAR CINE</a>
+    </div>
+
+
+
+    <div class="container mt-5 mb-5 ">
+        <div class="card">
+            <h2 class="card-header badge mb-2 bg-secondary " id="generoCard">CARGAR GENERO</h2>
+            <form class="p-3" action="" method="post">
+                <div class="row">
+
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <label for="GeneroFormControlNombre" class="form-label">Nombre del Género</label>
+                            <input type="text" class="form-control" id="GeneroFormControlNombre" placeholder="Género"></input>
+                        </div>
+                        <div class=" btnGuardarCrearGenero">
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+        <hr class="my-4">
+        <div class="card">
+            <h2 class="card-header badge mb-2 bg-secondary " id="actorCard">CARGAR ACTOR</h2>
+            <form class="p-3" action="" method="post">
+                <div class="row">
+                    <div class="col-8">
+
+                        <div class="mb-3">
+                            <label for="ActorFormControlNombre" class="form-label">Nombre del/la actor/actriz</label>
+                            <input type="text" class="form-control" id="ActorFormControlNombre" placeholder="Nombre y Apellido"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ActorFormControlEdad" class="form-label">Edad</label>
+                            <input type="text" class="form-control" id="ActorFormControlEdad" placeholder="Edad"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ActorFormControlPrincipal" class="form-label">Es principal?</label>
+                            <input type="number" class="form-control" id="ActorFormControlPrincipal" placeholder="Principal / No principal"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ActorFormControlPaisOrigen" class="form-label">Pais de Origen</label>
+                            <input type="text" class="form-control" id="ActorFormControlPaisOrigen" placeholder="Pais de Origen"></input>
+                        </div>
+                        <div class=" mb-3 btnGuardarCrearActor">
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="card">
+            <h2 class="card-header badge mb-2 bg-secondary " id="tipoSalaCard">CARGAR TIPO DE SALA</h2>
+            <form class="p-3" action="" method="post">
+                <div class="row">
+
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <label for="TipoSalaFormControlNombre" class="form-label">Tipo la Sala</label>
+                            <input type="text" class="form-control" id="TipoSalaFormControlNombre" placeholder="Nombre"></input>
+                        </div>
+                        <div class=" mb-3 btnGuardarTipoSala">
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="card">
+            <h2 class="card-header badge mb-2 bg-secondary " id="salaCard"> CARGAR SALA</h2>
+            <form class="p-3" action="" method="post">
+                <div class="row">
+
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <label for="SalaFormControlNombre" class="form-label">Nombre de la Sala</label>
+                            <input type="text" class="form-control" id="SalaFormControlNombre" placeholder="Nombre"></input>
+                        </div>
+                        <div class="mb-3">
+                            <select id="SalaFormControlTipoSala" class="form-select form-select-sm" aria-label=".form-select-sm Tipos">
+                                <option selected>Seleccione una Sala</option>
+                                @{
+                                    int num_Sala = 1; @*Id de la Sala*@
+
+                                    foreach (var s in @ViewBag.salas)
+                                    {
+                                        <option value=num_Sala.Tostring()>@s.Nombre</option>
+                                        num_Sala++;
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class=" mb-3 btnGuardarCrearSala">
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="card">
+            <h2 class="card-header badge mb-2 bg-secondary " id="direccionCard">CARGAR DIRECCIÓN</h2>
+            <form class="p-3" action="" method="post">
+                <div class="row">
+                    <div class="col-8">
+
+                        <div class="mb-3">
+                            <label for="DireccionFormControlCalle" class="form-label">Calle</label>
+                            <input type="text" class="form-control" id="DireccionFormControlCalle" placeholder="Calle"></input>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="DireccionFormControlNumero" class="form-label">Número</label>
+                            <input type="number" class="form-control" id="DireccionFormControlNumero" placeholder="Número"></input>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="DireccionFormControlPostal" class="form-label">Código Postal</label>
+                            <input type="text" class="form-control" id="DireccionFormControlPostal" placeholder="Código Postal"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="DireccionFormControlCiudad" class="form-label">Ciudad</label>
+                            <input type="text" class="form-control" id="ActorFormControlCiudad" placeholder="Ciudad"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="DireccionFormControlProvincia" class="form-label">Provincia</label>
+                            <input type="text" class="form-control" id="ActorFormControlProvincia" placeholder="Provincia"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ActorFormControlPais" class="form-label">Pais</label>
+                            <input type="text" class="form-control" id="ActorFormControlPais" placeholder="Pais"></input>
+                        </div>
+                        <div class=" mb-3 btnGuardarCrearPais">
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <hr class="my-4">
+
+        <div class="card">
+            <h2 class="card-header badge mb-2 bg-secondary " id="cineCard">CARGAR CINE</h2>
+            <form class="p-3" action="" method="post">
+                <div class="row">
+
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <label for="CineFormControlNombre" class="form-label">Nombre del Cine</label>
+                            <input type="text" class="form-control" id="SalaFormControlNombre" placeholder="Nombre del Cine"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="CineFormControlNombreCadena" class="form-label">Nombre de la Cadena</label>
+                            <input type="text" class="form-control" id="CineFormControlNombreCadena" placeholder="Nombre de la Cadena"></input>
+                        </div>
+                        <div class="mb-3">
+                            <select id="CineFormControlDireccion" class="form-select form-select-sm" aria-label=".form-select-sm Cines">
+                                <option selected>Seleccione la dirección </option>
+                                @{
+                                    int num_direccion = 1; @*Id de la dirección*@
+
+                                    foreach (var d in @ViewBag.direccion)
+                                    {
+                                        <option value=num_direccion.Tostring()>@d.Calle @d.Numero - @d.ciudad</option>
+                                        num_direccion++;
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class=" mb-3 btnGuardarCrearCine">
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+
+</html>
