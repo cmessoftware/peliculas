@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Peliculas.Data;
 using Peliculas.Dto.DTOs;
-using Peliculas.Entidades;
 using Peliculas.Models;
 using Peliculas.Servicios;
 using System.Diagnostics;

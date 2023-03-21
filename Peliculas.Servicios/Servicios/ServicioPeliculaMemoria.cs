@@ -1137,81 +1137,81 @@ namespace Peliculas.Servicios
             //        //}
             //    };
 
-                //pelicula.PeliculaActores.Add(actor);
-            }
+            //pelicula.PeliculaActores.Add(actor);
+        }
 
-            //pelicula.Genero = new Genero()
-            //{
-            //    Nombre = peliculaDto.Genero.Nombre
-            //};
+        //pelicula.Genero = new Genero()
+        //{
+        //    Nombre = peliculaDto.Genero.Nombre
+        //};
 
-            #region Cargo Cines con sus salas.
-            // pelicula.Cines = new List<Cine>();
+        #region Cargo Cines con sus salas.
+        // pelicula.Cines = new List<Cine>();
 
-            //foreach (var c in peliculaDto.Cines)
-            //{
-            //    var cine = new Cine()
-            //    {
-            //        Cadena = c.Cadena,
-            //        Nombre = c.Nombre,
-            //        //Direccion = new Direccion()
-            //        //{
-            //        //    Calle = c.Direccion.Calle,
-            //        //    Numero = c.Direccion.Numero,
-            //        //    Ciudad = c.Direccion.Ciudad,
-            //        //    Pais = c.Direccion.Pais,
-            //        //    CP = c.Direccion.CP,
-            //        //    Provincia = c.Direccion.Provincia
-            //        //}
-            //    };
+        //foreach (var c in peliculaDto.Cines)
+        //{
+        //    var cine = new Cine()
+        //    {
+        //        Cadena = c.Cadena,
+        //        Nombre = c.Nombre,
+        //        //Direccion = new Direccion()
+        //        //{
+        //        //    Calle = c.Direccion.Calle,
+        //        //    Numero = c.Direccion.Numero,
+        //        //    Ciudad = c.Direccion.Ciudad,
+        //        //    Pais = c.Direccion.Pais,
+        //        //    CP = c.Direccion.CP,
+        //        //    Provincia = c.Direccion.Provincia
+        //        //}
+        //    };
 
-            //    //cine.Salas = new List<SalaCine>();
+        //    //cine.Salas = new List<SalaCine>();
 
-            //    foreach (var s in c.Salas)
-            //    {
-            //        //var sala = new SalaCine()
-            //        //{
-            //        //    Nombre = s.Nombre,
-            //        //    Tipo = new Tipo()
-            //        //    {
-            //        //        Nombre = s.Tipo.Nombre
-            //        //    }
-            //        //};
+        //    foreach (var s in c.Salas)
+        //    {
+        //        //var sala = new SalaCine()
+        //        //{
+        //        //    Nombre = s.Nombre,
+        //        //    Tipo = new Tipo()
+        //        //    {
+        //        //        Nombre = s.Tipo.Nombre
+        //        //    }
+        //        //};
 
-            //        // cine.Salas.Add(sala);
-            //    }
+        //        // cine.Salas.Add(sala);
+        //    }
 
-            //    // pelicula.Cines.Add(cine);
-            //}
-            #endregion
+        //    // pelicula.Cines.Add(cine);
+        //}
+        #endregion
 
-            //pelicula.Comentarios = new List<Comentario>();
+        //pelicula.Comentarios = new List<Comentario>();
 
-            //foreach (var com in peliculaDto.Comentarios)
-            //{
-            //    var comentario = new Comentario()
-            //    {
-            //        Id = com.Id,
-            //        Contenido = com.Contenido,
-            //        Usuario = com.Usuario,
-            //        MeGustaCantidad = com.MeGustaCantidad
-            //    };
+        //foreach (var com in peliculaDto.Comentarios)
+        //{
+        //    var comentario = new Comentario()
+        //    {
+        //        Id = com.Id,
+        //        Contenido = com.Contenido,
+        //        Usuario = com.Usuario,
+        //        MeGustaCantidad = com.MeGustaCantidad
+        //    };
 
-            //    pelicula.Comentarios.Add(comentario);
+        //    pelicula.Comentarios.Add(comentario);
 
-            //}
+        //}
 
-            //foreach (var cri in peliculaDto.Criticas)
-            //{
-            //    var critica = new CriticaDto()
-            //    {
-            //        Autor = cri.Autor,
-            //        Contenido = cri.Contenido
+        //foreach (var cri in peliculaDto.Criticas)
+        //{
+        //    var critica = new CriticaDto()
+        //    {
+        //        Autor = cri.Autor,
+        //        Contenido = cri.Contenido
 
-            //    };
-            //}
+        //    };
+        //}
 
-            //Persistir en la base de datos.
+        //Persistir en la base de datos.
 
         //}
 
