@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj": {}
+    "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas\\Peliculas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj": {
+    "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Datos\\Peliculas.Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj",
-        "projectName": "Peliculas",
-        "projectPath": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\Peliculas.csproj",
+        "projectUniqueName": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Datos\\Peliculas.Datos.csproj",
+        "projectName": "Peliculas.Datos",
+        "projectPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Datos\\Peliculas.Datos.csproj",
         "packagesPath": "C:\\Users\\sergi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sergi\\fuentes\\Peliculas\\Peliculas\\obj\\",
+        "outputPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Datos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sergi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,23 +40,202 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Mvc.Abstractions": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite": {
               "target": "Package",
               "version": "[7.0.3, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Dto\\Peliculas.Dto.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Dto\\Peliculas.Dto.csproj",
+        "projectName": "Peliculas.Dto",
+        "projectPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Dto\\Peliculas.Dto.csproj",
+        "packagesPath": "C:\\Users\\sergi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Dto\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sergi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Datos\\Peliculas.Datos.csproj": {
+                "projectPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Datos\\Peliculas.Datos.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Servicios\\Peliculas.Servicios.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Servicios\\Peliculas.Servicios.csproj",
+        "projectName": "Peliculas.Servicios",
+        "projectPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Servicios\\Peliculas.Servicios.csproj",
+        "packagesPath": "C:\\Users\\sergi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Servicios\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sergi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Dto\\Peliculas.Dto.csproj": {
+                "projectPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Dto\\Peliculas.Dto.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas\\Peliculas.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas\\Peliculas.csproj",
+        "projectName": "Peliculas",
+        "projectPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas\\Peliculas.csproj",
+        "packagesPath": "C:\\Users\\sergi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sergi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Datos\\Peliculas.Datos.csproj": {
+                "projectPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Datos\\Peliculas.Datos.csproj"
+              },
+              "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Dto\\Peliculas.Dto.csproj": {
+                "projectPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Dto\\Peliculas.Dto.csproj"
+              },
+              "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Servicios\\Peliculas.Servicios.csproj": {
+                "projectPath": "C:\\Users\\sergi\\fuentes\\peliculas\\Peliculas.Servicios\\Peliculas.Servicios.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[2.2.0, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
@@ -82,7 +261,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

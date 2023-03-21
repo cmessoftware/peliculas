@@ -24,6 +24,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 //builder.Services.AddDbContext<PeliculasDbContext>(options =>
 //                             options.UseInMemoryDatabase("Peliculas"));
 
+//Configuro servicio
 builder.Services.AddScoped<IServicioPelicula, ServicioPeliculaBD>();
 builder.Services.AddScoped<IRepositorioPelicula, RepositorioPelicula>();
 

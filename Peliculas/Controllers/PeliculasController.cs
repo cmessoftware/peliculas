@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Peliculas.Data;
-using Peliculas.DTOs;
+using Peliculas.Dto.DTOs;
 using Peliculas.Entidades;
-using Peliculas.Mapeos;
 using Peliculas.Models;
 using Peliculas.Servicios;
 using System.Diagnostics;
@@ -51,12 +50,12 @@ namespace Peliculas.Controllers
 
             var comentario = resumen.Comentarios.Where(c => c.Id == comentarioId).FirstOrDefault();
 
-            _servicioPelicula.ActualizarComentarioLike(comentario, idLike);            
+            _servicioPelicula.ActualizarComentarioLike(comentario, idLike);
 
             return View("Resumen", resumen);
 
         }
-        
+
         [HttpGet]
         public IActionResult Historial()
         {
@@ -81,9 +80,9 @@ namespace Peliculas.Controllers
 
             //Mapeo a entidad Pelicula,  PeliculaDto --> Pelicula
 
-            Pelicula pelicula = MapeoPelicula.Map(nuevaPelicula);
+            //Pelicula pelicula = MapeoPelicula.Map(nuevaPelicula);
 
-            _servicioPelicula.InsertarPelicula(pelicula);
+            //_servicioPelicula.InsertarPelicula(pelicula);
 
 
             return View();
@@ -91,23 +90,23 @@ namespace Peliculas.Controllers
         }
 
         [HttpGet]
-        [Route ( "CrearPeliculas" )]
+        [Route("CrearPeliculas")]
         public IActionResult CrearPelicula()
         {
 
             //Creo el objeto de Peliculas.
 
             #region Actores
-            var _lactores = new List<ActorDto> ();
+            var _lactores = new List<ActorDto>();
             ActorDto leo = new ActorDto
             {
                 Id = 1,
                 Nombre = "Leo",
                 Edad = 50,
                 Pais = EnumPais.USA,
-                ActorPeliculaRel= new ActorPeliculaRelDto()
+                ActorPeliculaRel = new ActorPeliculaRelDto()
             };
-            _lactores.Add(leo); 
+            _lactores.Add(leo);
 
             ActorDto rose = new ActorDto
             {
@@ -115,9 +114,9 @@ namespace Peliculas.Controllers
                 Nombre = "Rose",
                 Edad = 50,
                 Pais = EnumPais.USA,
-                ActorPeliculaRel = new ActorPeliculaRelDto ()
+                ActorPeliculaRel = new ActorPeliculaRelDto()
             };
-            _lactores.Add(rose);                        
+            _lactores.Add(rose);
 
             ActorDto Andy = new ActorDto
             {
@@ -125,102 +124,102 @@ namespace Peliculas.Controllers
                 Nombre = "Andy Garcia",
                 Edad = 80,
                 Pais = EnumPais.USA,
-                ActorPeliculaRel = new ActorPeliculaRelDto ()
+                ActorPeliculaRel = new ActorPeliculaRelDto()
             };
-            _lactores.Add ( Andy );
+            _lactores.Add(Andy);
             ActorDto Alpa = new ActorDto
             {
                 Id = 1,
                 Nombre = "Al Paccino",
                 Edad = 80,
                 Pais = EnumPais.USA,
-                ActorPeliculaRel = new ActorPeliculaRelDto ()
+                ActorPeliculaRel = new ActorPeliculaRelDto()
             };
-            _lactores.Add ( Alpa );
+            _lactores.Add(Alpa);
 
             #endregion
 
             #region Generos
-            var _lgeneros = new List<GeneroDto> ();
+            var _lgeneros = new List<GeneroDto>();
             GeneroDto scifi = new GeneroDto { Nombre = "Ciencia ficcion" };
-            _lgeneros.Add ( scifi );
+            _lgeneros.Add(scifi);
             GeneroDto epica = new GeneroDto { Nombre = "Epica" };
-            _lgeneros.Add ( epica );
+            _lgeneros.Add(epica);
             GeneroDto comedia = new GeneroDto { Nombre = "Comedia" };
-            _lgeneros.Add ( comedia );
+            _lgeneros.Add(comedia);
             GeneroDto drama = new GeneroDto { Nombre = "Drama" };
-            _lgeneros.Add ( drama );
+            _lgeneros.Add(drama);
 
             #endregion
 
             #region Direcciones
             DireccionDto DirHoyts = new DireccionDto
             {
-                
+
                 Pais = "ARG",
                 Provincia = "STAFE",
                 Ciudad = "Rosario",
-                
+
                 Calle = "Nazcar",
                 Numero = 450
             };
-            DireccionDto     DirCinePolis = new DireccionDto
+            DireccionDto DirCinePolis = new DireccionDto
             {
                 Pais = "ARG",
                 Provincia = "STAFE",
                 Ciudad = "Rosario",
-                
+
                 Calle = "Eva Peron",
                 Numero = 8500
             };
             #endregion
 
             #region Tipos de salas
-            TipoDto dosd = new TipoDto {  Nombre = "2D" };
+            TipoDto dosd = new TipoDto { Nombre = "2D" };
             TipoDto tresd = new TipoDto { Nombre = "2D" };
             #endregion
 
             #region Salas
             SalaDto Sala2dHoyts = new SalaDto
             {
-             
+
                 Nombre = "Sala 2D",
                 Tipo = dosd
             };
             SalaDto Sala3dHoyts = new SalaDto
             {
-                
+
                 Nombre = "Sala 3D",
                 Tipo = tresd
             };
-            List<SalaDto> SalasHoyst = new List<SalaDto> ();
-            SalasHoyst.Add ( Sala2dHoyts );
-            SalasHoyst.Add ( Sala3dHoyts );
+            List<SalaDto> SalasHoyst = new List<SalaDto>();
+            SalasHoyst.Add(Sala2dHoyts);
+            SalasHoyst.Add(Sala3dHoyts);
 
 
 
-            SalaDto  Sala2dCinepolis = new SalaDto
+            SalaDto Sala2dCinepolis = new SalaDto
             {
-                
+
                 Nombre = "Sala 2D",
                 Tipo = dosd
             };
             SalaDto Sala3dCinepolis = new SalaDto
             {
-                
+
                 Nombre = "Sala 3D",
                 Tipo = tresd
             };
-            List<SalaDto> SalasCinepolis = new List<SalaDto> ();
-            SalasHoyst.Add ( Sala2dCinepolis );
-            SalasHoyst.Add ( Sala3dCinepolis );
+            List<SalaDto> SalasCinepolis = new List<SalaDto>();
+            SalasHoyst.Add(Sala2dCinepolis);
+            SalasHoyst.Add(Sala3dCinepolis);
 
             #endregion
 
             #region Cines
             CineDto Hoyts = new CineDto
             {
-            
+
                 Nombre = "Hoyts",
                 Cadena = "Halmark",
                 Direccion = DirHoyts,
@@ -228,15 +227,15 @@ namespace Peliculas.Controllers
             };
             CineDto Cinepolis = new CineDto
             {
-             
+
                 Nombre = "Cinepolis",
                 Cadena = "MexiCine",
                 Direccion = DirCinePolis,
                 Salas = SalasCinepolis
             };
-            List<CineDto> _lCines = new List<CineDto> ();
-            _lCines.Add ( Hoyts );
-            _lCines.Add ( Cinepolis );
+            List<CineDto> _lCines = new List<CineDto>();
+            _lCines.Add(Hoyts);
+            _lCines.Add(Cinepolis);
             #endregion
 
             //Inserter en DB.
@@ -244,7 +243,7 @@ namespace Peliculas.Controllers
             ViewBag.actores = _lactores;
             ViewBag.generos = _lgeneros;
             ViewBag.Cines = _lCines;
-            return View ();
+            return View();
 
         }
 
