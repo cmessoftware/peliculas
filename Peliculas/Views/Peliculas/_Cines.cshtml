@@ -21,31 +21,30 @@
                     </h2>
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            @foreach (var c in Model.Cines)
+                            @foreach (var c in Model.SalasCines)
                             {
                                 <div class="row">
                                     <div class="col-2" style="display: flex; justify-content: center;">
-                                        <img src="~/img/Cines/@c.LogoCine" style="width: 50px; height: 50px" />
+                                        <img src="~/img/Cines/@c.Cine.LogoCine" style="width: 50px; height: 50px" />
                                     </div>
                                     <div class="col-10" style="display: flex; justify-content: center; align-items: center">
-                                        <span>@c.Nombre - @c.Cadena</span>
+                                        <span>@c.Nombre - @c.Cine.Cadena</span>
                                     </div>
                                 </div>
                                 <hr />
                                 <div class="row">
                                     <div class="col">
-                                        @foreach(var s in c.Salas)
-                                        {
+                                        
                                             <div class="row">
                                                 <div class="col-3">
-                                                    <span style="font-size: 10px">@s.Nombre</span>
+                                                    <span style="font-size: 10px">@c.Nombre</span>
                                                 </div>
                                                 <div class="col-3">
-                                                    <span style="font-size: 12px">@s.Tipo.Nombre</span>
+                                                    <span style="font-size: 12px">@c.Tipo.Nombre</span>
                                                 </div>
                                             </div>
                                             <hr />
-                                        }
+                                   
                                     </div>
                                 </div>
                             }

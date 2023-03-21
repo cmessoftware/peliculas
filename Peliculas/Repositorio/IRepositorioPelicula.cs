@@ -7,7 +7,7 @@ namespace Peliculas.Repositorio
     {
         void ActualizarComentarioLike(ComentarioDto? comentario, string idLike);
         Pelicula GetPeliculaEstrenoById(int id);
-        List<Pelicula> GetPeliculasEstreno();
+        public   List<Pelicula> GetPeliculasEstreno();
         void InsertarPelicula(Pelicula pelicula);
     }
 }

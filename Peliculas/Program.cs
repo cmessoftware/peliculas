@@ -3,6 +3,8 @@ using Peliculas.Data;
 using Peliculas.Repositorio;
 using Peliculas.Servicios;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +13,10 @@ builder.Services.AddControllersWithViews();
 
 //Configuracion del EF Core.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var AzureconnectionString = builder.Configuration.GetConnectionString ( "AzureConnection" );
 builder.Services.AddDbContext<PeliculasDbContext>(options =>
 {
-    options.UseSqlServer(connectionString, sqlServer => sqlServer.UseNetTopologySuite());
+    options.UseSqlServer(AzureconnectionString, sqlServer => sqlServer.UseNetTopologySuite());
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
     //opciones.UseLazyLoadingProxies();
 }
@@ -26,6 +29,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 builder.Services.AddScoped<IServicioPelicula, ServicioPeliculaBD>();
 builder.Services.AddScoped<IRepositorioPelicula, RepositorioPelicula>();
+
+builder.Services.AddAutoMapper ( AppDomain.CurrentDomain.GetAssemblies () );
 
 
 var app = builder.Build();

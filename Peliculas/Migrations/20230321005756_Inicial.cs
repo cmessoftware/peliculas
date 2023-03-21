@@ -9,7 +9,7 @@ using NetTopologySuite.Geometries;
 namespace Peliculas.Migrations
 {
     /// <inheritdoc />
-    public partial class Seeding : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -85,28 +85,6 @@ namespace Peliculas.Migrations
                         column: x => x.CineId,
                         principalTable: "Cines",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SalasDeCine",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Precio = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: false),
-                    Tipo = table.Column<int>(type: "int", nullable: false),
-                    CineId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SalasDeCine", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SalasDeCine_Cines_CineId",
-                        column: x => x.CineId,
-                        principalTable: "Cines",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -199,28 +177,28 @@ namespace Peliculas.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SalaCine",
+                name: "SalasCine",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Tipo = table.Column<int>(type: "int", nullable: false),
-                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Precio = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: false),
                     CineId = table.Column<int>(type: "int", nullable: false),
                     PeliculaId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SalaCine", x => x.Id);
+                    table.PrimaryKey("PK_SalasCine", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SalaCine_Cines_CineId",
+                        name: "FK_SalasCine_Cines_CineId",
                         column: x => x.CineId,
                         principalTable: "Cines",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SalaCine_Peliculas_PeliculaId",
+                        name: "FK_SalasCine_Peliculas_PeliculaId",
                         column: x => x.PeliculaId,
                         principalTable: "Peliculas",
                         principalColumn: "Id");
@@ -324,16 +302,16 @@ namespace Peliculas.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "SalasDeCine",
-                columns: new[] { "Id", "CineId", "Nombre", "Precio", "Tipo" },
+                table: "SalasCine",
+                columns: new[] { "Id", "CineId", "Nombre", "PeliculaId", "Precio", "Tipo" },
                 values: new object[,]
                 {
-                    { 1, 4, "Sala 1", 0m, 2 },
-                    { 2, 4, "Sala 2", 0m, 1 },
-                    { 3, 4, "Sala 3", 0m, 1 },
-                    { 4, 4, "Sala 1", 0m, 2 },
-                    { 5, 4, "Sala 2", 0m, 1 },
-                    { 6, 4, "Sala 3", 0m, 1 }
+                    { 1, 4, "Sala 1", null, 0m, 2 },
+                    { 2, 4, "Sala 2", null, 0m, 1 },
+                    { 3, 4, "Sala 3", null, 0m, 1 },
+                    { 4, 4, "Sala 1", null, 0m, 2 },
+                    { 5, 4, "Sala 2", null, 0m, 1 },
+                    { 6, 4, "Sala 3", null, 0m, 1 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -367,19 +345,14 @@ namespace Peliculas.Migrations
                 column: "CineId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SalaCine_CineId",
-                table: "SalaCine",
+                name: "IX_SalasCine_CineId",
+                table: "SalasCine",
                 column: "CineId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SalaCine_PeliculaId",
-                table: "SalaCine",
+                name: "IX_SalasCine_PeliculaId",
+                table: "SalasCine",
                 column: "PeliculaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SalasDeCine_CineId",
-                table: "SalasDeCine",
-                column: "CineId");
         }
 
         /// <inheritdoc />
@@ -401,10 +374,7 @@ namespace Peliculas.Migrations
                 name: "PeliculaActores");
 
             migrationBuilder.DropTable(
-                name: "SalaCine");
-
-            migrationBuilder.DropTable(
-                name: "SalasDeCine");
+                name: "SalasCine");
 
             migrationBuilder.DropTable(
                 name: "Actores");

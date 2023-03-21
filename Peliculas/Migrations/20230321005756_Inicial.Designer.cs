@@ -13,8 +13,8 @@ using Peliculas.Data;
 namespace Peliculas.Migrations
 {
     [DbContext(typeof(PeliculasDbContext))]
-    [Migration("20230215045316_Seeding2")]
-    partial class Seeding2
+    [Migration("20230321005756_Inicial")]
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
