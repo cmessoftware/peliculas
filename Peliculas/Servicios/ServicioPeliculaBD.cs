@@ -34,21 +34,27 @@ namespace Peliculas.Servicios
             throw new NotImplementedException();
         }
 
-        public PeliculaDto GetPeliculaEstrenoById(int id)
+      
+        public async Task<PeliculaDto> GetPeliculaEstrenoById(int id)
         {
-            throw new NotImplementedException();
+            var pelicula = await _repo.GetPeliculaEstrenoById(id);
+
+            var peliculaDto = _mapper.Map<PeliculaDto>(pelicula);
+
+            return peliculaDto;
+
         }
 
-        public List<PeliculaDto> GetPeliculasEstreno()
+        public async Task<List<PeliculaDto>> GetPeliculasEstreno()
         {
-            List<Pelicula> peliculas = _repo.GetPeliculasEstreno ();
+            List<Pelicula> peliculas = await _repo.GetPeliculasEstreno ();
             List<PeliculaDto> peliculasDto =new List<PeliculaDto>();
             foreach (var item in peliculas)
             {
                 PeliculaDto peliDto = new PeliculaDto ();
                 peliDto = _mapper.Map<PeliculaDto> ( item );
                 peliculasDto.Add ( peliDto);
-            }
+           }
             
 
             return peliculasDto;
@@ -58,5 +64,6 @@ namespace Peliculas.Servicios
         {
             throw new NotImplementedException();
         }
+
     }
 }

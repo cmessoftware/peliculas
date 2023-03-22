@@ -22,36 +22,35 @@ namespace Peliculas.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             //var servPeli = new ServicioPeliculaMemoria();  //NO aplica Inyección de dependencias.
             //var peliculasEstreno = servPeli.GetPeliculasEstreno();
 
             _logger.LogInformation("Entre al Index de PeliculasController");
 
-            var peliculasEstreno = _servicioPelicula.GetPeliculasEstreno();
+            var peliculasEstreno = await _servicioPelicula.GetPeliculasEstreno();
 
             return View(peliculasEstreno);
         }
 
         [HttpGet]
         [Route("{resumen}/{id}")]
-        public IActionResult Resumen(int Id)
+        public async Task<ActionResult<PeliculaDto>> Resumen(int Id)
         {
-            if (Id == 0) { return View ( Index ); }
                             
-            var resumen = _servicioPelicula.GetPeliculaEstrenoById(Id);
+            var resumen = await _servicioPelicula.GetPeliculaEstrenoById(Id);
 
             return View(resumen);
         }
 
         [HttpGet]
         [Route("{resumen}/{id}/{comentarioId}/{idLike}")]
-        public IActionResult Likes(int id, int comentarioId, string idLike)
+        public async Task<ActionResult<PeliculaDto>> Likes(int id, int comentarioId, string idLike)
         {
-            var resumen = _servicioPelicula.GetPeliculaEstrenoById(id);
+            var resumen = await _servicioPelicula.GetPeliculaEstrenoById(id);
 
-            var comentario = resumen.Comentarios.Where(c => c.Id == comentarioId).FirstOrDefault();
+            var comentario = resumen.Comentarios.FirstOrDefault(c => c.Id == comentarioId);
 
             _servicioPelicula.ActualizarComentarioLike(comentario, idLike);            
 
@@ -62,6 +61,8 @@ namespace Peliculas.Controllers
         [HttpGet]
         public IActionResult Historial()
         {
+            //1.4: DTO Peliclas
+            //1.5: Entidades y migracion a Azure.
             return View();
         }
 

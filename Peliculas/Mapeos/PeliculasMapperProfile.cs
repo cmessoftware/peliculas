@@ -20,8 +20,16 @@ namespace Peliculas.Mapeos
             CreateMap<GeneroDto, Genero> ();
             CreateMap<PeliculaDto, Pelicula> ();
             CreateMap<SalaDto, SalaCine> ();
-            
 
+            CreateMap<Actor, ActorDto>();
+            CreateMap<PeliculaActor, ActorPeliculaRelDto>();
+            CreateMap<Cine, CineDto>();
+            CreateMap<Comentario, ComentarioDto>();
+            CreateMap<Critica, CriticaDto>();
+            CreateMap<Direccion, DireccionDto>();
+            CreateMap<Genero, GeneroDto>();
+            CreateMap<Pelicula, PeliculaDto>();
+            CreateMap<SalaCine, SalaDto>();
         }
     }
 }

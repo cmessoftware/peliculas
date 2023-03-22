@@ -1109,6 +1109,16 @@ namespace Peliculas.Servicios
             throw new NotImplementedException ();
         }
 
+        Task<PeliculaDto> IServicioPelicula.GetPeliculaEstrenoById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<List<PeliculaDto>> IServicioPelicula.GetPeliculasEstreno()
+        {
+            throw new NotImplementedException();
+        }
+
         //    public void CrearPelicula(PeliculaDto peliculaDto)
         //    {
         //        //Mapeo lo que recibo de la vista a la entidad a esas en la base de datos.

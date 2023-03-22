@@ -14,6 +14,7 @@ builder.Services.AddControllersWithViews();
 //Configuracion del EF Core.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 var AzureconnectionString = builder.Configuration.GetConnectionString ( "AzureConnection" );
+
 builder.Services.AddDbContext<PeliculasDbContext>(options =>
 {
     options.UseSqlServer(AzureconnectionString, sqlServer => sqlServer.UseNetTopologySuite());

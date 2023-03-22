@@ -1,47 +1,52 @@
 ﻿using AutoMapper;
 
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Peliculas.Data;
 using Peliculas.DTOs;
 using Peliculas.Entidades;
 
 namespace Peliculas.Repositorio
 {
-    public class RepositorioPelicula : IRepositorioPelicula
+    public class RepositorioPelicula : RepositorioBase, IRepositorioPelicula
     {
-        private readonly ILogger<RepositorioPelicula> _logger;
-
-        private readonly PeliculasDbContext _context;
-
-        public RepositorioPelicula(ILogger<RepositorioPelicula> logger, PeliculasDbContext context)
+        public RepositorioPelicula(PeliculasDbContext context,
+                                   ILogger<RepositorioBase> logger) 
+            : base(context, logger)
         {
-            _logger = logger;
-         
-            _context = context;
         }
-        public Pelicula GetPeliculaEstrenoById(int id)
+
+        public async Task<Pelicula> GetPeliculaEstrenoById(int id)
         {
-            var pelicula = new Pelicula();
-
-
+            var pelicula = await GetByIdAsync(id);
+            
             return pelicula;
         }
 
-        public void ActualizarComentarioLike(ComentarioDto? comentario, string idLike)
+        public void ActualizarComentarioLike(Comentario? comentario, 
+                                             string idLike)
         { 
+
+
         }
-        public List<Pelicula> GetPeliculasEstreno()
+        public async Task<List<Pelicula>> GetPeliculasEstreno()
         {
-            List<Pelicula> peliculas = new List<Pelicula>();
-           
-            peliculas = _context.Peliculas.ToList();
+            //Mala práctica traer todo y filtrar en memoria.
+            var peliculas = await Get();
+            //Definimos que las peliculas estrenos son la de este mes.
+            peliculas = peliculas.Where(x => x.FechaEstreno.Month == DateTime.Now.Month).ToList();
 
             return peliculas;
 
         }
-        public void InsertarPelicula(Pelicula pelicula)
-        { }
+        public async Task<EntityEntry<Pelicula>> InsertarPelicula(Pelicula pelicula)
+        {
+            var entityEntry = await Insert(pelicula);
+
+            await SaveChangesAsync();
+        
+            return entityEntry;
+        }
 
     }
 }
