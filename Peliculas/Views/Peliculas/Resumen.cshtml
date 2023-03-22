@@ -2,7 +2,7 @@
 @using Peliculas.Extensiones;
 
 @{
-    ViewData["Title"] = Model.Nombre ;
+    ViewData["Title"] = Model.Titulo ;
 }
 
 <div class="container pt-5 border-bottom pb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif">
@@ -10,7 +10,7 @@
         <div class="col-6 border-1">
             <div class="row pb-2">
                 <div class="col-12 titulo">
-                    <strong style="font-weight: 600;">@Model.Nombre</strong>
+                    <strong style="font-weight: 600;">@Model.Titulo</strong>
                 </div>
             </div>
             <div class="row">
@@ -18,7 +18,7 @@
                     <p>
                         <strong>
                             <span style="font-size: 20px">Género:</span></strong>
-                        <span style="font-size: 15px"> @Model.Genero.Nombre</span>
+                        <span style="font-size: 15px"> @Model.Generos.JoinString(x=>x.Nombre)</span>
                     </p>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <div class="col-12">
                     <p>
                         <strong><span style="font-size: 20px">Actores:</span></strong>
-                        <span style="font-size: 15px"> @Model.Actores.JoinString(x => x.Nombre)</></span>
+                        <span style="font-size: 15px"> @Model.PeliculaActores.JoinString(x => x.ActorId.ToString())</></span>
                     </p>
                 </div>
             </div>
