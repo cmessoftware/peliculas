@@ -24,12 +24,12 @@ namespace Peliculas.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var servPeli = new ServicioPeliculaMemoria();  //NO aplica Inyección de dependencias.
-            var peliculasEstreno = servPeli.GetPeliculasEstreno();
+            //var servPeli = new ServicioPeliculaMemoria();  //NO aplica Inyección de dependencias.
+            //var peliculasEstreno = servPeli.GetPeliculasEstreno();
 
-            //_logger.LogInformation("Entre al Index de PeliculasController");
+            _logger.LogInformation("Entre al Index de PeliculasController");
 
-            //var peliculasEstreno = await _servicioPelicula.GetPeliculasEstreno();
+            var peliculasEstreno = await _servicioPelicula.GetPeliculasEstreno();
 
             return View(peliculasEstreno);
         }

@@ -17,32 +17,32 @@
                 <div class="col-12">
                     <p>
                         <strong>
-                            <span style="font-size: 20px">Género:</span></strong>
-                        <span style="font-size: 15px"> @Model.Generos.JoinString(x=>x.Nombre)</span>
+                            <span style="font-size: 20px">Género: </span></strong>
+                        <span style="font-size: 15px">No esta la relacion entre las tablas del Dato en SQL @*@Model.Generos.JoinString(x=>x.Nombre.ToString())*@</span>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <p>
-                        <strong><span style="font-size: 20px">Director:</span></strong>
-                        <span style="font-size: 15px"> @Model.Director</span>
+                        <strong><span style="font-size: 20px">Director: </span></strong>
+                        <span style="font-size: 15px">@Model.Director</span>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <p>
-                        <strong><span style="font-size: 20px">Actores:</span></strong>
-                        <span style="font-size: 15px"> @Model.PeliculaActores.JoinString(x => x.ActorId.ToString())</></span>
+                        <strong><span style="font-size: 20px">Actores: </span></strong>
+                        <span style="font-size: 15px">No esta la relacion entre las tablas del Dato en SQL @*@Model.PeliculaActores.JoinString(x => x.ActorId.ToString())*@</></span>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <p>
-                        <strong><span style="font-size: 20px">País:</span></strong>
-                        <span style="font-size: 15px"> @Model.PaisOrigen</span>
+                        <strong><span style="font-size: 20px">País origen: </span></strong>
+                        <span style="font-size: 15px">@Model.PaisOrigen</span>
                     </p>
                 </div>
             </div>
@@ -55,36 +55,7 @@
                 </div>
             </div>
 
-            <partial name="~/Views/Peliculas/_Cines.cshtml" />
-
-            <div class="row pt-3">
-                <div class="col-12">
-                    <strong>
-                        <span style="font-size: 20px">Crítica esperta:</span></strong>
-
-                    @if (Model.Criticas != null)
-                    {
-                        @foreach (var c in Model.Criticas)
-                        {
-                            <div>
-                                <div class="row d-flex align-items-center mt-3">
-                                    <div class="col-sm-12 d-flex align-items-center me-3">                                        
-                                        <cite class="me-3 overFlow" style="font-size: 15px; font-family: 'Lucida Calligraphy';">
-                                            @c.Contenido
-                                        </cite>
-                                    </div>
-                                </div>
-                                <div class="row d-flex align-items-center mb-4">
-                                    <div class="col-sm-12 d-flex me-3">
-                                        <span style="font-size: 15px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">@c.Autor</span>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    }
-                </div>
-            </div>
-            
+            <partial name="~/Views/Peliculas/_Cines.cshtml" />            
             
         </div>
         <div class="col-1"></div>
