@@ -2,11 +2,10 @@
 
 namespace Peliculas.UnitOfWorks
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork 
     {
         IRepositorioPeliculas Peliculas { get; }
         IRepositorioComentarios Comentarios { get; }
-
 
         int SaveChanges();
     }

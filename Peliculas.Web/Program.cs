@@ -1,14 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Peliculas.Data;
-using Peliculas.Repositorio;
 using System.Text.Json.Serialization;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using Peliculas.Servicios.Peliculas;
 using Peliculas.Repositorio.Peliculas;
 using Peliculas.UnitOfWorks;
 using Peliculas.Servicios.Comentarios;
-using Peliculas.Entidades;
 
 var builder = WebApplication.CreateBuilder(args);
 

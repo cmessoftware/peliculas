@@ -16,17 +16,14 @@ namespace Peliculas.Controllers
         private readonly ILogger<PeliculasController> _logger;
         private readonly IMapper _mapper;
         private readonly IServicioPelicula _servicioPelicula;
-        private readonly IServicioComentarios _servicioComentario;
-
+     
         public PeliculasController(ILogger<PeliculasController> logger,
                                    IMapper mapper,
-                                   IServicioPelicula servicioPelicula,
-                                   IServicioComentarios servicioComentario)
+                                   IServicioPelicula servicioPelicula)
         {
             _logger = logger;
             _mapper = mapper;
             _servicioPelicula = servicioPelicula;
-            _servicioComentario = servicioComentario;
         }
 
         [HttpGet]
@@ -52,21 +49,7 @@ namespace Peliculas.Controllers
             return View(resumen);
         }
 
-        [HttpGet]
-        [Route("{resumen}/{id}/{comentarioId}/{idLike}")]
-        public async Task<ActionResult<PeliculaDto>> Likes(int id, int comentarioId, string idLike)
-        {
-            var resumen = await _servicioPelicula.GetById(id);
-
-            var comentarioDto = resumen.Comentarios.FirstOrDefault(c => c.Id == comentarioId);
-
-            var comentario = _mapper.Map<Comentario>(comentarioDto);
-
-            await _servicioComentario.Update(comentario);
-
-            return View("Resumen", resumen);
-
-        }
+       
         
         [HttpGet]
         [Route("/{historial}")]

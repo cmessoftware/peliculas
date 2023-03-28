@@ -3,7 +3,7 @@ using Peliculas.Data;
 
 namespace Peliculas.UnitOfWorks
 {
-    public abstract class RepositorioGenerico<T> : IRepositorioGenerico<T> where T : class
+    public abstract class RepositorioGenerico<TEntity> : IRepositorioGenerico<TEntity> where TEntity : class
     {
         protected readonly PeliculasDbContext _context;
 
@@ -12,45 +12,40 @@ namespace Peliculas.UnitOfWorks
             _context = context;
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<TEntity> GetById(int id)
         {
-            return await _context.Set<T>().FindAsync(id);
+            return await _context.Set<TEntity>().FindAsync(id);
         }
 
-        public async Task<List<T>> GetAll()
+        public async Task<List<TEntity>> GetAll()
         {
-            return await _context.Set<T>().ToListAsync();
+            return await _context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task Create(T entity)
+        public async Task Create(TEntity entity)
         {
-            await _context.Set<T>().AddAsync(entity);
+            await _context.Set<TEntity>().AddAsync(entity);
         }
 
 
-        public async Task<bool> Delete(T entity)
+        public async Task<bool> Delete(TEntity entity)
         {
-            return await Task.Run(() => {
-                var enEntry = _context.Set<T>().Remove(entity);
+            var enEntryRemove = _context.Set<TEntity>().Remove(entity);
 
-                if (enEntry.State == EntityState.Deleted)
-                    return true;
-                else
-                    return false;
-            });
+            if (enEntryRemove.State == EntityState.Deleted)
+                return true;
+            else
+                return false;
         }
 
-        public async Task<bool> Update(T entity)
+        public async Task<bool> Update(TEntity entity)
         {
+            var enEntry = _context.Set<TEntity>().Update(entity);
 
-            return await Task.Run( () => {
-                    var enEntry = _context.Set<T>().Update(entity);
-
-                    if (enEntry.State == EntityState.Modified)
-                        return true;
-                    else
-                        return false;
-            });
+            if (enEntry.State == EntityState.Modified)
+                return true;
+            else
+                return false;
            
         }
 

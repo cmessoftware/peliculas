@@ -53,7 +53,6 @@ namespace Peliculas.Servicios.Peliculas
         {
             var peliculas = await _unitOfWork.Peliculas.GetAll();
 
-
             //TODO: Mejorar usando automapper Resolver.
             var peliculasDto = new List<PeliculaDto>();
 
