@@ -34,7 +34,7 @@ namespace Peliculas.Repositorio
             //Mala práctica traer todo y filtrar en memoria.
             var peliculas = await Get();
             //Definimos que las peliculas estrenos son la de este mes.
-            peliculas = peliculas.Where(x => x.FechaEstreno.Year == 2005).ToList();
+            peliculas = peliculas.ToList();
 
             return peliculas;
 

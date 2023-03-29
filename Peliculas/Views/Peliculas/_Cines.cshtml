@@ -23,26 +23,24 @@
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <div class="container" style="display: flex; justify-content: center;">
-                                @Model.Resumen
-                                @foreach (var c in Model.SalasCines)
+                                @foreach (var s in Model.SalasCines)
                                 {
-                                    @Model.Resumen
                                     <div class="pe-2 ps-2">
                                         <button type="button" class="btn btn-ciudades">
-                                            @c.Nombre
+                                            @s.Nombre
                                         </button>
                                     </div>
-                                    <div class="modal fade" id="@c.Nombre" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="@s.Cine.Direccion.Ciudad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-5" id="exampleModalLabel">
                                                         <div class="row">
                                                             <div class="col-2" style="display: flex; justify-content: center;">
-                                                                <img src="~/img/Cines/@c.Cine.LogoCine" style="width: 50px; height: 50px" />
+                                                                @*<img src="~/img/Cines/@c.Cine.LogoCine" style="width: 50px; height: 50px" />*@
                                                             </div>
                                                             <div class="col-10" style="display: flex; justify-content: center; align-items: center">
-                                                                <span>@c.Cine.Nombre - @c.Cine.Cadena</span>
+                                                                <span>@s.Cine.Nombre - @s.Cine.Cadena</span>
                                                             </div>
                                                         </div>
                                                     </h1>
@@ -51,14 +49,14 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col">
-                                                            @foreach (var s in Model.SalasCines)
+                                                            @foreach (var sala in Model.SalasCines)
                                                             {
                                                                 <div class="row">
                                                                     <div class="col-3">
-                                                                        <span style="font-size: 10px">@s.Nombre</span>
+                                                                        <span style="font-size: 10px">@sala.Nombre</span>
                                                                     </div>
                                                                     <div class="col-3">
-                                                                        <span style="font-size: 12px">@s.Tipo.Nombre</span>
+                                                                        <span style="font-size: 12px">@sala.Tipo.Nombre</span>
                                                                     </div>
                                                                 </div>
                                                                 <hr />

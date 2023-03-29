@@ -17,7 +17,7 @@ var AzureconnectionString = builder.Configuration.GetConnectionString("AzureConn
 
 builder.Services.AddDbContext<PeliculasDbContext>(options =>
 {
-    options.UseSqlServer(AzureconnectionString, sqlServer => sqlServer.UseNetTopologySuite());
+    options.UseSqlServer(connectionString, sqlServer => sqlServer.UseNetTopologySuite());
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
     //opciones.UseLazyLoadingProxies();
 }
