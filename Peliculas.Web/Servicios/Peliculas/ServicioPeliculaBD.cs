@@ -11,7 +11,7 @@ namespace Peliculas.Servicios.Peliculas
         private readonly IMapper _mapper;
         private readonly ILogger<ServicioPeliculaDB> _logger;
 
-        public ServicioPeliculaDB(IUnitOfWork unitOfWork,
+        public ServicioPeliculaDB     (IUnitOfWork unitOfWork,
                                   IMapper mapper, 
                                   ILogger<ServicioPeliculaDB> logger)
         {
@@ -25,7 +25,7 @@ namespace Peliculas.Servicios.Peliculas
             if (peliculaDto != null)
             {
 
-                var pelicula = _mapper.Map<Pelicula>(peliculaDto);
+                var pelicula = _mapper.Map<Pelicula>(peliculaDto );
 
                 await _unitOfWork.Peliculas.Create(pelicula);
 

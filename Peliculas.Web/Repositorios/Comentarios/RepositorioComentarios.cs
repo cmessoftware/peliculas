@@ -2,6 +2,7 @@
 using Peliculas.Entidades;
 using Peliculas.Repositorio.Peliculas;
 using Peliculas.UnitOfWorks;
+using Peliculas.Web.Repositorios.Genero;
 
 internal class RepositorioComentarios : RepositorioGenerico<Comentario>, IRepositorioComentarios
 {

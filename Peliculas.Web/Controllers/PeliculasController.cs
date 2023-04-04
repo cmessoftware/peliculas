@@ -7,6 +7,7 @@ using Peliculas.Mapeos;
 using Peliculas.Models;
 using Peliculas.Servicios.Comentarios;
 using Peliculas.Servicios.Peliculas;
+using Peliculas.Web.Servicios.Generos;
 using System.Diagnostics;
 
 namespace Peliculas.Controllers

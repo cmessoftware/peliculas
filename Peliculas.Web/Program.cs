@@ -5,6 +5,8 @@ using Peliculas.Servicios.Peliculas;
 using Peliculas.Repositorio.Peliculas;
 using Peliculas.UnitOfWorks;
 using Peliculas.Servicios.Comentarios;
+using Peliculas.Web.Servicios.Generos;
+using Peliculas.Web.Repositorios.Generos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,8 +34,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IServicioPelicula, ServicioPeliculaDB>();
 builder.Services.AddScoped<IServicioComentarios, ServicioComentarioBD>();
+builder.Services.AddScoped<IServicioGeneros,ServicioGeneroDB> ();
 builder.Services.AddScoped<IRepositorioPeliculas, RepositorioPeliculas>();
 builder.Services.AddScoped<IRepositorioComentarios, RepositorioComentarios>();
+builder.Services.AddScoped<IRepositorioGeneros, RepositorioGeneros> ();
 
 builder.Services.AddAutoMapper ( AppDomain.CurrentDomain.GetAssemblies () );
 

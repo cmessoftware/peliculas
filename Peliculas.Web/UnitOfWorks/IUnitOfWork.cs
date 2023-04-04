@@ -1,4 +1,5 @@
 ﻿using Peliculas.Repositorio.Peliculas;
+using Peliculas.Web.Repositorios.Generos;
 
 namespace Peliculas.UnitOfWorks
 {
@@ -6,6 +7,7 @@ namespace Peliculas.UnitOfWorks
     {
         IRepositorioPeliculas Peliculas { get; }
         IRepositorioComentarios Comentarios { get; }
+        IRepositorioGeneros Generos { get; }
 
         int SaveChanges();
     }

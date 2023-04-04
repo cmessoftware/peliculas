@@ -5,18 +5,19 @@ using Peliculas.DTOs;
 using Peliculas.Entidades;
 using Peliculas.Servicios.Comentarios;
 using Peliculas.Servicios.Peliculas;
+using Peliculas.Web.Servicios.Genero;
 
 namespace Peliculas.Web.Controllers
 {
-    public class ComentariosController : Controller
+    public class ComentarioController : Controller
     {
 
-        private readonly ILogger<ComentariosController> _logger;
+        private readonly ILogger<ComentarioController> _logger;
         private readonly IMapper _mapper;
         private readonly IServicioPelicula _servicioPelicula;
         private readonly IServicioComentarios _servicioComentario;
 
-        public ComentariosController(ILogger<ComentariosController> logger,
+        public ComentarioController(ILogger<ComentarioController> logger,
                                      IMapper mapper,
                                      IServicioPelicula servicioPelicula,
                                      IServicioComentarios servicioComentario)
