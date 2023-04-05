@@ -5,7 +5,6 @@ namespace Peliculas.Mapeos
 {
     internal class MapeoPelicula
     {
-
         internal static List<PeliculaDto> Map(List<Pelicula> peliculas)
         {
             List<PeliculaDto> peliculasDto = new List<PeliculaDto>();
@@ -37,5 +36,7 @@ namespace Peliculas.Mapeos
 
             return pelicula;
         }
+
+       
     }
 }

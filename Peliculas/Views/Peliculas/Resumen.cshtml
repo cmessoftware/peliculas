@@ -5,6 +5,11 @@
     ViewData["Title"] = Model.Titulo ;
 }
 
+@foreach (var c in Model.Criticas)
+{
+    @c.Autor.ToString()
+}
+
 <div class="container pt-5 border-bottom pb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif">
     <div class="row align-items-center">
         <div class="col-6 border-1">
@@ -18,7 +23,7 @@
                     <p>
                         <strong>
                             <span style="font-size: 20px">Género: </span></strong>
-                        <span style="font-size: 15px">No esta la relacion entre las tablas del Dato en SQL @*@Model.Generos.JoinString(x=>x.Nombre.ToString())*@</span>
+                        <span style="font-size: 15px">No se @*@Model.Generos.JoinString(x=>x.Nombre.ToString())*@</span>
                     </p>
                 </div>
             </div>
@@ -34,7 +39,7 @@
                 <div class="col-12">
                     <p>
                         <strong><span style="font-size: 20px">Actores: </span></strong>
-                        <span style="font-size: 15px">No esta la relacion entre las tablas del Dato en SQL @*@Model.PeliculaActores.JoinString(x => x.ActorId.ToString())*@</></span>
+                        <span style="font-size: 15px">No se @*@Model.PeliculaActores.JoinString(x => x.ActorId.ToString())*@</></span>
                     </p>
                 </div>
             </div>
@@ -166,4 +171,4 @@
     </div>
 </div>
 
-<a href="~/Peliculas" class="btn btn-primary justify-content-center">Volver</a>
+<a href="~/" class="btn btn-primary justify-content-center">Volver</a>

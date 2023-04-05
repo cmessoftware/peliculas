@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Peliculas.Data;
-using Peliculas.Repositorio;
-using Peliculas.Servicios;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Peliculas.Repositorio.Peliculas;
+using Peliculas.Servicios.Peliculas;
+using Peliculas.UnitOfWorks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,8 +29,11 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 //builder.Services.AddDbContext<PeliculasDbContext>(options =>
 //                             options.UseInMemoryDatabase("Peliculas"));
 
-builder.Services.AddScoped<IServicioPelicula, ServicioPeliculaBD>();
-builder.Services.AddScoped<IRepositorioPelicula, RepositorioPelicula>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IServicioPelicula, ServicioPeliculaDB>();
+//builder.Services.AddScoped<IServicioComentarios, ServicioComentarioBD>();
+builder.Services.AddScoped<IRepositorioPeliculas, RepositorioPeliculas>();
+//builder.Services.AddScoped<IRepositorioComentarios, RepositorioComentarios>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

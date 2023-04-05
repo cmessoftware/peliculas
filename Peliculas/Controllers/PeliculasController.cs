@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Peliculas.Data;
 using Peliculas.DTOs;
 using Peliculas.Entidades;
 using Peliculas.Mapeos;
 using Peliculas.Models;
-using Peliculas.Servicios;
+using Peliculas.Servicios.Peliculas;
 using System.Diagnostics;
 
 namespace Peliculas.Controllers
@@ -12,12 +13,15 @@ namespace Peliculas.Controllers
     public class PeliculasController : Controller
     {
         private readonly ILogger<PeliculasController> _logger;
+        private readonly IMapper mapper;
         private readonly IServicioPelicula _servicioPelicula;
 
         public PeliculasController(ILogger<PeliculasController> logger,
+                                   IMapper _mapper,
                                    IServicioPelicula servicioPelicula)
         {
             _logger = logger;
+            mapper = _mapper;
             _servicioPelicula = servicioPelicula;
         }
 
@@ -29,7 +33,7 @@ namespace Peliculas.Controllers
 
             _logger.LogInformation("Entre al Index de PeliculasController");
 
-            var peliculasEstreno = await _servicioPelicula.GetPeliculasEstreno();
+            var peliculasEstreno = await _servicioPelicula.GetAll();
 
             return View(peliculasEstreno);
         }
@@ -39,30 +43,15 @@ namespace Peliculas.Controllers
         public async Task<ActionResult<PeliculaDto>> Resumen(int Id)
         {
 
-            var resumen = await _servicioPelicula.GetPeliculaEstrenoById(Id);
+            var resumen = await _servicioPelicula.GetById(Id);
 
             return View(resumen);
         }
 
         [HttpGet]
-        [Route("{resumen}/{id}/{comentarioId}/{idLike}")]
-        public async Task<ActionResult<PeliculaDto>> Likes(int id, int comentarioId, string idLike)
-        {
-            var resumen = await _servicioPelicula.GetPeliculaEstrenoById(id);
-
-            var comentario = resumen.Comentarios.FirstOrDefault(c => c.Id == comentarioId);
-
-            _servicioPelicula.ActualizarComentarioLike(comentario, idLike);
-
-            return View("Resumen", resumen);
-
-        }
-
-        [HttpGet]
+        [Route("{historial}")]
         public IActionResult Historial()
         {
-            //1.4: DTO Peliclas
-            //1.5: Entidades y migracion a Azure.
             return View();
         }
 
@@ -78,24 +67,19 @@ namespace Peliculas.Controllers
         }
 
         [HttpPost]
-        [Route("peliculas")]
-        public IActionResult CrearPelicula([FromBody] PeliculaDto nuevaPelicula)
+        [Route("/{crear}")]
+        public IActionResult Crear([FromBody] PeliculaDto nuevaPelicula)
         {
 
-            //Mapeo a entidad Pelicula,  PeliculaDto --> Pelicula
+            _servicioPelicula.Create(nuevaPelicula);
 
-            Pelicula pelicula = MapeoPelicula.Map(nuevaPelicula);
-
-            _servicioPelicula.InsertarPelicula(pelicula);
-
-
-            return View();
+            return View("Crear");
 
         }
 
         [HttpGet]
-        [Route("CrearPeliculas")]
-        public IActionResult CrearPelicula()
+        [Route("crear")]
+        public IActionResult Crear()
         {
 
             //Creo el objeto de Peliculas.

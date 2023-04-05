@@ -1,4 +1,5 @@
 ﻿@model List<Peliculas.DTOs.PeliculaDto>
+@using Peliculas.Data;
 @using Microsoft.AspNetCore;
 @using Peliculas.Extensiones;
  
@@ -33,7 +34,15 @@
                             </li>
                             <li class="d-flex align-items-center me-3 pb-2">
                                 <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill" /></svg>
-                                    <small>Actores: <strong>@m.PeliculaActores.JoinString(x => x.ActorId.ToString())</strong></small>
+                                    <small>Actores: 
+                                        <strong>
+                                            @foreach(var a in m.PeliculaActores)
+                                            {
+                                                @a.Actor.Nombre
+                                            }
+                                        
+                                        </strong>
+                                    </small>
                             </li>
                             <li class="d-flex align-items-center me-3 pb-2">
                                 <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill" /></svg>

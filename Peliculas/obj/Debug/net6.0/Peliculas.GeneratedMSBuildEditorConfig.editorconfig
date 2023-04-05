@@ -16,8 +16,8 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Lisandro\fuentes\PeliculasDePC\Lisandrosantori\peliculas\Peliculas
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Lisandro/fuentes/PeliculasDePC/Lisandrosantori/peliculas/Peliculas/Views/Peliculas/CrearPelicula.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVsaWN1bGFzXENyZWFyUGVsaWN1bGEuY3NodG1s
+[C:/Users/Lisandro/fuentes/PeliculasDePC/Lisandrosantori/peliculas/Peliculas/Views/Peliculas/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVsaWN1bGFzXENyZWFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Lisandro/fuentes/PeliculasDePC/Lisandrosantori/peliculas/Peliculas/Views/Peliculas/Historial.cshtml]

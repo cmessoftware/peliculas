@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Peliculas.Entidades;
 
-namespace Peliculas.Repositorio
+namespace Peliculas.Repositorio.Base
 {
     public interface IRespositorioBase
     {

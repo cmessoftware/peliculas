@@ -4,7 +4,7 @@ using Peliculas.Data;
 using Peliculas.Entidades;
 using System;
 
-namespace Peliculas.Repositorio
+namespace Peliculas.Repositorio.Base
 {
     public class RepositorioBase : IRespositorioBase
     {
