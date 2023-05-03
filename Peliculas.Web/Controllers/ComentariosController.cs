@@ -1,52 +1,181 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Peliculas.Controllers;
-using Peliculas.DTOs;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Peliculas.Data;
 using Peliculas.Entidades;
-using Peliculas.Servicios.Comentarios;
-using Peliculas.Servicios.Peliculas;
+using Peliculas.Web.ViewModels;
 
 namespace Peliculas.Web.Controllers
 {
     public class ComentariosController : Controller
     {
+        private readonly PeliculasDbContext _context;
 
-        private readonly ILogger<ComentariosController> _logger;
-        private readonly IMapper _mapper;
-        private readonly IServicioPelicula _servicioPelicula;
-        private readonly IServicioComentarios _servicioComentario;
-
-        public ComentariosController(ILogger<ComentariosController> logger,
-                                     IMapper mapper,
-                                     IServicioPelicula servicioPelicula,
-                                     IServicioComentarios servicioComentario)
+        public ComentariosController(PeliculasDbContext context)
         {
-            _logger = logger;
-            _mapper = mapper;
-            _servicioPelicula = servicioPelicula;
-            _servicioComentario = servicioComentario;
+            _context = context;
         }
 
-
-        public IActionResult Index()
+        // GET: Comentarios
+        public async Task<IActionResult> Index()
         {
+            var peliculasDbContext = _context.Comentarios.Include(c => c.Pelicula);
+            return View(await peliculasDbContext.ToListAsync());
+        }
+
+        // GET: Comentarios/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _context.Comentarios == null)
+            {
+                return NotFound();
+            }
+
+            var comentario = await _context.Comentarios
+                .Include(c => c.Pelicula)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (comentario == null)
+            {
+                return NotFound();
+            }
+
+            return View(comentario);
+        }
+
+        // GET: Comentarios/Create
+        public IActionResult Create()
+        {
+            ViewData["PeliculaId"] = new SelectList(_context.Peliculas, "Id", "Titulo");
             return View();
         }
 
-        [HttpGet]
-        [Route("{resumen}/{id}/{comentarioId}/{idLike}")]
-        public async Task<ActionResult<PeliculaDto>> Likes(int id, int comentarioId, string idLike)
+        //[HttpGet]
+        //[Route("{resumen}/{id}/{comentarioId}/{idLike}")]
+        //public async Task<ActionResult<PeliculaViewModel>> Likes(int id, int comentarioId, string idLike)
+        //{
+        //    var resumen = await _servicioPelicula.GetById(id);
+
+        //    var comentarioDto = resumen.Comentarios.FirstOrDefault(c => c.Id == comentarioId);
+
+        //    var comentario = _mapper.Map<Comentario>(comentarioDto);
+
+        //    await _servicioComentario.Update(comentario);
+
+        //    return View("Resumen", resumen);
+
+        //}
+
+        // POST: Comentarios/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Contenido,Usuario,MeGustaCantidad,PeliculaId")] Comentario comentario)
         {
-            var resumen = await _servicioPelicula.GetById(id);
+            if (ModelState.IsValid)
+            {
+                _context.Add(comentario);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["PeliculaId"] = new SelectList(_context.Peliculas, "Id", "Titulo", comentario.PeliculaId);
+            return View(comentario);
+        }
 
-            var comentarioDto = resumen.Comentarios.FirstOrDefault(c => c.Id == comentarioId);
+        // GET: Comentarios/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null || _context.Comentarios == null)
+            {
+                return NotFound();
+            }
 
-            var comentario = _mapper.Map<Comentario>(comentarioDto);
+            var comentario = await _context.Comentarios.FindAsync(id);
+            if (comentario == null)
+            {
+                return NotFound();
+            }
+            ViewData["PeliculaId"] = new SelectList(_context.Peliculas, "Id", "Titulo", comentario.PeliculaId);
+            return View(comentario);
+        }
 
-            await _servicioComentario.Update(comentario);
+        // POST: Comentarios/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Contenido,Usuario,MeGustaCantidad,PeliculaId")] Comentario comentario)
+        {
+            if (id != comentario.Id)
+            {
+                return NotFound();
+            }
 
-            return View("Resumen", resumen);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(comentario);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ComentarioExists(comentario.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["PeliculaId"] = new SelectList(_context.Peliculas, "Id", "Titulo", comentario.PeliculaId);
+            return View(comentario);
+        }
 
+        // GET: Comentarios/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.Comentarios == null)
+            {
+                return NotFound();
+            }
+
+            var comentario = await _context.Comentarios
+                .Include(c => c.Pelicula)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (comentario == null)
+            {
+                return NotFound();
+            }
+
+            return View(comentario);
+        }
+
+        // POST: Comentarios/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (_context.Comentarios == null)
+            {
+                return Problem("Entity set 'PeliculasDbContext.Comentarios'  is null.");
+            }
+            var comentario = await _context.Comentarios.FindAsync(id);
+            if (comentario != null)
+            {
+                _context.Comentarios.Remove(comentario);
+            }
+            
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool ComentarioExists(int id)
+        {
+          return (_context.Comentarios?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

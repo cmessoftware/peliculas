@@ -2,10 +2,11 @@
 {
     public interface IRepositorioGenerico<T> where T : class
     {
-        Task<T> GetById(int id);
+        Task<T> GetById(int? id);
         Task<List<T>> GetAll();
-        Task Create(T entity);
-        Task<bool> Delete(T entity);
+        Task<bool> Create(T entity);
+        Task<bool> Delete(int? id);
+        Task<bool> DeleteConfirmed(int? id);
         Task<bool> Update(T entity);
     }
 }

@@ -1,10 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Peliculas.Data;
+using Peliculas.Extensiones;
 using System.Text.Json.Serialization;
-using Peliculas.Servicios.Peliculas;
-using Peliculas.Repositorio.Peliculas;
-using Peliculas.UnitOfWorks;
-using Peliculas.Servicios.Comentarios;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +14,9 @@ var AzureconnectionString = builder.Configuration.GetConnectionString ( "AzureCo
 
 builder.Services.AddDbContext<PeliculasDbContext>(options =>
 {
-    options.UseSqlServer(AzureconnectionString, sqlServer => sqlServer.UseNetTopologySuite());
+    options.UseSqlServer(connectionString, sqlServer => 
+                         sqlServer.UseNetTopologySuite());
+
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
     //opciones.UseLazyLoadingProxies();
 }
@@ -28,13 +27,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 //builder.Services.AddDbContext<PeliculasDbContext>(options =>
 //                             options.UseInMemoryDatabase("Peliculas"));
 
-
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IServicioPelicula, ServicioPeliculaDB>();
-builder.Services.AddScoped<IServicioComentarios, ServicioComentarioBD>();
-builder.Services.AddScoped<IRepositorioPeliculas, RepositorioPeliculas>();
-builder.Services.AddScoped<IRepositorioComentarios, RepositorioComentarios>();
-
+builder.Services.AddServices();
 builder.Services.AddAutoMapper ( AppDomain.CurrentDomain.GetAssemblies () );
 
 

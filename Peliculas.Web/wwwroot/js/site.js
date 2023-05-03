@@ -42,3 +42,48 @@ function onPlayerStateChange(event) {
 function stopVideo() {
     player.stopVideo();
 }
+
+//Usado en la vista parcial _Cines
+
+const mostrarCines = () => {
+    console.log("Se hizo click en id mostrarCines ")
+    //Consulto al controlador de cines.
+
+
+
+    //var x = document.getElementById("mostrarImgCines");
+    //if (x.style.display === "none") {
+    //    x.style.display = "block";
+    //} else {
+    //    x.style.display = "none";
+    //}
+}
+
+const actions = {
+    click: {
+        mostrarCines,
+    },
+    mouseover: {
+        mostrarCines: console.log("mouse over"),
+    }
+};
+
+Object.keys(actions).forEach(key => document.addEventListener(key, handle));
+
+function handle(evt) {
+    const origin = evt.target.closest("[data-action]");
+    return origin &&
+        actions[evt.type] &&
+        actions[evt.type][origin.dataset.action] &&
+        actions[evt.type][origin.dataset.action](origin, evt) ||
+        true;
+}
+
+
+function displayImage(src, width, height) {
+    var img = document.createElement("img");
+    img.src = src;
+    img.width = width;
+    img.height = height;
+    document.body.appendChild(img);
+}

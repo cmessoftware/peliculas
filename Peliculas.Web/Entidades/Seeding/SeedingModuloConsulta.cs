@@ -2,6 +2,8 @@
 using NetTopologySuite;
 using NetTopologySuite.Geometries;
 using Peliculas.Data;
+using Peliculas.Web.Entidades;
+using System.Data;
 
 namespace Peliculas.Entidades.Seeding
 {
@@ -14,8 +16,29 @@ namespace Peliculas.Entidades.Seeding
             var comedia = new Genero { Id = 3, Nombre = "Comedia" };
             var cienciaFicción = new Genero { Id = 4, Nombre = "Ciencia ficción" };
             var drama = new Genero { Id = 5, Nombre = "Drama" };
+            var policial = new Genero { Id = 6, Nombre = "Policial" };
+            var terror = new Genero { Id = 6, Nombre = "Terror" };
+            var romantica = new Genero { Id = 6, Nombre = "Romantica" };
+            var documental = new Genero { Id = 7, Nombre = "Documental" };
+            var epica = new Genero { Id = 8, Nombre = "Epica" };
+            var corto = new Genero { Id = 9, Nombre = "Corto" };
+            var costumbrista = new Genero { Id = 10, Nombre = "Costumbrista" };
+            var teatro = new Genero { Id = 11, Nombre = "Teatro" };
 
-            modelBuilder.Entity<Genero>().HasData(acción, animación, comedia, cienciaFicción, drama);
+
+            modelBuilder.Entity<Genero>().HasData(acción, 
+                                                  animación, 
+                                                  comedia, 
+                                                  cienciaFicción, 
+                                                  drama,
+                                                  policial,
+                                                  terror,
+                                                  romantica,
+                                                  documental,
+                                                  epica,
+                                                  corto,
+                                                  costumbrista,
+                                                  teatro);
 
             var pelicula1 = new Pelicula()
             {
@@ -24,62 +47,138 @@ namespace Peliculas.Entidades.Seeding
                 Titulo = "Jurassic World - Dominion",
                 PaisOrigen = EnumPais.USA,
                 PosterLink = "000001.png",
-                FechaEstreno = new DateTime(2022, 06, 02),
+                Estreno = 2022,
                 Resumen = "Tiempo después de los sucesos de Fallen Kingdom, los dinosaurios han vuelto a tomar el dominio en toda la tierra y los humanos tendrán que aprender a convivir con ellos mientras que un nuevo problema pondrá alta tensión a la situación. Owen Grady y Claire Dearing unirán fuerzas junto con la ayuda del famoso paleontólogo Alan Grant, la doctora Ellie Satler y el Doctor Ian Malcolm para resolverlo.",
                 TrailerLink = "https://www.youtube.com/watch?v=9m9yRauMJIQ"
             };
 
-            modelBuilder.Entity<Pelicula>().HasData(pelicula1);
-
-            var salaDeCine1 = new SalaCine()
+            var pelicula2 = new Pelicula()
             {
-                Id = 4,
-                Nombre = "Sala 1",
-                Tipo = EnumTipoSalaDeCine.TresDimensiones,
-                CineId = 4
+                Id = 2,
+                Director = "Max Power",
+                Titulo = "Springfield World",
+                PaisOrigen = EnumPais.USA,
+                PosterLink = "000003.png",
+                Estreno = 2022,
+                Resumen = "Gefärbt wiedersehn und dich ich seufzer gartens jedoch ich der komm ich brust dahinten junge es in herzen in kleinem",
+                TrailerLink = "https://www.youtube.com/watch?v=9m9yRauMJIQ"
             };
 
-            var salaDeCine2 = new SalaCine()
+            var pelicula3 = new Pelicula()
             {
-                Id = 5,
-                Nombre = "Sala 2",
-                Tipo = EnumTipoSalaDeCine.DosDimensiones,
-                CineId = 4
+                Id = 3,
+                Director = "Max Power",
+                Titulo = "Cocinando con Marge",
+                PaisOrigen = EnumPais.USA,
+                PosterLink = "000002.png",
+                Estreno = 2023,
+                Resumen = "Kíntól jár élõk meleg hisz üszkösen ríjjátok minden boldog a s érti hull kénye s ha kíntól a nap a",
+                TrailerLink = "https://www.youtube.com/watch?v=9m9yRauMJIQ"
             };
 
-            var salaDeCine3 = new SalaCine()
-            {
+            modelBuilder.Entity<Pelicula>().HasData(pelicula1,
+                                                    pelicula2,
+                                                    pelicula3);
 
-                Id = 6,
-                Nombre = "Sala 3",
-                Tipo = EnumTipoSalaDeCine.DosDimensiones,
-                CineId = 4,
-
-            };
-
-            modelBuilder.Entity<SalaCine>().HasData(salaDeCine1, salaDeCine2, salaDeCine3);
-
+          
             var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
+
 
             var cine1 = new Cine()
             {
                 Id = 1,
                 Cadena = "ShowCase",
                 Nombre = "Alto Rosario",
-                Ubicacion = geometryFactory.CreatePoint(new Coordinate(-69.939248, 18.469649))
+                Ubicacion = geometryFactory.CreatePoint(new Coordinate(-69.939248, 18.469649)),
+                CineOfertas = new List<CineOferta>()
+                {
+                    new CineOferta()
+                    {
+                        CineId = 1,
+                        FechaInicio = DateTime.Now,
+                        FechaFin = DateTime.Now.AddDays(7)
+                    }
+                },
+                SalasCine = new List<SalaCine>
+                {
+                    new SalaCine
+                    {
+                        Id = 40,
+                        CineId = 1,
+                        Nombre = "Sala Cine 2",
+                        Tipo = EnumTipoSalaDeCine.TresDimensiones
+                    },
+                     new SalaCine
+                    {
+                        Id = 41,
+                        CineId = 1,
+                        Nombre = "Sala Cine 3",
+                        Tipo = EnumTipoSalaDeCine.TresDimensiones
+                    },
+                      new SalaCine
+                    {
+                        Id = 42,
+                        CineId = 1,
+                        Nombre = "Sala Cine 4",
+                        Tipo = EnumTipoSalaDeCine.TresDimensiones
+                    },
+                       new SalaCine
+                    {
+                        Id = 43,
+                        CineId = 1,
+                        Nombre = "Sala Cine 5",
+                        Tipo = EnumTipoSalaDeCine.Imax
+                    }
+                }
             };
                   
-            var cine1CineOferta = new CineOferta { Id = 1, CineId = cine1.Id, FechaInicio = DateTime.Today, FechaFin = DateTime.Today.AddDays(7), PorcentajeDescuento = 10 };
-
-            //modelBuilder.Entity<CineOferta>().HasData(cine1CineOferta);
-
-
+         
             var cine2 = new Cine()
             {
                 Id = 2,
                 Cadena = "ShowCase",
                 Nombre = "Alto Palermo",
-                Ubicacion = geometryFactory.CreatePoint(new Coordinate(-69.9388777, 18.4839233))
+                Ubicacion = geometryFactory.CreatePoint(new Coordinate(-69.9388777, 18.4839233)),
+                CineOfertas = new List<CineOferta>()
+                {
+                new CineOferta()
+                    {
+                        CineId = 2,
+                        FechaInicio = DateTime.Now,
+                        FechaFin = DateTime.Now.AddDays(7)
+                    }
+                },
+                SalasCine = new List<SalaCine>
+                {
+                    new SalaCine
+                    {
+                        Id = 50,
+                        CineId = 2,
+                        Nombre = "Sala Cine 2",
+                        Tipo = EnumTipoSalaDeCine.TresDimensiones
+                    },
+                     new SalaCine
+                    {
+                        Id = 51,
+                        CineId = 2,
+                        Nombre = "Sala Cine 3",
+                        Tipo = EnumTipoSalaDeCine.DosDimensiones
+                    },
+                      new SalaCine
+                    {
+                        Id = 52, 
+                        CineId = 2,
+                        Nombre = "Sala Cine 4",
+                        Tipo = EnumTipoSalaDeCine.TresDimensiones
+                    },
+                       new SalaCine
+                    {
+                        Id = 53 ,
+                        CineId = 2,
+                        Nombre = "Sala Cine 5",
+                        Tipo = EnumTipoSalaDeCine.Imax
+                    }
+                }
 
             };
 
@@ -88,7 +187,47 @@ namespace Peliculas.Entidades.Seeding
                 Id = 3,
                 Cadena = "ShowCase",
                 Nombre = "Alto Cordoba",
-                Ubicacion = geometryFactory.CreatePoint(new Coordinate(-69.911582, 18.482455))
+                Ubicacion = geometryFactory.CreatePoint(new Coordinate(-69.911582, 18.482455)),
+                CineOfertas = new List<CineOferta>()
+                {
+                    new CineOferta()
+                    {
+                        CineId = 3,
+                        FechaInicio = DateTime.Now,
+                        FechaFin = DateTime.Now.AddDays(7)
+                    }
+                },
+                SalasCine = new List<SalaCine>
+                {
+                    new SalaCine
+                    {
+                        Id = 60,
+                        CineId = 3,
+                        Nombre = "Sala Cine 2",
+                        Tipo = EnumTipoSalaDeCine.TresDimensiones
+                    },
+                     new SalaCine
+                    {
+                        Id = 61,
+                        CineId = 3,
+                        Nombre = "Sala Cine 3",
+                        Tipo = EnumTipoSalaDeCine.TresDimensiones
+                    },
+                      new SalaCine
+                    {
+                        Id = 62,
+                        CineId = 3,
+                        Nombre = "Sala Cine 4",
+                        Tipo = EnumTipoSalaDeCine.TresDimensiones
+                    },
+                       new SalaCine
+                    {
+                        Id = 63,
+                        CineId = 4,
+                        Nombre = "Sala Cine 5",
+                        Tipo = EnumTipoSalaDeCine.Imax
+                    }
+                }
             };
 
             var cine4 = new Cine()
@@ -96,7 +235,47 @@ namespace Peliculas.Entidades.Seeding
                 Id = 4,
                 Cadena = "ShowCase",
                 Nombre = "Alto Avellaneda",
-                Ubicacion = geometryFactory.CreatePoint(new Coordinate(-69.856309, 18.506662))
+                Ubicacion = geometryFactory.CreatePoint(new Coordinate(-69.856309, 18.506662)),
+                CineOfertas = new List<CineOferta>()
+                {
+                    new CineOferta()
+                    {
+                        CineId = 4,
+                        FechaInicio = DateTime.Now,
+                        FechaFin = DateTime.Now.AddDays(7)
+                    }
+                },
+                SalasCine = new List<SalaCine>
+                {
+                    new SalaCine
+                    {
+                        Id = 70,
+                        CineId = 4,
+                        Nombre = "Sala Cine 2",
+                        Tipo = EnumTipoSalaDeCine.TresDimensiones
+                    },
+                     new SalaCine
+                    {
+                        Id = 71,
+                        CineId = 4,
+                        Nombre = "Sala Cine 3",
+                        Tipo = EnumTipoSalaDeCine.DosDimensiones
+                    },
+                      new SalaCine
+                    {
+                        Id = 72,
+                        CineId = 4,
+                        Nombre = "Sala Cine 4",
+                        Tipo = EnumTipoSalaDeCine.TresDimensiones
+                    },
+                       new SalaCine
+                    {
+                        Id = 74,
+                        CineId = 4,
+                        Nombre = "Sala Cine 5",
+                        Tipo = EnumTipoSalaDeCine.Imax
+                    }
+                }
             };
 
             var cine5 = new Cine()
@@ -104,7 +283,46 @@ namespace Peliculas.Entidades.Seeding
                 Id = 5,
                 Cadena = "ShowCase",
                 Nombre = "Mar Del Plata Mall",
-                Ubicacion = geometryFactory.CreatePoint(new Coordinate(-59.939248, 18.469649))
+                Ubicacion = geometryFactory.CreatePoint(new Coordinate(-59.939248, 18.469649)),
+                CineOfertas = new List<CineOferta>()
+                {
+                new CineOferta()
+                {
+                    CineId = 5,
+                    FechaInicio = DateTime.Now,
+                    FechaFin = DateTime.Now.AddDays(7)
+                }},
+                SalasCine = new List<SalaCine>
+                {
+                    new SalaCine
+                    {
+                        Id = 80,
+                        CineId = 5,
+                        Nombre = "Sala Cine 2",
+                        Tipo = EnumTipoSalaDeCine.TresDimensiones
+                    },
+                     new SalaCine
+                    {
+                        Id = 81,
+                        CineId = 5,
+                        Nombre = "Sala Cine 3",
+                        Tipo = EnumTipoSalaDeCine.DosDimensiones
+                    },
+                      new SalaCine
+                    {
+                        Id = 81,
+                        CineId = 5,
+                        Nombre = "Sala Cine 4",
+                        Tipo = EnumTipoSalaDeCine.DosDimensiones
+                    },
+                       new SalaCine
+                    {
+                        Id = 82,
+                        CineId = 5,
+                        Nombre = "Sala Cine 5",
+                        Tipo = EnumTipoSalaDeCine.DosDimensiones
+                    }
+                }
             };
 
 
@@ -141,39 +359,57 @@ namespace Peliculas.Entidades.Seeding
                 FotoURL = ""
             };
 
-            modelBuilder.Entity<Actor>().HasData(actor1,actor2,actor3);
-
-            var peliculasActores1 = new PeliculaActor()
+            var actor4 = new Actor()
             {
-                Id = 1,
-                ActorId = 1,
-                EsPrincipal = true,
-                Orden = 1,
-                PeliculaId = 1,
-                Personaje = "Mosca",
-
-            };
-            var peliculasActores2 = new PeliculaActor()
-            {
-                Id = 2, 
-                ActorId = 2,
-                EsPrincipal = false,
-                Orden = 2,
-                PeliculaId = 1,
-                Personaje = "Merlina",
+                Id = 4,
+                Biografia = "Morgauxtagmeze nebona ankaux kaj kaj pli neniu sur tre kiu sed al la de ilin longaspace iom kaj poste estus",
+                Nombre = "Homero Simpson",
+                Edad = 43,
+                PaisOrigen = EnumPais.USA,
+                FotoURL = ""
             };
 
-            var peliculasActores3 = new PeliculaActor()
+            var actor5 = new Actor()
             {
-                Id = 3,
-                ActorId = 3,
-                EsPrincipal = false,
-                Orden = 4,
-                PeliculaId = 1,
-                Personaje = "Merlina",
+                Id = 5,
+                Biografia = "Que de soeurs aux couronne» mince son musculeux pauvre soeurs donne regard elle d'un humain se faite la son et",
+                Nombre = "Mongomery Berns",
+                Edad = 104,
+                PaisOrigen = EnumPais.USA,
+                FotoURL = ""
             };
 
-            modelBuilder.Entity<PeliculaActor>().HasData(peliculasActores1, peliculasActores2, peliculasActores3);
+            modelBuilder.Entity<Actor>().HasData(actor1,actor2,actor3,actor4,actor5);
+
+            //var peliculasActores1 = new PeliculaActor()
+            //{
+            //    Id = 1,
+            //    EsPrincipal = true,
+            //    Orden = 1,
+            //    PeliculaId = 1,
+            //    Personaje = "Mosca",
+            //    ActorId = 1
+
+            //};
+            //var peliculasActores2 = new PeliculaActor()
+            //{
+            //    Id = 2, 
+            //    EsPrincipal = false,
+            //    Orden = 2,
+            //    PeliculaId = 1,
+            //    Personaje = "Merlina",
+            //    ActorId = 2
+            //};
+            //var peliculasActores3 = new PeliculaActor()
+            //{
+            //    Id = 3,
+            //    EsPrincipal = false,
+            //    Orden = 4,
+            //    PeliculaId = 1,
+            //    Personaje = "Merlina",
+            //    ActorId = 3
+            //};
+            //modelBuilder.Entity<PeliculaActor>().HasData(peliculasActores1, peliculasActores2, peliculasActores3);
 
 
             var comentario1 = new Comentario()
@@ -217,9 +453,119 @@ namespace Peliculas.Entidades.Seeding
                 Contenido = "Soy super fan de la saga y esta ultima pelicula me hizo soltar algunas lagrimas es cierto q algunos detalles hubiera querido diferentes pero se guarda la esencia y para mi no pudo haber mejor final q este ame la pelicula y la animacion y el mensajed q transmite un buen final para la saga sus 5 estrellas merecidas."
             };
 
-            //modelBuilder.Entity<Critica>().HasData(critica1,critica2);
-
+            modelBuilder.Entity<Critica>().HasData(critica1,critica2);
             
+            var funcion1 = new Funcion()
+            {
+                Id = 1,
+                Entradas = new List<Entrada>(),
+                Fecha = DateTime.Now.AddDays(2).AddHours(16).AddMinutes(30),
+                Nombre = "Funcion normal",
+                Pelicula = pelicula1,
+                PeliculaId = pelicula1.Id,
+            };
+
+            var funcion2 = new Funcion()
+            {
+                Id = 1,
+                Entradas = new List<Entrada>(),
+                Fecha = DateTime.Now.AddDays(2).AddHours(18).AddMinutes(30),
+                Nombre = "Funcion normal",
+                Pelicula = pelicula1,
+                PeliculaId = pelicula1.Id,
+            };
+
+            var funcion3 = new Funcion()
+            {
+                Id = 1,
+                Entradas = new List<Entrada>(),
+                Fecha = DateTime.Now.AddDays(2).AddHours(20).AddMinutes(30),
+                Nombre = "Funcion normal",
+                Pelicula = pelicula1,
+                PeliculaId = pelicula1.Id,
+            };
+
+            var funcion4 = new Funcion()
+            {
+                Id = 4,
+                Entradas = new List<Entrada>(),
+                Fecha = DateTime.Now.AddDays(4).AddHours(16).AddMinutes(30),
+                Nombre = "Funcion normal",
+                Pelicula = pelicula3,
+                PeliculaId = pelicula3.Id,
+            };
+
+            var funcion5 = new Funcion()
+            {
+                Id = 5,
+                Entradas = new List<Entrada>(),
+                Fecha = DateTime.Now.AddDays(4).AddHours(18).AddMinutes(30),
+                Nombre = "Funcion normal",
+                Pelicula = pelicula3,
+                PeliculaId = pelicula3.Id,
+            };
+
+            var funcion6 = new Funcion()
+            {
+                Id = 6,
+                Entradas = new List<Entrada>(),
+                Fecha = DateTime.Now.AddDays(4).AddHours(20).AddMinutes(30),
+                Nombre = "Funcion normal",
+                Pelicula = pelicula1,
+                PeliculaId = pelicula3.Id,
+            };
+
+            var funcion7 = new Funcion()
+            {
+                Id = 7,
+                Entradas = new List<Entrada>(),
+                Fecha = DateTime.Now.AddDays(4).AddHours(16).AddMinutes(30),
+                Nombre = "Funcion normal",
+                Pelicula = pelicula2,
+                PeliculaId = pelicula2.Id,
+            };
+
+            var funcion8 = new Funcion()
+            {
+                Id = 8,
+                Entradas = new List<Entrada>(),
+                Fecha = DateTime.Now.AddDays(4).AddHours(18).AddMinutes(30),
+                Nombre = "Funcion normal",
+                Pelicula = pelicula2,
+                PeliculaId = pelicula2.Id,
+            };
+
+            var funcion9 = new Funcion()
+            {
+                Id = 9,
+                Entradas = new List<Entrada>(),
+                Fecha = DateTime.Now.AddDays(6).AddHours(16).AddMinutes(30),
+                Nombre = "Funcion normal",
+                Pelicula = pelicula2,
+                PeliculaId = pelicula2.Id,
+            };
+
+            var funcion10 = new Funcion()
+            {
+                Id = 1,
+                Entradas = new List<Entrada>(),
+                Fecha = DateTime.Now.AddDays(6).AddHours(18).AddMinutes(30),
+                Nombre = "Funcion normal",
+                Pelicula = pelicula2,
+                PeliculaId = pelicula2.Id,
+            };
+
+            modelBuilder.Entity<Funcion>().HasData(funcion1, 
+                                                   funcion2,
+                                                   funcion3,
+                                                   funcion4,
+                                                   funcion5,
+                                                   funcion6,
+                                                   funcion7,
+                                                   funcion8,
+                                                   funcion9,
+                                                   funcion10);
+
         }
     }
 }

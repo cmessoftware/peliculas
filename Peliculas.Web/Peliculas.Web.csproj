@@ -7,13 +7,46 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repositorios\PeliculasActores\**" />
+    <Compile Remove="Servicios\PeliculasActores\**" />
+    <Compile Remove="Views\Peliculas1\**" />
+    <Content Remove="Repositorios\PeliculasActores\**" />
+    <Content Remove="Servicios\PeliculasActores\**" />
+    <Content Remove="Views\Peliculas1\**" />
+    <EmbeddedResource Remove="Repositorios\PeliculasActores\**" />
+    <EmbeddedResource Remove="Servicios\PeliculasActores\**" />
+    <EmbeddedResource Remove="Views\Peliculas1\**" />
+    <None Remove="Repositorios\PeliculasActores\**" />
+    <None Remove="Servicios\PeliculasActores\**" />
+    <None Remove="Views\Peliculas1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\PeliculasController1.cs" />
+    <Compile Remove="Entidades\PeliculaActor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="EfCore.SchemaCompare" Version="5.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="7.0.4" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="6.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
     <PackageReference Include="NetTopologySuite" Version="2.5.0" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
   </ItemGroup>
 
 </Project>

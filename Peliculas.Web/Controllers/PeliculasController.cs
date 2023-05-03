@@ -1,22 +1,18 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Peliculas.Data;
-using Peliculas.DTOs;
+using Microsoft.EntityFrameworkCore;
 using Peliculas.Entidades;
-using Peliculas.Mapeos;
-using Peliculas.Models;
-using Peliculas.Servicios.Comentarios;
 using Peliculas.Servicios.Peliculas;
-using System.Diagnostics;
+using Peliculas.Web.ViewModels;
 
-namespace Peliculas.Controllers
+namespace Peliculas.Web.Controllers
 {
     public class PeliculasController : Controller
     {
         private readonly ILogger<PeliculasController> _logger;
         private readonly IMapper _mapper;
         private readonly IServicioPelicula _servicioPelicula;
-     
+       
         public PeliculasController(ILogger<PeliculasController> logger,
                                    IMapper mapper,
                                    IServicioPelicula servicioPelicula)
@@ -26,228 +22,157 @@ namespace Peliculas.Controllers
             _servicioPelicula = servicioPelicula;
         }
 
-        [HttpGet]
+        // GET: Peliculas
         public async Task<IActionResult> Index()
         {
-            //var servPeli = new ServicioPeliculaMemoria();  //NO aplica Inyección de dependencias.
-            //var peliculasEstreno = servPeli.GetPeliculasEstreno();
-
             _logger.LogInformation("Entre al Index de PeliculasController");
 
-            var peliculasEstreno = await _servicioPelicula.GetAll();
+            return  _servicioPelicula != null ?
+                    View(await _servicioPelicula.GetAll()) :
+                    Problem("Entity set 'PeliculasDbContext.Peliculas'  is null."); ;
 
-            return View(peliculasEstreno);
+                        
         }
 
         [HttpGet]
-        [Route("{resumen}/{id}")]
-        public async Task<ActionResult<PeliculaDto>> Resumen(int Id)
+        [Route("{detalle}/{id?}")]
+        public async Task<IActionResult> Detalle(int? id)
         {
-                            
-            var resumen = await _servicioPelicula.GetById(Id);
 
-            return View(resumen);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var peliculaResumenVM = await _servicioPelicula.GetById(id);
+
+
+            if (peliculaResumenVM == null)
+            {
+                return NotFound();
+            }
+
+            return View(peliculaResumenVM);
+
         }
 
-       
-        
+
+        // GET: Peliculas/Create
         [HttpGet]
-        [Route("/{historial}")]
-        public IActionResult Historial()
+        [Route("{crear}")]
+        public IActionResult Crear()
         {
-            return View("Historial");
-        }
-
-
-        [HttpGet]
-        [Route("datospelicula")]
-        public IActionResult GetDatosPelicula()
-        {
-            //Devolver objetos Actores, Cines etc
-
             return View();
-
         }
 
+        // POST: Peliculas/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Route("/{crear}")]
-        public IActionResult CrearPelicula([FromBody] PeliculaDto nuevaPelicula)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Crear([Bind("Id,Titulo,Estreno,PaisOrigen,EnCartelara,Resumen,Director,PosterLink,TrailerLink")] PeliculaViewModel peliculaVM)
         {
+            if (ModelState.IsValid)
+            {
+                //Mapeo
+                var pelicula = _mapper.Map<Pelicula>(peliculaVM);
 
-            _servicioPelicula.Create(nuevaPelicula);
-
-            return View("Crear");
-
+                await _servicioPelicula.Create(pelicula);
+             
+                return RedirectToAction(nameof(Index));
+            }
+            return View(peliculaVM);
         }
-       
 
+        // GET: Peliculas/Edit/5
         [HttpGet]
-        [Route ( "CrearPeliculas" )]
-        public IActionResult CrearPelicula()
+        [Route("{editar}/{id?}")]
+        public async Task<IActionResult> Edit(int? id)
         {
-
-            //Creo el objeto de Peliculas.
-
-            #region Actores
-            var _lactores = new List<ActorDto> ();
-            ActorDto leo = new ActorDto
+            if (id == null)
             {
-                Id = 1,
-                Nombre = "Leo",
-                Edad = 50,
-                Pais = EnumPais.USA,
-                ActorPeliculaRel= new ActorPeliculaRelDto()
-            };
-            _lactores.Add(leo); 
+                return NotFound();
+            }
 
-            ActorDto rose = new ActorDto
+            var pelicula = await _servicioPelicula.GetById(id);
+            if (pelicula == null)
             {
-                Id = 1,
-                Nombre = "Rose",
-                Edad = 50,
-                Pais = EnumPais.USA,
-                ActorPeliculaRel = new ActorPeliculaRelDto ()
-            };
-            _lactores.Add(rose);                        
+                return NotFound();
+            }
+            return View(pelicula);
+        }
 
-            ActorDto Andy = new ActorDto
+        // POST: Peliculas/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Estreno,PaisOrigen,EnCartelara,Resumen,Director,PosterLink,TrailerLink")] PeliculaViewModel peliculaVM)
+        {
+            if (id != peliculaVM.Id)
             {
-                Id = 1,
-                Nombre = "Andy Garcia",
-                Edad = 80,
-                Pais = EnumPais.USA,
-                ActorPeliculaRel = new ActorPeliculaRelDto ()
-            };
-            _lactores.Add ( Andy );
-            ActorDto Alpa = new ActorDto
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
             {
-                Id = 1,
-                Nombre = "Al Paccino",
-                Edad = 80,
-                Pais = EnumPais.USA,
-                ActorPeliculaRel = new ActorPeliculaRelDto ()
-            };
-            _lactores.Add ( Alpa );
+                try
+                {
+                    await _servicioPelicula.Update(peliculaVM);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!await PeliculaExists(peliculaVM.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(peliculaVM);
+        }
 
-            #endregion
-
-            #region Generos
-            var _lgeneros = new List<GeneroDto> ();
-            GeneroDto scifi = new GeneroDto { Nombre = "Ciencia ficcion" };
-            _lgeneros.Add ( scifi );
-            GeneroDto epica = new GeneroDto { Nombre = "Epica" };
-            _lgeneros.Add ( epica );
-            GeneroDto comedia = new GeneroDto { Nombre = "Comedia" };
-            _lgeneros.Add ( comedia );
-            GeneroDto drama = new GeneroDto { Nombre = "Drama" };
-            _lgeneros.Add ( drama );
-
-            #endregion
-
-            #region Direcciones
-            DireccionDto DirHoyts = new DireccionDto
+        // GET: Peliculas/Delete/5
+        [HttpGet]
+        [Route("{borrar}/{id?}")]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
             {
-                
-                Pais = "ARG",
-                Provincia = "STAFE",
-                Ciudad = "Rosario",
-                
-                Calle = "Nazcar",
-                Numero = 450
-            };
-            DireccionDto     DirCinePolis = new DireccionDto
-            {
-                Pais = "ARG",
-                Provincia = "STAFE",
-                Ciudad = "Rosario",
-                
-                Calle = "Eva Peron",
-                Numero = 8500
-            };
-            #endregion
-
-            #region Tipos de salas
-            TipoDto dosd = new TipoDto {  Nombre = "2D" };
-            TipoDto tresd = new TipoDto { Nombre = "2D" };
-            #endregion
-
-            #region Salas
-            SalaDto Sala2dHoyts = new SalaDto
-            {
-             
-                Nombre = "Sala 2D",
-                Tipo = dosd
-            };
-            SalaDto Sala3dHoyts = new SalaDto
-            {
-                
-                Nombre = "Sala 3D",
-                Tipo = tresd
-            };
-            List<SalaDto> SalasHoyst = new List<SalaDto> ();
-            SalasHoyst.Add ( Sala2dHoyts );
-            SalasHoyst.Add ( Sala3dHoyts );
-
-
-
-            SalaDto  Sala2dCinepolis = new SalaDto
-            {
-                
-                Nombre = "Sala 2D",
-                Tipo = dosd
-            };
-            SalaDto Sala3dCinepolis = new SalaDto
-            {
-                
-                Nombre = "Sala 3D",
-                Tipo = tresd
-            };
-            List<SalaDto> SalasCinepolis = new List<SalaDto> ();
-            SalasHoyst.Add ( Sala2dCinepolis );
-            SalasHoyst.Add ( Sala3dCinepolis );
-
-            #endregion
-
-            #region Cines
-            CineDto Hoyts = new CineDto
-            {
+                return NotFound();
+            }
             
-                Nombre = "Hoyts",
-                Cadena = "Halmark",
-                Direccion = DirHoyts,
-                Salas = SalasHoyst
-            };
-            CineDto Cinepolis = new CineDto
+            if (!await _servicioPelicula.Delete(id))
             {
-             
-                Nombre = "Cinepolis",
-                Cadena = "MexiCine",
-                Direccion = DirCinePolis,
-                Salas = SalasCinepolis
-            };
-            List<CineDto> _lCines = new List<CineDto> ();
-            _lCines.Add ( Hoyts );
-            _lCines.Add ( Cinepolis );
-            #endregion
+                return NotFound();
+            }
 
-            //Inserter en DB.
-
-            ViewBag.actores = _lactores;
-            ViewBag.generos = _lgeneros;
-            ViewBag.Cines = _lCines;
-            return View ();
-
+            return View("Index");
         }
 
-        public IActionResult Privacy()
+        // POST: Peliculas/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return Problem("Entity set 'PeliculasDbContext.Peliculas'  is null.");
+            }
+          
+            _servicioPelicula.DeleteConfirmed(id);
+            
+            return RedirectToAction(nameof(Index));
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        private async Task<bool> PeliculaExists(int id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return await _servicioPelicula.GetById(id) != null;
         }
+
     }
 }

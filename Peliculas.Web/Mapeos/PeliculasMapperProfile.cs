@@ -2,7 +2,7 @@
 
 using Microsoft.SqlServer.Server;
 
-using Peliculas.DTOs;
+using Peliculas.Web.ViewModels;
 using Peliculas.Entidades;
 
 namespace Peliculas.Mapeos
@@ -11,25 +11,22 @@ namespace Peliculas.Mapeos
     {
         public PeliculasMapperProfile ()
         {
-            CreateMap<ActorDto, Actor> ();
-            CreateMap<ActorPeliculaRelDto, PeliculaActor> ();
-            CreateMap<CineDto, Cine> ();
-            CreateMap<ComentarioDto, Comentario> ();
-            CreateMap<CriticaDto, Critica> ();
-            CreateMap<DireccionDto, Direccion> ();
-            CreateMap<GeneroDto, Genero> ();
-            CreateMap<PeliculaDto, Pelicula> ();
-            CreateMap<SalaDto, SalaCine> ();
+            CreateMap<ActorViewModel, Actor> ();
+            CreateMap<CineViewModel, Cine> ();
+            CreateMap<ComentarioViewModel, Comentario> ();
+            CreateMap<CriticaViewModel, Critica> ();
+            CreateMap<GeneroViewModel, Genero> ();
+            CreateMap<PeliculaViewModel, Pelicula> ();
+            CreateMap<SalaViewModel, SalaCine> ();
 
-            CreateMap<Actor, ActorDto>();
-            CreateMap<PeliculaActor, ActorPeliculaRelDto>();
-            CreateMap<Cine, CineDto>();
-            CreateMap<Comentario, ComentarioDto>();
-            CreateMap<Critica, CriticaDto>();
-            CreateMap<Direccion, DireccionDto>();
-            CreateMap<Genero, GeneroDto>();
-            CreateMap<Pelicula, PeliculaDto>();
-            CreateMap<SalaCine, SalaDto>();
+            CreateMap<Actor, ActorViewModel>();
+            CreateMap<Cine, CineViewModel>();
+            CreateMap<Comentario, ComentarioViewModel>();
+            CreateMap<Critica, CriticaViewModel>();
+            CreateMap<Genero, GeneroViewModel>();
+            CreateMap<Pelicula, PeliculaViewModel>();
+            CreateMap<SalaCine, SalaViewModel>();
+            
         }
     }
 }

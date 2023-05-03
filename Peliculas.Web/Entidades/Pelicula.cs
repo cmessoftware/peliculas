@@ -1,8 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
-using Peliculas.DTOs;
-using Peliculas.Data;
+﻿using Peliculas.Data;
+using Peliculas.Web.Entidades;
 
 namespace Peliculas.Entidades
 {
@@ -11,9 +8,9 @@ namespace Peliculas.Entidades
       
         public int Id { get; set; }
         public string Titulo { get; set; }
-        public DateTime FechaEstreno { get; set; }
+        public int Estreno { get; set; }
         public EnumPais PaisOrigen { get; set; }
-
+        public bool EnCartelera { get; set; }
         public string Resumen { get; set; }
 
         public string Director { get; set; }
@@ -22,14 +19,17 @@ namespace Peliculas.Entidades
 
         public string TrailerLink { get; set; }
 
-        public List<PeliculaActor> PeliculaActores { get; set; }
+        public List<Actor> Actores { get; set; }
    
         public List<Comentario> Comentarios { get; set; }
 
         public List<Genero> Generos { get; set; }
 
-        public List<SalaCine> SalasCines { get; set; }
+        public List<Cine> Cines { get; set; }
 
         public List<Critica> Criticas { get; set; }
+
+        public List<Funcion> Funciones { get; set; }
+        
     }
 }

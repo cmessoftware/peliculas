@@ -11,5 +11,9 @@ namespace Peliculas.Entidades
 
         public string Usuario { get; set; }
         public int MeGustaCantidad { get; set; }
+
+        public int PeliculaId { get; set; }
+
+        public Pelicula Pelicula { get; set; }
     }
 }

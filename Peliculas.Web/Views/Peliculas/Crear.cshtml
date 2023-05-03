@@ -1,114 +1,74 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@*
+﻿@model Peliculas.Web.ViewModels.PeliculaViewModel
 
-    Formulario carga de pelicula
-        Carga de datos básicos (Director actores, posterlink etc).
-        Carga de Cadena (seleccionado por cuidad)
-        Carga de cines de esa cadena.
-        Carga de salas por cine.
 
-    Se pide:
-        Bosquejo a mano alzada de los formualarios.
-        Que cargar primero y que despues
-        Sugerir que tener pre cargado por fuera (procesos externos).
+<!DOCTYPE html>
 
-*@
-
-<!doctype html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ABM de Peliculas</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>ALTA DE PELICULAS</title>
 </head>
-<body class="p-3 m-0 border-0 bd-Peliculas">
+<body>
 
-    <div class="container mt-5 mb-5">
-        <form  action="" method="post">
-            <div class="row">
-                <div class="col-6">
-
-                    <div class="mb-3">
-                        <label for="PeliculasFormControlNombre" class="form-label">Nombre pelicula</label>
-                        <input type="text" class="form-control" id="PeliculasFormControlNombre" placeholder="titulo">
-                    </div>
-                    <div class="mb-3">
-                        <label for="PeliculasFormControlPaisOrigen" class="form-label">Pais de origen</label>
-                        <input type="text" class="form-control" id="PeliculasFormControlPaisOrigen" rows="3" spellcheck="true" data-ms-editor="true"></input>
-                    </div>
-                    <div class="mb-3">
-                        <label for="PeliculasFormControlDirector" class="form-label">Director</label>
-                        <input type="text" class="form-control" id="PeliculasFormControlDirector" rows="3" spellcheck="true" data-ms-editor="true"></input>
-                    </div>
-                    <label for="PeliculasFormControlGenero" class="form-label">Género</label>
-                    <select id="PeliculasFormControlGenero" class="form-select form-select-sm" aria-label=".form-select-sm Peliculas">
-                        <option selected>Seleccione un genero</option>
-                        @{
-                            int num_genero = 1; @*Deberia ser el id del genero*@
-
-                            foreach (var g in @ViewBag.generos)
-                            {
-                                <option value=num_genero.Tostring()>@g.Nombre</option>
-                                num_genero++;
-                            }
-                        }
-                    </select>
-                </div>
-                <div class="col-6">
-                    <div class="mb-3">
-                        <label for="PeliculasFormControlTrailer" class="form-label">URL del trailer</label>
-                        <input type="text" class="form-control" id="PeliculasFormControlTrailer" placeholder="Link del trailer en YouTube">
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFileSm" class="form-label">Seleccione la imagen del poster</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file">
-                    </div>
-                    <div class="mb-3">
-                        <label for="PeliculasFormControlResumen" st class="form-label">Resumen</label>
-                        <textarea class="form-control resumenCrearPelicula" id="PeliculasFormControlResumen" rows="3" spellcheck="true" data-ms-editor="true"></textarea>
-                    </div>
-                </div>
+<h4>Nueva Pelicula</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
             </div>
-            <div class="row mt-5">
-
-                <div class="col-4">
-                    <select class="form-select" multiple aria-label="multiple select Peliculas">
-                        <option selected>Seleccione el elenco</option>
-                        @{
-                            int num_actores = 1; @*Deberia ser el id del actor*@
-
-                            foreach (var a in @ViewBag.actores)
-                            {
-                                <option value=num_actores.Tostring()>@a.Nombre</option>
-                                num_actores++;
-                            }
-                        }
-                    </select>
-                </div>
-                <div class="col-4">
-                    <select class="form-select" multiple aria-label="multiple select Peliculas">
-                        <option selected>Seleccione los cines</option>
-                        <@{
-                            int num_cines = 1; @*Deberia ser el id del cine*@
-                            foreach (var c in @ViewBag.cines)
-                            {
-                                            <option value=num_cines.Tostring()>@c.Nombre</option>
-                    num_cines++;
-                }
-            }
-                    </select>
-                </div>
-                <div class="col-4 btnGuardarCrearPelicula">
-                    <button class="btn btn-primary" type="submit">Guardar</button>
-                </div>
+            <div class="form-group">
+                <label asp-for="Estreno" class="control-label"></label>
+                <input asp-for="Estreno" class="form-control" />
+                <span asp-validation-for="Estreno" class="text-danger"></span>
             </div>
-
-
+            <div class="form-group">
+                <label asp-for="PaisOrigen" class="control-label"></label>
+                <select asp-for="PaisOrigen" class="form-control"></select>
+                <span asp-validation-for="PaisOrigen" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="EnCartelara" /> @Html.DisplayNameFor(model => model.EnCartelara)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resumen" class="control-label"></label>
+                <input asp-for="Resumen" class="form-control" />
+                <span asp-validation-for="Resumen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Director" class="control-label"></label>
+                <input asp-for="Director" class="form-control" />
+                <span asp-validation-for="Director" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PosterLink" class="control-label"></label>
+                <input asp-for="PosterLink" class="form-control" />
+                <span asp-validation-for="PosterLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrailerLink" class="control-label"></label>
+                <input asp-for="TrailerLink" class="form-control" />
+                <span asp-validation-for="TrailerLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
         </form>
     </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 </body>
 </html>

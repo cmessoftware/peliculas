@@ -1,6 +1,6 @@
 ﻿namespace Peliculas.Extensiones
 {
-    public static class Extensiones
+    public static class StringExtensiones
     {
         public static string JoinString<T>(this IEnumerable<T> source, Func<T, string> func)
         {

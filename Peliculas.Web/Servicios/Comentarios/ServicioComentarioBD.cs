@@ -1,15 +1,13 @@
-﻿using AutoMapper;
-using Peliculas.Entidades;
-using Peliculas.Repositorio;
+﻿using Peliculas.Entidades;
 using Peliculas.UnitOfWorks;
 
-namespace Peliculas.Servicios.Comentarios
+namespace Peliculas.Servicios
 {
-    public class ServicioComentarioBD : IServicioComentarios
+    public class ServicioComentarios : IServicioComentarios
     {
         public IUnitOfWork _unitOfWork;
 
-        public ServicioComentarioBD(IUnitOfWork unitOfWork)
+        public ServicioComentarios(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -22,25 +20,32 @@ namespace Peliculas.Servicios.Comentarios
 
                 var result = _unitOfWork.SaveChanges();
 
-                return result > 0 ? true : false;
+                return result > 0;
             }
             return false;
         }
 
-        public async Task<bool> Delete(int Id)
+        public async Task<bool> Delete(int? id)
         {
-            if (Id > 0)
+            if (id != null)
             {
-                var comentario = await _unitOfWork.Comentarios.GetById(Id);
+                var comentario = await _unitOfWork.Comentarios.GetById(id);
                 if (comentario != null)
                 {
-                    await _unitOfWork.Comentarios.Delete(comentario);
-                    var result = _unitOfWork.SaveChanges();
-
-                    return result > 0;
+                    return await _unitOfWork.Comentarios.Delete(id);
                 }
             }
             return false;
+        }
+
+        public Task<bool> Delete(Comentario com)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteConfirmed(int? id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<Comentario>> GetAll()
@@ -49,11 +54,11 @@ namespace Peliculas.Servicios.Comentarios
             return comentarios;
         }
 
-        public async Task<Comentario> GetById(int Id)
+        public async Task<Comentario> GetById(int? id)
         {
-            if (Id > 0)
+            if (id > 0)
             {
-                var comentario = await _unitOfWork.Comentarios.GetById(Id);
+                var comentario = await _unitOfWork.Comentarios.GetById(id);
                 if (comentario != null)
                 {
                     return comentario;

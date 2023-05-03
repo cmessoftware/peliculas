@@ -1,6 +1,7 @@
-﻿@model List<Peliculas.DTOs.PeliculaDto>
+﻿@model List<PeliculaViewModel>
 @using Microsoft.AspNetCore;
 @using Peliculas.Extensiones;
+@using Peliculas.Web.ViewModels;
  
 @{
     ViewData["Title"] = "Cartelera ";
@@ -33,11 +34,11 @@
                             </li>
                             <li class="d-flex align-items-center me-3 pb-2">
                                 <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill" /></svg>
-                                    <small>Actores: <strong>@m.PeliculaActores.JoinString(x => x.ActorId.ToString())</strong></small>
+                                    @*<small>Actores: <strong>@m.PeliculaActores.JoinString(x => x.Actores.Select(a => a.Nombre).JoinString(x => x.FirstOrDefault()))</strong></small>*@
                             </li>
                             <li class="d-flex align-items-center me-3 pb-2">
                                 <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill" /></svg>
-                                <small>Genero: <strong>@m.Generos.JoinString(x=>x.Nombre)</strong></small>
+                                @*<small>Genero: <strong>@m.Generos.JoinString(x=>x.Nombre)</strong></small>*@
                             </li>
                             <li class="d-flex align-items-center me-3 pb-2">
                                 <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill" /></svg>
@@ -45,12 +46,12 @@
                             </li>
                             <li class="d-flex align-items-center me-3 pb-2">
                                 <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill" /></svg>
-                                <small>Fecha de estreno: <strong>@m.FechaEstreno.ToShortDateString()</strong></small>
+                                <small>Fecha de estreno: <strong>@m.Estreno</strong></small>
                             </li>
                         </ul>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
-                                <a href="~/resumen/@m.Id" class="btn btn-primary justify-content-center">Ver Resumen</a>
+                                <a href="~/detalle/@m.Id" class="btn btn-primary justify-content-center">Ver Resumen</a>
                             </li>
                         </ul>
                     </div>

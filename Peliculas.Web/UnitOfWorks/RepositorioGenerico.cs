@@ -12,7 +12,7 @@ namespace Peliculas.UnitOfWorks
             _context = context;
         }
 
-        public async Task<TEntity> GetById(int id)
+        public async Task<TEntity> GetById(int? id)
         {
             return await _context.Set<TEntity>().FindAsync(id);
         }
@@ -22,14 +22,19 @@ namespace Peliculas.UnitOfWorks
             return await _context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task Create(TEntity entity)
+        public async Task<bool> Create(TEntity entity)
         {
             await _context.Set<TEntity>().AddAsync(entity);
+
+            return true;
         }
 
 
-        public async Task<bool> Delete(TEntity entity)
+        public async Task<bool> Delete(int? id)
         {
+
+            var entity = await GetById(id);
+
             var enEntryRemove = _context.Set<TEntity>().Remove(entity);
 
             if (enEntryRemove.State == EntityState.Deleted)
@@ -49,6 +54,10 @@ namespace Peliculas.UnitOfWorks
            
         }
 
+        public Task<bool> DeleteConfirmed(int? id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

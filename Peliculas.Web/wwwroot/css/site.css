@@ -88,3 +88,7 @@ div .img-portada-index {
     text-align: justify-all !important;
    
 }
+
+[data-action]:hover {
+    cursor: pointer;
+}

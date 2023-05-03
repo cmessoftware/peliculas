@@ -1,5 +1,5 @@
 ﻿using Peliculas.Data;
-using Peliculas.DTOs;
+using Peliculas.Web.ViewModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,9 +7,6 @@ namespace Peliculas.Entidades
 {
     public class Actor
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Required]
         public int Id { get; set; }
         public string Nombre { get; set; }
 
@@ -21,6 +18,7 @@ namespace Peliculas.Entidades
 
         public string Biografia { get; set; }
 
-        public List<PeliculaActor> PeliculaActores { get; set; }
+        public List<Pelicula> Peliculas { get; set; }
+
     }
 }
