@@ -1,145 +1,106 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Peliculas.Data;
+using Newtonsoft.Json;
 using Peliculas.Entidades;
+using Peliculas.Servicios;
+using Peliculas.Web.Filters;
+using Peliculas.Web.Mapeos;
 using Peliculas.Web.ViewModels;
 
 namespace Peliculas.Web.Controllers
 {
+    [PeliculasActionFilter]
     public class GenerosController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly PeliculasDbContext _context;
+        private readonly IServicioGeneros _servicioGeneros;
 
-        public GenerosController(IMapper mapper ,
-                                 PeliculasDbContext context)
+        public GenerosController(IMapper mapper,
+                                 IServicioGeneros servicioGeneros)
         {
             _mapper = mapper;
-            _context = context;
+            _servicioGeneros = servicioGeneros;
         }
 
-        // GET: Generos
-        public async Task<IActionResult> Index()
-        {
-
-            if(_context.Generos == null)
-                return NotFound();
-                        
-            
-            var generos = await _context.Generos.ToListAsync();
-
-            var generosSelectList = new List<SelectListItem>();
-            var generosVM = new GeneroViewModel();
-
-            foreach (var gen in generos)
-            {
-                generosSelectList.Add(new SelectListItem()
-                {
-                    Text = gen.Nombre,
-                    Value = gen.Id.ToString()
-                }); 
-            }
-
-            generosVM.Generos ??= new List<SelectListItem>(); 
-            generosVM.Generos.AddRange(generosSelectList);
-
-
-            return View(generosVM);
-
-            #region Ejemplo
-            //var model = new GeneroViewModel()
-            //{
-            //    Generos = new List<SelectListItem>()
-            //    {
-            //        new SelectListItem()
-            //        {
-            //            Text = "Genero 1",
-            //            Value = "1"
-            //        },
-            //         new SelectListItem()
-            //        {
-            //            Text = "Genero 2",
-            //            Value = "2"
-            //        },
-            //          new SelectListItem()
-            //        {
-            //            Text = "Genero 3",
-            //            Value = "3"
-            //        },
-            //           new SelectListItem()
-            //        {
-            //            Text = "Genero 4",
-            //            Value = "4"
-            //        },
-            //            new SelectListItem()
-            //        {
-            //            Text = "Genero 5",
-            //            Value = "5"
-            //        }
-            //    },
-            //    Nombre = "Generos de Pelicula"
-            //};
-
-            //return View(model);
-            #endregion
-        }
-
-        // GET: Generos/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Generos == null)
-            {
-                return NotFound();
-            }
-
-            var genero = await _context.Generos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (genero == null)
-            {
-                return NotFound();
-            }
-
-            return View(genero);
-        }
-
-        // GET: Generos/Create
-        public IActionResult Create()
+        [HttpGet]
+        public ActionResult Index()
         {
             return View();
         }
+
+        // GET: Generos/List
+        [HttpGet]
+        [Route("{generos}/{list}")]
+        public async Task<IActionResult> GetGeneros()
+        {
+            var generos = await _servicioGeneros.GetAll();
+
+            var map = new GenerosMapper(_mapper);
+            var generosVM = map.Map(generos);
+
+            return View("Index",generosVM);
+        }
+
+        [HttpGet]
+        [Route("{generos}/{list}/{id?}")]
+        public async Task<IActionResult> GetByID(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest($"id {id} is invalid");
+            }
+
+            var genero = await _servicioGeneros.GetById(id);
+
+            if (genero == null)
+            {
+                return BadRequest($"id {id} is invalid");
+            }
+            var generoVM = _mapper.Map<GeneroViewModel>(genero);
+
+            return View(generoVM);
+        }
+
+
 
         // POST: Generos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre")] Genero genero)
+        public async Task<IActionResult> Create([Bind("Id,Nombre")] GeneroViewModel generoVM)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(genero);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var genero = _mapper.Map<Genero>(generoVM);
+                await _servicioGeneros.Create(genero);
+
+                return View(generoVM);
             }
-            return View(genero);
+            else
+                return BadRequest($"id {generoVM.Id} is invalid");
+
+
         }
 
         // GET: Generos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Generos == null)
+            if (id == null)
             {
-                return NotFound();
+                return BadRequest($"id {id} is invalid");
             }
 
-            var genero = await _context.Generos.FindAsync(id);
+            var genero = await _servicioGeneros.GetById(id);
             if (genero == null)
             {
-                return NotFound();
+                return BadRequest($"id {id} is invalid");
             }
-            return View(genero);
+
+            var generoVM = _mapper.Map<GeneroViewModel>(genero);
+
+            return View(generoVM);
         }
 
         // POST: Generos/Edit/5
@@ -147,76 +108,80 @@ namespace Peliculas.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre")] Genero genero)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre")] GeneroViewModel generoVM)
         {
-            if (id != genero.Id)
+            if (id != generoVM.Id)
             {
-                return NotFound();
+                return BadRequest($"id {id} is invalid");
             }
-
+     
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(genero);
-                    await _context.SaveChangesAsync();
+                    var genero = _mapper.Map<Genero>(generoVM);
+                    await _servicioGeneros.Update(genero);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!GeneroExists(genero.Id))
+                    if (!GeneroExists(generoVM.Id))
                     {
-                        return NotFound();
+                        return BadRequest($"id {id} is invalid");
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                generoVM = _mapper.Map<GeneroViewModel>(generoVM);
+
+                return View(generoVM);
             }
-            return View(genero);
+            else
+                return BadRequest($"id {id} is invalid");
+
         }
 
         // GET: Generos/Delete/5
+        [HttpDelete]
+        [Route("{generos}/{delete}/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Generos == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var genero = await _context.Generos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var genero = await _servicioGeneros.GetById(id);
+
             if (genero == null)
             {
                 return NotFound();
             }
 
-            return View(genero);
+            return genero != null ? Json(genero) : NotFound();
         }
 
+
         // POST: Generos/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [Route("{generos}/{delete}")]
+        public async Task<IActionResult> DeleteConfirmed([FromBody] GeneroViewModel genero)
         {
-            if (_context.Generos == null)
-            {
+
+            if (genero == null)
                 return Problem("Entity set 'PeliculasDbContext.Generos'  is null.");
-            }
-            var genero = await _context.Generos.FindAsync(id);
-            if (genero != null)
-            {
-                _context.Generos.Remove(genero);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            if (!await _servicioGeneros.DeleteConfirmed(genero.Id))
+                return Problem($"DeleteConfirmed id {genero.Id} was failed!!");
+
+            return Json(genero);
         }
 
         private bool GeneroExists(int id)
         {
-          return (_context.Generos?.Any(e => e.Id == id)).GetValueOrDefault();
+            return _servicioGeneros.GetById(id) != null;
         }
     }
 }

@@ -1,20 +1,22 @@
 using Microsoft.EntityFrameworkCore;
 using Peliculas.Data;
-using Peliculas.Extensiones;
 using System.Text.Json.Serialization;
+using Peliculas.Extensiones;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddMvc().AddRazorRuntimeCompilation();
+builder.Services.AddControllersWithViews();
 builder.Services.AddControllersWithViews();
 
 //Configuracion del EF Core.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var AzureconnectionString = builder.Configuration.GetConnectionString ( "AzureConnection" );
+var AzureconnectionString = builder.Configuration.GetConnectionString("AzureConnection");
 
 builder.Services.AddDbContext<PeliculasDbContext>(options =>
 {
-    options.UseSqlServer(connectionString, sqlServer => 
+    options.UseSqlServer(connectionString, sqlServer =>
                          sqlServer.UseNetTopologySuite());
 
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
@@ -28,7 +30,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 //                             options.UseInMemoryDatabase("Peliculas"));
 
 builder.Services.AddServices();
-builder.Services.AddAutoMapper ( AppDomain.CurrentDomain.GetAssemblies () );
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 var app = builder.Build();
@@ -49,8 +51,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapControllers();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Peliculas}/{action=Index}/{id?}");
+    pattern: "{controller=Generos}/{action=Index}/{id?}");
 
 app.Run();

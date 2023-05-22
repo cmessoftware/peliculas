@@ -7,23 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Repositorios\PeliculasActores\**" />
-    <Compile Remove="Servicios\PeliculasActores\**" />
-    <Compile Remove="Views\Peliculas1\**" />
-    <Content Remove="Repositorios\PeliculasActores\**" />
-    <Content Remove="Servicios\PeliculasActores\**" />
-    <Content Remove="Views\Peliculas1\**" />
-    <EmbeddedResource Remove="Repositorios\PeliculasActores\**" />
-    <EmbeddedResource Remove="Servicios\PeliculasActores\**" />
-    <EmbeddedResource Remove="Views\Peliculas1\**" />
-    <None Remove="Repositorios\PeliculasActores\**" />
-    <None Remove="Servicios\PeliculasActores\**" />
-    <None Remove="Views\Peliculas1\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Controllers\PeliculasController1.cs" />
-    <Compile Remove="Entidades\PeliculaActor.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,7 +18,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.38" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.15">
       <PrivateAssets>all</PrivateAssets>
@@ -53,6 +38,177 @@
   <ItemGroup>
     <Folder Include="wwwroot\lib\gridjs\css\" />
     <Folder Include="wwwroot\lib\gridjs\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Peliculas.Common\Peliculas.Common.csproj" />
+    <ProjectReference Include="..\Peliculas.Data\Peliculas.Data.csproj" />
+    <ProjectReference Include="..\Peliculas.Models\Peliculas.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\GenerosJson\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Generos\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Historial\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Peliculas\Crear.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Peliculas\Delete.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Peliculas\Details.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Peliculas\Detalle.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Peliculas\Edit.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Peliculas\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Peliculas\_Cines.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Error.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_GridScriptsPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_Layout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_ValidationScriptsPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Cines\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Cines\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Cines\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Cines\Details.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Cines\Edit.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Cines\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Comentarios\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Comentarios\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Comentarios\Details.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Comentarios\Edit.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Comentarios\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Criticas\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Criticas\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Criticas\Details.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Criticas\Edit.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Criticas\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Generos\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Generos\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Generos\Details.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Generos\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Cines\Delete.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Cines\Details.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Cines\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Cines\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Comentarios\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Comentarios\Delete.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Comentarios\Details.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Comentarios\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Comentarios\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Criticas\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Criticas\Delete.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Criticas\Details.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Criticas\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Criticas\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Generos\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Generos\Delete.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Generos\Details.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Generos\Edit.cshtml" />
   </ItemGroup>
 
 </Project>

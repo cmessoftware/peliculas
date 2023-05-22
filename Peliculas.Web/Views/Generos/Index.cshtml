@@ -1,50 +1,54 @@
-﻿@model Peliculas.Web.ViewModels.GeneroViewModel
+﻿@model IEnumerable<Peliculas.Web.ViewModels.GeneroViewModel>
 
 @*@{
     Layout = null;
-}*@
+}*@     
 
-<!DOCTYPE html>
+        <h2>Generos de peliculas</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
-    <div class="row">
-        <div class="col-12">
-            @Html.DropDownListFor(m => m.Id, Model.Generos);
-            @*<select class="form-select-sm" asp-for="Generos" asp-items="@Model.Generos"></select>*@
+        <div id="divErrors"
+             class="alert alert-danger alert-dimissible fase show"
+             role="alert"
+             style="display:none">
+            <div class="alert alert-danger">
+                 <strong><span id="errors"></span></strong> 
+            </div>
+            <button type="button" class="close" aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-    </div>
-@*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>*@
-</body>
-</html>
+
+
+        <div id="wrapper" class="table table-bordered"></div>
+
+        <script>
+
+
+   
+        document.addEventListener("DOMContentLoaded", event =>
+        {
+            $("body").addClass("loading");
+            $.get('/api/GenerosJson', (data) => {
+                data.datos.map( d => d.acciones.reduce((acum, e) => acum += '|' + e));
+                if(data.estado){
+                    $("div#wrapper").Grid({
+                        columns: ['Id', 'Nombre','Acciones'],
+                        data: data.datos
+                    })
+                }
+                else
+                    displayValidationErrors(errors);
+            }).fail( errors => displayValidationErrors(errors))
+              .always(() => $("body").removeClass("loading"));
+        });
+  
+        </script>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+            @section Scripts {
+                @{
+                    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+                    //await Html.RenderPartialAsync("_GridScriptsPartial");
+                }
+            }

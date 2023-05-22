@@ -12,7 +12,7 @@ namespace Peliculas.Web.Controllers
         private readonly ILogger<PeliculasController> _logger;
         private readonly IMapper _mapper;
         private readonly IServicioPelicula _servicioPelicula;
-       
+
         public PeliculasController(ILogger<PeliculasController> logger,
                                    IMapper mapper,
                                    IServicioPelicula servicioPelicula)
@@ -27,44 +27,14 @@ namespace Peliculas.Web.Controllers
         {
             _logger.LogInformation("Entre al Index de PeliculasController");
 
-            return  _servicioPelicula != null ?
+            return _servicioPelicula != null ?
                     View(await _servicioPelicula.GetAll()) :
                     Problem("Entity set 'PeliculasDbContext.Peliculas'  is null."); ;
 
-                        
-        }
-
-        [HttpGet]
-        [Route("{detalle}/{id?}")]
-        public async Task<IActionResult> Detalle(int? id)
-        {
-
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var peliculaResumenVM = await _servicioPelicula.GetById(id);
-
-
-            if (peliculaResumenVM == null)
-            {
-                return NotFound();
-            }
-
-            return View(peliculaResumenVM);
 
         }
 
-
-        // GET: Peliculas/Create
-        [HttpGet]
-        [Route("{crear}")]
-        public IActionResult Crear()
-        {
-            return View();
-        }
-
+       
         // POST: Peliculas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -78,29 +48,29 @@ namespace Peliculas.Web.Controllers
                 var pelicula = _mapper.Map<Pelicula>(peliculaVM);
 
                 await _servicioPelicula.Create(pelicula);
-             
+
                 return RedirectToAction(nameof(Index));
             }
             return View(peliculaVM);
         }
 
-        // GET: Peliculas/Edit/5
-        [HttpGet]
-        [Route("{editar}/{id?}")]
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Peliculas/Edit/5
+        //[HttpGet]
+        //[Route("{editar}/{id?}")]
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var pelicula = await _servicioPelicula.GetById(id);
-            if (pelicula == null)
-            {
-                return NotFound();
-            }
-            return View(pelicula);
-        }
+        //    var pelicula = await _servicioPelicula.GetById(id);
+        //    if (pelicula == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(pelicula);
+        //}
 
         // POST: Peliculas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -137,22 +107,22 @@ namespace Peliculas.Web.Controllers
         }
 
         // GET: Peliculas/Delete/5
-        [HttpGet]
-        [Route("{borrar}/{id?}")]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            
-            if (!await _servicioPelicula.Delete(id))
-            {
-                return NotFound();
-            }
+        //[HttpGet]
+        //[Route("{borrar}/{id?}")]
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View("Index");
-        }
+        //    if (!await _servicioPelicula.Delete(id))
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View("Index");
+        //}
 
         // POST: Peliculas/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -163,9 +133,9 @@ namespace Peliculas.Web.Controllers
             {
                 return Problem("Entity set 'PeliculasDbContext.Peliculas'  is null.");
             }
-          
+
             _servicioPelicula.DeleteConfirmed(id);
-            
+
             return RedirectToAction(nameof(Index));
         }
 

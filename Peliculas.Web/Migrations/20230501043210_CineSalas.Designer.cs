@@ -294,7 +294,7 @@ namespace Peliculas.Web.Migrations
                     b.ToTable("SalasCine");
                 });
 
-            modelBuilder.Entity("Peliculas.Web.Entidades.Cliente", b =>
+            modelBuilder.Entity("Peliculas.Entidades.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -318,7 +318,7 @@ namespace Peliculas.Web.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("Peliculas.Web.Entidades.Entrada", b =>
+            modelBuilder.Entity("Peliculas.Entidades.Entrada", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -358,7 +358,7 @@ namespace Peliculas.Web.Migrations
                     b.ToTable("Entradas");
                 });
 
-            modelBuilder.Entity("Peliculas.Web.Entidades.Funcion", b =>
+            modelBuilder.Entity("Peliculas.Entidades.Funcion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -383,7 +383,7 @@ namespace Peliculas.Web.Migrations
                     b.ToTable("Funciones");
                 });
 
-            modelBuilder.Entity("Peliculas.Web.Entidades.UbicacionEnSala", b =>
+            modelBuilder.Entity("Peliculas.Entidades.UbicacionEnSala", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -495,13 +495,13 @@ namespace Peliculas.Web.Migrations
                     b.Navigation("Cine");
                 });
 
-            modelBuilder.Entity("Peliculas.Web.Entidades.Entrada", b =>
+            modelBuilder.Entity("Peliculas.Entidades.Entrada", b =>
                 {
-                    b.HasOne("Peliculas.Web.Entidades.Cliente", "Cliente")
+                    b.HasOne("Peliculas.Entidades.Cliente", "Cliente")
                         .WithMany("Entradas")
                         .HasForeignKey("ClienteId");
 
-                    b.HasOne("Peliculas.Web.Entidades.Funcion", "Funcion")
+                    b.HasOne("Peliculas.Entidades.Funcion", "Funcion")
                         .WithMany("Entradas")
                         .HasForeignKey("FuncionId");
 
@@ -514,7 +514,7 @@ namespace Peliculas.Web.Migrations
                     b.Navigation("Funcion");
                 });
 
-            modelBuilder.Entity("Peliculas.Web.Entidades.Funcion", b =>
+            modelBuilder.Entity("Peliculas.Entidades.Funcion", b =>
                 {
                     b.HasOne("Peliculas.Entidades.Pelicula", "Pelicula")
                         .WithMany("Funciones")
@@ -525,7 +525,7 @@ namespace Peliculas.Web.Migrations
                     b.Navigation("Pelicula");
                 });
 
-            modelBuilder.Entity("Peliculas.Web.Entidades.UbicacionEnSala", b =>
+            modelBuilder.Entity("Peliculas.Entidades.UbicacionEnSala", b =>
                 {
                     b.HasOne("Peliculas.Entidades.SalaCine", "Entradas")
                         .WithMany("UbicacionesEnSala")
@@ -561,12 +561,12 @@ namespace Peliculas.Web.Migrations
                     b.Navigation("UbicacionesEnSala");
                 });
 
-            modelBuilder.Entity("Peliculas.Web.Entidades.Cliente", b =>
+            modelBuilder.Entity("Peliculas.Entidades.Cliente", b =>
                 {
                     b.Navigation("Entradas");
                 });
 
-            modelBuilder.Entity("Peliculas.Web.Entidades.Funcion", b =>
+            modelBuilder.Entity("Peliculas.Entidades.Funcion", b =>
                 {
                     b.Navigation("Entradas");
                 });
