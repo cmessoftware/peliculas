@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Peliculas.Entidades;
-using Peliculas.Web.ViewModels;
+using Peliculas.Web.Dto;
 
 namespace Peliculas.Web.Mapeos
 {
@@ -18,30 +18,18 @@ namespace Peliculas.Web.Mapeos
             _mapper = mapper;
         }
 
-        public List<GeneroViewModel> Map(List<Genero> generos)
+        public List<GeneroDto> Map(List<Genero> generos)
         {
-            List<GeneroViewModel> generosResponse = null;
+            List<GeneroDto> generosResponse = null;
 
             foreach (var gen in generos)
             {
-                generosResponse ??= new List<GeneroViewModel>();
-                generosResponse.Add(_mapper.Map<Genero, GeneroViewModel>(gen));
+                generosResponse ??= new List<GeneroDto>();
+                generosResponse.Add(_mapper.Map<Genero, GeneroDto>(gen));
             }
 
             return generosResponse;
         }
 
-        public List<GeneroViewModelJson> MapJson(List<Genero> generos)
-        {
-            List<GeneroViewModelJson> generosResponse = null;
-
-            foreach (var gen in generos)
-            {
-                generosResponse ??= new List<GeneroViewModelJson>();
-                generosResponse.Add(_mapper.Map<Genero, GeneroViewModelJson>(gen));
-            }
-
-            return generosResponse;
-        }
     }
 }

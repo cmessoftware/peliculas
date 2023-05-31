@@ -1,9 +1,17 @@
 ﻿using Peliculas.Entidades;
+using Peliculas.UnitOfWorks;
 
 namespace Peliculas.Data.Repositorios.Actores
 {
-    public class RepositorioActores : IRepositorioActores
+    public class RepositorioActores : RepositorioGenerico<Actor>, IRepositorioActores
     {
+        private readonly PeliculasDbContext _context;
+
+        public RepositorioActores(PeliculasDbContext context) : base(context)
+        {
+            this._context = context;
+        }
+
         public Task<bool> Create(Actor entity)
         {
             throw new NotImplementedException();

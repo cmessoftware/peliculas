@@ -1,36 +1,69 @@
-﻿using Peliculas.Entidades;
+﻿using Microsoft.EntityFrameworkCore;
+using Peliculas.Entidades;
 using Peliculas.Repositorio.Peliculas;
+using Peliculas.UnitOfWorks;
 
-public class RepositorioComentarios : IRepositorioComentarios
+namespace Peliculas.Data.Repositorios.Generos
 {
-
-    public Task<bool> Create(Comentario entity)
+    public class RepositorioComentarios : RepositorioGenerico<Comentario>, IRepositorioComentarios
     {
-        throw new NotImplementedException();
-    }
+        private readonly PeliculasDbContext _context;
+        public RepositorioComentarios(PeliculasDbContext context) : base(context)
+        {
+            _context = context;
+        }
 
-    public Task<bool> Delete(int? id)
-    {
-        throw new NotImplementedException();
-    }
+        public async Task<bool> Create(Comentario entity)
+        {
+            await _context.Comentarios.AddAsync(entity);
+            await _context.SaveChangesAsync();
 
-    public Task<bool> DeleteConfirmed(int? id)
-    {
-        throw new NotImplementedException();
-    }
+            return true;
 
-    public Task<List<Comentario>> GetAll()
-    {
-        throw new NotImplementedException();
-    }
+        }
 
-    public Task<Comentario> GetById(int? id)
-    {
-        throw new NotImplementedException();
-    }
+        public async Task<bool> Delete(int? id)
+        {
 
-    public Task<bool> Update(Comentario entity)
-    {
-        throw new NotImplementedException();
+            var genero = await _context.Comentarios.FindAsync(id);
+
+            if (genero == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public async Task<bool> DeleteConfirmed(int? id)
+        {
+            var response = _context.Comentarios.Find(id);
+
+            if (response != null)
+            {
+                _context.Comentarios.Remove(response);
+            }
+
+            return true;
+        }
+
+        public async Task<List<Comentario>> GetAll()
+        {
+            return await _context.Comentarios.ToListAsync();
+        }
+
+        public new async Task<Comentario> GetById(int? id)
+        {
+            var response = await _context.Comentarios.FindAsync(id);
+            return response;
+        }
+
+        public async Task<bool> Update(Comentario entity)
+        {
+            _context.Update(entity);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

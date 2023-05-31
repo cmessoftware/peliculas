@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Peliculas.Entidades;
-using Peliculas.Web.ViewModels;
+using Peliculas.Web.Dto;
 
 namespace Peliculas.Mapeos
 {
@@ -9,10 +9,9 @@ namespace Peliculas.Mapeos
         public GenerosMapperProfile()
         {
 
-            CreateMap<Genero, GeneroViewModel>();
-            CreateMap<Genero, GeneroViewModelJson>();
-            CreateMap<GeneroViewModel, GeneroViewModelJson>();
-            CreateMap<GeneroViewModelJson, Genero>();
+            CreateMap<Genero, GeneroDto>();
+            CreateMap<GeneroDto, Genero>();
+            CreateMap<GeneroRequestDto, Genero>();
         }
     }
 }

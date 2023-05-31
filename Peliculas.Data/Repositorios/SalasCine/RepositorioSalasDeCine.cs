@@ -1,9 +1,15 @@
 ﻿using Peliculas.Entidades;
+using Peliculas.UnitOfWorks;
 
 namespace Peliculas.Data.Repositorios.SalasCine
 {
-    public class RepositorioSalasDeCine : IRepositorioSalasDeCine
+    public class RepositorioSalasDeCine : RepositorioGenerico<SalaCine>, IRepositorioSalasDeCine
     {
+        private readonly PeliculasDbContext _context;
+        public RepositorioSalasDeCine(PeliculasDbContext context) : base(context)
+        {
+            _context = context;
+        }
         public Task<bool> Create(SalaCine entity)
         {
             throw new NotImplementedException();

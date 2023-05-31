@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Peliculas.Entidades;
 using Peliculas.Servicios.Peliculas;
-using Peliculas.Web.ViewModels;
+using Peliculas.Web.Dto;
 
 namespace Peliculas.Web.Controllers
 {
@@ -40,7 +40,7 @@ namespace Peliculas.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Crear([Bind("Id,Titulo,Estreno,PaisOrigen,EnCartelara,Resumen,Director,PosterLink,TrailerLink")] PeliculaViewModel peliculaVM)
+        public async Task<IActionResult> Crear([Bind("Id,Titulo,Estreno,PaisOrigen,EnCartelara,Resumen,Director,PosterLink,TrailerLink")] PeliculaDto peliculaVM)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace Peliculas.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Estreno,PaisOrigen,EnCartelara,Resumen,Director,PosterLink,TrailerLink")] PeliculaViewModel peliculaVM)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Estreno,PaisOrigen,EnCartelara,Resumen,Director,PosterLink,TrailerLink")] PeliculaDto peliculaVM)
         {
             if (id != peliculaVM.Id)
             {

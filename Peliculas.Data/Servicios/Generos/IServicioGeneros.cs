@@ -1,6 +1,6 @@
 ﻿using Peliculas.Entidades;
 using Peliculas.UnitOfWorks;
-using Peliculas.Web.ViewModels;
+using Peliculas.Web.Dto;
 
 namespace Peliculas.Servicios
 {

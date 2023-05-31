@@ -1,9 +1,16 @@
 ﻿using Peliculas.Entidades;
+using Peliculas.UnitOfWorks;
 
 namespace Peliculas.Data.Repositorios.Funciones
 {
-    public class RepositorioFunciones : IRepositorioFunciones
+    public class RepositorioFunciones : RepositorioGenerico<Funcion>, IRepositorioFunciones
     {
+        private readonly PeliculasDbContext _context;
+
+        public RepositorioFunciones(PeliculasDbContext context)  : base(context)
+        {
+            this._context = context;
+        }
         public Task<bool> Create(Funcion entity)
         {
             throw new NotImplementedException();

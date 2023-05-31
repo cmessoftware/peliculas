@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Peliculas.Entidades;
 using Peliculas.Servicios.Peliculas;
 using Peliculas.UnitOfWorks;
-using Peliculas.Web.ViewModels;
+using Peliculas.Web.Dto;
 
 namespace Peliculas.Servicios
 {
@@ -22,7 +22,7 @@ namespace Peliculas.Servicios
             _logger = logger;
         }
 
-        public async Task<bool> Create(PeliculaViewModel peliculaDto)
+        public async Task<bool> Create(PeliculaDto peliculaDto)
         {
             if (peliculaDto != null)
             {
@@ -51,36 +51,36 @@ namespace Peliculas.Servicios
             return false;
         }
 
-        public async Task<List<PeliculaViewModel>> GetAll()
+        public async Task<List<PeliculaDto>> GetAll()
         {
             var peliculas = await _unitOfWork.Peliculas.GetAll();
 
-            var peliculasDto = new List<PeliculaViewModel>();
+            var peliculasDto = new List<PeliculaDto>();
 
             foreach (var peli in peliculas)
             {
-                var peliculaDto = _mapper.Map<PeliculaViewModel>(peli);
+                var peliculaDto = _mapper.Map<PeliculaDto>(peli);
                 peliculasDto.Add(peliculaDto);
             }
 
             return peliculasDto;
         }
 
-        public async Task<PeliculaViewModel> GetById(int? id)
+        public async Task<PeliculaDto> GetById(int? id)
         {
             if (id > 0)
             {
                 var pelicula = await _unitOfWork.Peliculas.GetById(id);
                 if (pelicula != null)
                 {
-                    var peliculaVM = _mapper.Map<PeliculaViewModel>(pelicula);
+                    var peliculaVM = _mapper.Map<PeliculaDto>(pelicula);
                     return peliculaVM;
                 }
             }
             return null;
         }
 
-        public async Task<bool> Update(PeliculaViewModel peliculaDto)
+        public async Task<bool> Update(PeliculaDto peliculaDto)
         {
             if (peliculaDto != null)
             {

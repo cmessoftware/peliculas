@@ -14,8 +14,9 @@ using Peliculas.Servicios;
 using Peliculas.Servicios.Peliculas;
 using Peliculas.UnitOfWorks;
 using Peliculas.Web.Mapeos;
+using Peliculas.WebApi.Controllers;
 
-namespace Peliculas.Extensiones
+namespace Peliculas.Common.Extensiones
 {
     public static class ServiceExtensiones
     {
@@ -29,6 +30,8 @@ namespace Peliculas.Extensiones
             services.AddScoped<IServicioPelicula, ServicioPeliculaDB>();
             services.AddScoped<IServicioActores, ServicioActores>();
             services.AddScoped<IServicioGeneros, ServicioGeneros>();
+            services.AddScoped<IServicioComentarios, ServicioComentarios>();
+            services.AddScoped<IServicioCriticas, ServicioCriticas>();
 
             //Configuro inyección de dependencias de los repositorios
             services.AddScoped<IRepositorioPeliculas, RepositorioPeliculas>();
@@ -46,6 +49,8 @@ namespace Peliculas.Extensiones
 
             //Inyección de dependencias de mapeos.
             services.AddScoped<IGenerosMapper, GenerosMapper>();
+            services.AddScoped<IComentariosMapper, ComentariosMapper>();
+            services.AddScoped<ICriticasMapper, CriticasMapper>();
 
 
         }

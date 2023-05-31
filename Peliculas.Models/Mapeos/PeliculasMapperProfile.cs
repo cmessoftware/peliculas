@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Peliculas.Entidades;
-using Peliculas.Web.ViewModels;
+using Peliculas.Web.Dto;
 
 namespace Peliculas.Mapeos
 {
@@ -8,21 +8,21 @@ namespace Peliculas.Mapeos
     {
         public PeliculasMapperProfile()
         {
-            CreateMap<ActorViewModel, Actor>();
-            CreateMap<CineViewModel, Cine>();
-            CreateMap<ComentarioViewModel, Comentario>();
-            CreateMap<CriticaViewModel, Critica>();
-            CreateMap<GeneroViewModel, Genero>();
-            CreateMap<PeliculaViewModel, Pelicula>();
-            CreateMap<SalaViewModel, SalaCine>();
+            CreateMap<ActorDto, Actor>();
+            CreateMap<CineDto, Cine>();
+            CreateMap<ComentarioDto, Comentario>();
+            CreateMap<CriticaDto, Critica>();
+            CreateMap<GeneroDto, Genero>();
+            CreateMap<PeliculaDto, Pelicula>();
+            CreateMap<SalaDto, SalaCine>();
 
-            CreateMap<Actor, ActorViewModel>();
-            CreateMap<Cine, CineViewModel>();
-            CreateMap<Comentario, ComentarioViewModel>();
-            CreateMap<Critica, CriticaViewModel>();
-            CreateMap<Genero, GeneroViewModel>();
-            CreateMap<Pelicula, PeliculaViewModel>();
-            CreateMap<SalaCine, SalaViewModel>();
+            CreateMap<Actor, ActorDto>();
+            CreateMap<Cine, CineDto>();
+            CreateMap<Comentario, ComentarioDto>();
+            CreateMap<Critica, CriticaDto>();
+            CreateMap<Genero, GeneroDto>();
+            CreateMap<Pelicula, PeliculaDto>();
+            CreateMap<SalaCine, SalaDto>();
 
         }
     }

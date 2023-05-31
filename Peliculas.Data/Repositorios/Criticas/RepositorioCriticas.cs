@@ -1,12 +1,21 @@
 ﻿using Peliculas.Entidades;
+using Peliculas.UnitOfWorks;
 
 namespace Peliculas.Data.Repositorios.Criticas
 {
-    public class RepositorioCriticas : IRepositorioCriticas
+    public class RepositorioCriticas : RepositorioGenerico<Critica> IRepositorioCriticas
     {
+        private readonly PeliculasDbContext _context;
+
+        public RepositorioCriticas(PeliculasDbContext context) : base(context)
+        {
+            this._context = context;
+        }
+
+
         public Task<bool> Create(Critica entity)
         {
-            throw new NotImplementedException();
+            
         }
 
         public Task<bool> Delete(Critica entity)

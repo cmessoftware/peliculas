@@ -7,18 +7,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link href="~/css/historial.css" rel="stylesheet" />
-    @*<link href="~/lib/gridjs/css/mermaid.min.css" rel="stylesheet" />*@
+    <link href="~/lib/gridjs/css/mermaid.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap-icons/bootstrap-icons.css">
-    <link href="~/css/loading.css" rel="stylesheet" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://unpkg.com/gridjs-jquery/dist/gridjs.production.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" />
-</head>
+ </head>
 <body>
 	<header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Generos" asp-action="Index">ABM Peliculas</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Peliculas" asp-action="Crear">ABM Peliculas</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,7 +22,8 @@
         </nav>
 		<div class="container">
 			<strong>Peliculas - v1.6 - 23-03-2023</strong>
-           
+            <strong>Refactoring para usar Repositorio Generico</strong>
+            <a class="text-dark" href="~/peliculas/historial/">Historial de cambios </a>
 		</div>
 	</header>
     <div class="container mb-5">
@@ -34,15 +31,18 @@
             @RenderBody()
         </main>
     </div>
+
+</body>
     <footer class="border-top footer text-muted mt-5">
         <div class="container mt-5">
-            <strong>Refactoring para usar Repositorio Generico</strong>
-            <a class="text-dark" href="~/peliculas/historial/">Historial de cambios </a>
+            &copy; 2023 - Peliculas - <a asp-area="" asp-controller="Peliculas" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    @*<script src="~/lib/gridjs/js/gridjs.production.min.js"></script>*@
-      <script src="~/js/site.js" asp-append-version="true"></script>
-</body>
+    <script src="~/lib/gridjs/js/gridjs.production.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
- </html>
+  
+    </footer>
+</html>

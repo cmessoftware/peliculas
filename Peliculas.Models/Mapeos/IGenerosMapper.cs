@@ -1,10 +1,10 @@
 ﻿using Peliculas.Entidades;
-using Peliculas.Web.ViewModels;
+using Peliculas.Web.Dto;
 
 namespace Peliculas.Web.Mapeos
 {
     public interface IGenerosMapper
     {
-        public List<GeneroViewModel> Map(List<Genero> generos);
+        public List<GeneroDto> Map(List<Genero> generos);
     }
 }

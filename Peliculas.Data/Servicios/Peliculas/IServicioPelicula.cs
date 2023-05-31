@@ -1,18 +1,18 @@
 ﻿using Peliculas.Entidades;
 using Peliculas.UnitOfWorks;
-using Peliculas.Web.ViewModels;
+using Peliculas.Web.Dto;
 
 namespace Peliculas.Servicios.Peliculas
 {
     public interface IServicioPelicula : IServicioGenerico<Pelicula>
     {
-        Task<bool> Create(PeliculaViewModel pelicula);
+        Task<bool> Create(PeliculaDto pelicula);
 
-        Task<List<PeliculaViewModel>> GetAll();
+        Task<List<PeliculaDto>> GetAll();
 
-        Task<PeliculaViewModel> GetById(int? id);
+        Task<PeliculaDto> GetById(int? id);
 
-        Task<bool> Update(PeliculaViewModel pelicula);
+        Task<bool> Update(PeliculaDto pelicula);
 
         Task<bool> Delete(int? id);
         Task<bool> DeleteConfirmed(int? id);

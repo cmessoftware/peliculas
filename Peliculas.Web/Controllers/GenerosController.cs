@@ -6,7 +6,7 @@ using Peliculas.Entidades;
 using Peliculas.Servicios;
 using Peliculas.Web.Filters;
 using Peliculas.Web.Mapeos;
-using Peliculas.Web.ViewModels;
+using Peliculas.Web.Dto;
 
 namespace Peliculas.Web.Controllers
 {
@@ -57,7 +57,7 @@ namespace Peliculas.Web.Controllers
             {
                 return BadRequest($"id {id} is invalid");
             }
-            var generoVM = _mapper.Map<GeneroViewModel>(genero);
+            var generoVM = _mapper.Map<GeneroDto>(genero);
 
             return View(generoVM);
         }
@@ -69,7 +69,7 @@ namespace Peliculas.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre")] GeneroViewModel generoVM)
+        public async Task<IActionResult> Create([Bind("Id,Nombre")] GeneroDto generoVM)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace Peliculas.Web.Controllers
                 return BadRequest($"id {id} is invalid");
             }
 
-            var generoVM = _mapper.Map<GeneroViewModel>(genero);
+            var generoVM = _mapper.Map<GeneroDto>(genero);
 
             return View(generoVM);
         }
@@ -108,7 +108,7 @@ namespace Peliculas.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre")] GeneroViewModel generoVM)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre")] GeneroDto generoVM)
         {
             if (id != generoVM.Id)
             {
@@ -133,7 +133,7 @@ namespace Peliculas.Web.Controllers
                         throw;
                     }
                 }
-                generoVM = _mapper.Map<GeneroViewModel>(generoVM);
+                generoVM = _mapper.Map<GeneroDto>(generoVM);
 
                 return View(generoVM);
             }
@@ -167,7 +167,7 @@ namespace Peliculas.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("{generos}/{delete}")]
-        public async Task<IActionResult> DeleteConfirmed([FromBody] GeneroViewModel genero)
+        public async Task<IActionResult> DeleteConfirmed([FromBody] GeneroDto genero)
         {
 
             if (genero == null)

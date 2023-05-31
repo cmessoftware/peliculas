@@ -1,13 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Peliculas.Data;
 using System.Text.Json.Serialization;
-using Peliculas.Extensiones;
+using Peliculas.Common.Extensiones;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddMvc().AddRazorRuntimeCompilation();
-builder.Services.AddControllersWithViews();
 builder.Services.AddControllersWithViews();
 
 //Configuracion del EF Core.
@@ -54,6 +53,6 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Generos}/{action=Index}/{id?}");
+    pattern: "{controller=Peliculas}/{action=Index}/{id?}");
 
 app.Run();

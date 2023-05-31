@@ -1,4 +1,4 @@
-﻿namespace Peliculas.Extensiones
+﻿namespace Peliculas.Common.Extensiones
 {
     public static class StringExtensiones
     {

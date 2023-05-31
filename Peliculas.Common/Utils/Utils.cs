@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Peliculas.Web.Dto;
 
 namespace Peliculas.Common.Utils
 {
@@ -13,9 +8,9 @@ namespace Peliculas.Common.Utils
         /// Obtiene las acciones que puede realizar en cada entidad segun rol
         /// </summary>
         /// <returns></returns>
-        public static List<string> GetAcciones(string entidad) 
+        public static List<string> GetAcciones(string entidad, UserDto user) 
         {
-            return new List<string> { "editar", "borrar" };
+            return new List<string> { "|editar", "|borrar" };
         }
     }
 }

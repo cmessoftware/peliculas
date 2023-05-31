@@ -1,6 +1,6 @@
 ﻿using Peliculas.Entidades;
 using Peliculas.UnitOfWorks;
-using Peliculas.Web.ViewModels;
+using Peliculas.Web.Dto;
 
 namespace Peliculas.Servicios
 {
@@ -26,7 +26,7 @@ namespace Peliculas.Servicios
             return false;
         }
 
-        public Task<bool> Create(GeneroViewModel genero)
+        public Task<bool> Create(GeneroDto genero)
         {
             throw new NotImplementedException();
         }
@@ -73,7 +73,7 @@ namespace Peliculas.Servicios
                 if (generosDB != null)
                 {
 
-                    await _unitOfWork.Generos.Update(generosDB);
+                    await _unitOfWork.Generos.Update(genero);
 
                     var result = _unitOfWork.SaveChanges();
 
@@ -83,7 +83,7 @@ namespace Peliculas.Servicios
             return false;
         }
 
-        public Task<bool> Update(GeneroViewModel entity)
+        public Task<bool> Update(GeneroDto entity)
         {
             throw new NotImplementedException();
         }
