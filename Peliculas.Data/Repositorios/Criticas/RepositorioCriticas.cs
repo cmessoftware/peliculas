@@ -3,7 +3,7 @@ using Peliculas.UnitOfWorks;
 
 namespace Peliculas.Data.Repositorios.Criticas
 {
-    public class RepositorioCriticas : RepositorioGenerico<Critica> IRepositorioCriticas
+    public class RepositorioCriticas : RepositorioGenerico<Critica> ,IRepositorioCriticas
     {
         private readonly PeliculasDbContext _context;
 
@@ -13,9 +13,12 @@ namespace Peliculas.Data.Repositorios.Criticas
         }
 
 
-        public Task<bool> Create(Critica entity)
+        public async Task<bool> Create(Critica entity)
         {
-            
+            await _context.Criticas.AddAsync(entity);   
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
         public Task<bool> Delete(Critica entity)

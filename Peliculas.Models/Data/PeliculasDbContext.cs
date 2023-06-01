@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Peliculas.Entidades;
-using Peliculas.Entidades;
 using System.Reflection;
 
 namespace Peliculas.Data

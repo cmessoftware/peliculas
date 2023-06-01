@@ -13,57 +13,30 @@ namespace Peliculas.Data.Repositorios.Generos
             _context = context;
         }
 
-        public async Task<bool> Create(Comentario entity)
+        public new async Task<bool> Create(Comentario entity)
         {
-            await _context.Comentarios.AddAsync(entity);
-            await _context.SaveChangesAsync();
-
-            return true;
-
+            return await base.Create(entity);
         }
 
-        public async Task<bool> Delete(int? id)
+        public new async Task<bool> Delete(int? id)
         {
-
-            var genero = await _context.Comentarios.FindAsync(id);
-
-            if (genero == null)
-            {
-                return false;
-            }
-
-            return true;
+            return await base.Delete(id);
         }
 
-        public async Task<bool> DeleteConfirmed(int? id)
+
+        public new async Task<List<Comentario>> GetAll()
         {
-            var response = _context.Comentarios.Find(id);
-
-            if (response != null)
-            {
-                _context.Comentarios.Remove(response);
-            }
-
-            return true;
-        }
-
-        public async Task<List<Comentario>> GetAll()
-        {
-            return await _context.Comentarios.ToListAsync();
+            return await base.GetAll();
         }
 
         public new async Task<Comentario> GetById(int? id)
         {
-            var response = await _context.Comentarios.FindAsync(id);
-            return response;
+            return await base.GetById(id);
         }
 
-        public async Task<bool> Update(Comentario entity)
+        public new async Task<bool> Update(Comentario entity)
         {
-            _context.Update(entity);
-            await _context.SaveChangesAsync();
-
-            return true;
+            return await base.Update(entity);
         }
     }
 }

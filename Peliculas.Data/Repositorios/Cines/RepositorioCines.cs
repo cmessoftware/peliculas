@@ -5,11 +5,9 @@ namespace Peliculas.Data.Repositorios.Cines
 {
     public class RepositorioCines : RepositorioGenerico<Cine>, IRepositorioCines
     {
-        private readonly PeliculasDbContext _context;
-
+    
         public RepositorioCines(PeliculasDbContext context): base(context) 
         {
-            this._context = context;
         }
         public Task<bool> Create(Cine entity)
         {

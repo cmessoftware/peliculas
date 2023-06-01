@@ -6,7 +6,6 @@
         Task<List<T>> GetAll();
         Task<bool> Create(T entity);
         Task<bool> Delete(int? id);
-        Task<bool> DeleteConfirmed(int? id);
         Task<bool> Update(T entity);
     }
 }

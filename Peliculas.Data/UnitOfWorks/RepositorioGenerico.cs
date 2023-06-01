@@ -25,6 +25,7 @@ namespace Peliculas.UnitOfWorks
         public async Task<bool> Create(TEntity entity)
         {
             await _context.Set<TEntity>().AddAsync(entity);
+            await _context.SaveChangesAsync();
 
             return true;
         }
@@ -36,6 +37,7 @@ namespace Peliculas.UnitOfWorks
             var entity = await GetById(id);
 
             var enEntryRemove = _context.Set<TEntity>().Remove(entity);
+            await _context.SaveChangesAsync();
 
             if (enEntryRemove.State == EntityState.Deleted)
                 return true;
@@ -46,6 +48,7 @@ namespace Peliculas.UnitOfWorks
         public async Task<bool> Update(TEntity entity)
         {
             var enEntry = _context.Set<TEntity>().Update(entity);
+            await _context.SaveChangesAsync();
 
             if (enEntry.State == EntityState.Modified)
                 return true;
@@ -54,10 +57,6 @@ namespace Peliculas.UnitOfWorks
 
         }
 
-        public Task<bool> DeleteConfirmed(int? id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

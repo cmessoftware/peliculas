@@ -52,15 +52,6 @@ namespace Peliculas.Servicios
             throw new NotImplementedException();
         }
 
-        public async Task<bool> DeleteConfirmed(int? id)
-        {
-            if (id != null)
-            {
-                return await _unitOfWork.Actores.DeleteConfirmed(id);
-            }
-
-            return false;
-        }
 
         public async Task<List<Actor>> GetAll()
         {
