@@ -35,7 +35,24 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    }
+      },
+      //"Docker": {
+      //  "commandName": "Docker",
+      //  "launchBrowser": true,
+      //  "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      //  "publishAllPorts": true,
+      //  "useSSL": true
+      //}
+    },
+    //"$schema": "https://json.schemastore.org/launchsettings.json",
+    //"iisSettings": {
+    //  "commandName": "IISExpress",
+    //  "windowsAuthentication": false,
+    //  "anonymousAuthentication": true,
+    //  "iisExpress": {
+    //    "applicationUrl": "http://localhost:29331",
+    //    "sslPort": 44306
+    //  }
+    //}
   }
 }

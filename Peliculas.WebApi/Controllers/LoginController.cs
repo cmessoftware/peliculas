@@ -1,65 +1,76 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
+using Peliculas.WebApi.Entidades;
+using Peliculas.Servicios;
+using Peliculas.Web.Filters;
+using Peliculas.WebApi.Dto;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 namespace Peliculas.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+
+    [PeliculasActionFilter]
     [ApiController]
+    [Route("api/[controller]")]
     public class LoginController : Controller
     {
-        private IConfiguration _config;
+        private readonly IMapper _mapper;
+        private readonly IUserLoginService _userLogingService;
+        private readonly IConfiguration _config;
 
-        public LoginController(IConfiguration config)
+        public LoginController(IMapper mapper,
+                               IUserLoginService userLogingService,
+                               IConfiguration config)
         {
+            _mapper = mapper;
+            _userLogingService = userLogingService;
             _config = config;
         }
-        [AllowAnonymous]
+
         [HttpPost]
-        public IActionResult Login(UserDto login)
+        [ValidateAntiForgeryToken]
+        [Route("authenticate")]
+        public async Task<IActionResult> Login(UserLoginDto login)
         {
-            IActionResult response = Unauthorized();
-            var user = AuthenticateUser(login);
+            var userLogin = _mapper.Map<UserLogin>(login);
 
-            if (user != null)
-            {
-                var tokenString = GenerateJSONWebToken(user);
-                response = Ok(new { token = tokenString });
-            }
+            var response = await _userLogingService.GetUserLogin(userLogin);
 
-            return response;
+            if (response is null)
+                return BadRequest(new { message = "Invalid credentials" });
+
+            string jwtToken = GenerateToken(response);
+
+            return Ok(new { token = jwtToken });
         }
 
-        private string GenerateJSONWebToken(UserDto userInfo)
+        private string GenerateToken(UserLogin user)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-              _config["Jwt:Issuer"],
-              null,
-              expires: DateTime.Now.AddMinutes(120),
-              signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        private UserDto AuthenticateUser(UserDto login)
-        {
-            UserDto user = null;
-
-            //Validate the User Credentials    
-            //Demo Purpose, I have Passed HardCoded User Information    
-            if (login.UserName == "pelicula")
+            var claims = new[]
             {
-                user = new UserDto { UserName = "Jignesh Trivedi", EmailAddress = "test.btest@gmail.com" };
-            }
-            return user;
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email)
+            };
+
+            //Leo la key (Secret)
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("Jwt:Key").Value));
+            //Genero la key digital asociada a las credenciales.
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            //Generamos el token.
+            var securityToken = new JwtSecurityToken(
+                                        claims: claims,
+                                        expires: DateTime.Now.AddMinutes(60),
+                                        signingCredentials: creds
+                                    );
+            //Lo transformo a string
+            string token = new JwtSecurityTokenHandler().WriteToken(securityToken);
+
+            return token;
+
         }
     }
 }
