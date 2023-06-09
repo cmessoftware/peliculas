@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Peliculas.Common.Utils;
-using Peliculas.WebApi.Entidades;
 using Peliculas.Servicios;
 using Peliculas.Web.Dto;
 using Peliculas.Web.Filters;
+using Peliculas.WebApi.Dto.Genero;
+using Peliculas.WebApi.Entidades;
 using Peliculas.WebApi.Mapeos;
 using System.Net;
 
@@ -77,7 +78,7 @@ namespace Peliculas.WebApi.Controllers
 
         [HttpGet]
         [Route("{id?}")]
-        public async Task<IActionResult> GetByID(int? id)
+        public async Task<IActionResult> GetById(int? id)
         {
             try
             {

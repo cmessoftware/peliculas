@@ -1,16 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Peliculas.WebApi.Entidades;
 using Peliculas.UnitOfWorks;
-using Peliculas.WebApi.Data;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.Data.Repositorios
 {
     public class UserLoginRepository : RepositorioGenerico<UserLogin>, IUserLoginRepository
     {
-        private readonly PeliculasDbContext _context;
+        private readonly ILogger _logger;
+        private readonly PeliculasContext _context;
 
-        public UserLoginRepository(PeliculasDbContext context) : base(context)
+        public UserLoginRepository(ILogger<UserLoginRepository> logger, PeliculasContext context) : base(logger,
+                                                                                     context)
         {
+            this._logger = logger;
             this._context = context;
         }
         public async Task<bool> Create(UserLogin entity)

@@ -1,15 +1,21 @@
-﻿using Peliculas.WebApi.Entidades;
-using Peliculas.UnitOfWorks;
-using Peliculas.WebApi.Data;
+﻿using Peliculas.UnitOfWorks;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.Data.Repositorios.Cines
 {
     public class RepositorioCines : RepositorioGenerico<Cine>, IRepositorioCines
     {
 
-        public RepositorioCines(PeliculasDbContext context) : base(context)
+        private readonly ILogger _logger;
+        private readonly PeliculasContext _context;
+
+        public RepositorioCines(ILogger<RepositorioCines> logger, PeliculasContext context) : base(logger,
+                                                                                     context)
         {
+            this._logger = logger;
+            this._context = context;
         }
+
         public Task<bool> Create(Cine entity)
         {
             throw new NotImplementedException();

@@ -1,6 +1,5 @@
-﻿using Peliculas.WebApi.Entidades;
-using Peliculas.UnitOfWorks;
-using Peliculas.Web.Dto;
+﻿using Peliculas.UnitOfWorks;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.Servicios
 {
@@ -17,18 +16,9 @@ namespace Peliculas.Servicios
         {
             if (genero != null)
             {
-                await _unitOfWork.Generos.Create(genero);
-
-                var result = _unitOfWork.SaveChanges();
-
-                return result > 0;
+                return await _unitOfWork.Generos.Create(genero);
             }
             return false;
-        }
-
-        public Task<bool> Create(GeneroDto genero)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<bool> Delete(int? id)
@@ -40,25 +30,32 @@ namespace Peliculas.Servicios
             return false;
         }
 
+
         public async Task<List<Genero>> GetAll()
         {
             var generos = await _unitOfWork.Generos.GetAll();
             return generos;
         }
 
-        public async Task<Genero> GetById(int? id)
+        public async Task<Genero> GetById(int? id, int? peliculaId)
         {
-            if (id > 0)
+            if (peliculaId > 0)
             {
-                var genero = await _unitOfWork.Generos.GetById(id);
-                if (genero != null)
-                {
-                    return genero;
-                }
+                var genero = await _unitOfWork.Generos.GetById(id, peliculaId);
+                return genero;
             }
             return null;
         }
 
+        public async Task<Genero> GetById(int? id)
+        {
+            if (id > 0)
+            {
+                return await _unitOfWork.Generos.GetById(id);
+            }
+
+            return null;
+        }
 
         public async Task<bool> Update(Genero genero)
         {
@@ -68,16 +65,10 @@ namespace Peliculas.Servicios
                 if (generosDB != null)
                 {
 
-                    await _unitOfWork.Generos.Update(genero);
-
-                    var result = _unitOfWork.SaveChanges();
-
-                    return result > 0;
+                    return await _unitOfWork.Generos.Update(genero);
                 }
             }
             return false;
         }
-
-
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Peliculas.WebApi.Entidades;
+﻿namespace Peliculas.WebApi.Entidades;
 
 public partial class SalasCine
 {

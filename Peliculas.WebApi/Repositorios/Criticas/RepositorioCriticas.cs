@@ -1,15 +1,19 @@
-﻿using Peliculas.WebApi.Entidades;
-using Peliculas.UnitOfWorks;
-using Peliculas.WebApi.Data;
+﻿using Peliculas.UnitOfWorks;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.Data.Repositorios.Criticas
 {
     public class RepositorioCriticas : RepositorioGenerico<Critica>, IRepositorioCriticas
     {
 
-        public RepositorioCriticas(PeliculasDbContext context) : base(context)
-        {
+        private readonly ILogger _logger;
+        private readonly PeliculasContext _context;
 
+        public RepositorioCriticas(ILogger<RepositorioCriticas> logger, PeliculasContext context) : base(logger,
+                                                                                                         context)
+        {
+            this._logger = logger;
+            this._context = context;
         }
 
 

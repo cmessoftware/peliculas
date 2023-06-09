@@ -6,7 +6,6 @@ using Peliculas.Data.Repositorios.Clientes;
 using Peliculas.Data.Repositorios.Criticas;
 using Peliculas.Data.Repositorios.Entradas;
 using Peliculas.Data.Repositorios.Funciones;
-using Peliculas.Data.Repositorios.Generos;
 using Peliculas.Repositorio.Peliculas;
 
 namespace Peliculas.UnitOfWorks

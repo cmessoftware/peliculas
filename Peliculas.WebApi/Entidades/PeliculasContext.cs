@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Peliculas.WebApi.Entidades;
 
@@ -45,7 +43,7 @@ public partial class PeliculasContext : DbContext
 
     public virtual DbSet<UserLogin> UserLogins { get; set; }
 
-  
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Actor>(entity =>

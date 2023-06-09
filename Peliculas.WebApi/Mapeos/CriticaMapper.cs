@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using Peliculas.WebApi.Entidades;
 using Peliculas.Web.Dto;
-using Peliculas.WebApi.Dto;
-using Peliculas.WebApi.Mapeos;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.WebApi.Controllers
 {

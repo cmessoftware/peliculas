@@ -1,5 +1,4 @@
 ﻿using Peliculas.WebApi.Entidades;
-using Peliculas.WebApi.Dto;
 
 namespace Peliculas.Common.Utils
 {
@@ -14,7 +13,7 @@ namespace Peliculas.Common.Utils
         /// Obtiene las acciones que puede realizar en cada entidad segun rol
         /// </summary>
         /// <returns></returns>
-        public static List<string> GetAcciones(string entidad, UserLoginDto user)
+        public static List<string> GetAcciones(string entidad, UserLogin user)
         {
             return new List<string> { "|editar", "|borrar" };
         }
@@ -23,5 +22,20 @@ namespace Peliculas.Common.Utils
         {
             throw new NotImplementedException();
         }
+
+        public static UserLogin GetCurrentUserLogin()
+        {
+            //TODO: Sacar del contexto.
+            var user = new UserLogin()
+            {
+                UserName = "admin",
+                Password = "a12345678"
+            };
+
+            return user;
+
+        }
+
+
     }
 }

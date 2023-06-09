@@ -1,5 +1,5 @@
-﻿using Peliculas.WebApi.Entidades;
-using Peliculas.UnitOfWorks;
+﻿using Peliculas.UnitOfWorks;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.Servicios
 {
@@ -76,8 +76,8 @@ namespace Peliculas.Servicios
         {
             if (actor != null)
             {
-                var comentarioDB = await _unitOfWork.Actores.GetById(actor.Id);
-                if (comentarioDB != null)
+                var actorDB = await _unitOfWork.Actores.GetById(actor.Id);
+                if (actorDB != null)
                 {
                     //Aca actualizar datos de auditoria
                     //actor.FechaCreacion = DateTime.Now();
@@ -85,11 +85,7 @@ namespace Peliculas.Servicios
                     //actor.UsuarioCreacion = "Usuario";
                     //actor.UsuaraioActualizacion = "Usuario1";
 
-                    await _unitOfWork.Actores.Update(comentarioDB);
-
-                    var result = _unitOfWork.SaveChanges();
-
-                    return result > 0;
+                    return await _unitOfWork.Actores.Update(actor);
                 }
             }
             return false;

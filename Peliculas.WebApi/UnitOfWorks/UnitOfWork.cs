@@ -6,15 +6,14 @@ using Peliculas.Data.Repositorios.Clientes;
 using Peliculas.Data.Repositorios.Criticas;
 using Peliculas.Data.Repositorios.Entradas;
 using Peliculas.Data.Repositorios.Funciones;
-using Peliculas.Data.Repositorios.Generos;
 using Peliculas.Repositorio.Peliculas;
-using Peliculas.WebApi.Data;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.UnitOfWorks
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly PeliculasDbContext _context;
+        private readonly PeliculasContext _context;
         public IRepositorioPeliculas Peliculas { get; }
         public IRepositorioComentarios Comentarios { get; }
         public IRepositorioActores Actores { get; }
@@ -32,8 +31,8 @@ namespace Peliculas.UnitOfWorks
         public IRepositorioEntradas Entradas { get; }
         public IRepositorioSalasCine SalasDeCine { get; }
         public IRepositorioUbicacionesEnSala UbicacionesEnSala { get; }
-      
-        public UnitOfWork(PeliculasDbContext context,
+
+        public UnitOfWork(PeliculasContext context,
                           IRepositorioPeliculas peliculasRepo,
                           IRepositorioComentarios comentariosRepo,
                           IRepositorioActores actoresRepo,

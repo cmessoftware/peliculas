@@ -1,35 +1,46 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Peliculas.WebApi.Entidades;
 using Peliculas.UnitOfWorks;
-using Peliculas.WebApi.Data;
+using Peliculas.WebApi.Dto.Genero;
+using Peliculas.WebApi.Entidades;
 
-namespace Peliculas.Data.Repositorios.Generos
+namespace Peliculas.Data.Repositorios
 {
-    public class RepositorioGeneros : RepositorioGenerico<Pelicula>, IRepositorioGeneros
+    public class RepositorioGeneros : RepositorioGenerico<Genero>, IRepositorioGeneros
     {
-        private readonly PeliculasDbContext _context;
-        public RepositorioGeneros(PeliculasDbContext context) : base(context)
+        private readonly ILogger _logger;
+        private readonly PeliculasContext _context;
+
+        public RepositorioGeneros(ILogger<RepositorioGeneros> logger, PeliculasContext context) : base(logger,
+                                                                                     context)
         {
-            _context = context;
+            this._logger = logger;
+            this._context = context;
         }
 
-        public async Task<bool> Create(Genero entity)
+        public new async Task<bool> Create(Genero entity)
         {
-            await _context.Generos.AddAsync(entity);
-            await _context.SaveChangesAsync();
-
-            return true;
-
+            return await base.Create(entity);
         }
 
-        public async Task<bool> Delete(int? id)
+        public async Task<bool> Delete(GeneroDeleteDto genero)
         {
 
-            var genero = await _context.Generos.FindAsync(id);
+            //Verifico si existe ese genero asociado a la pelicula
+            var pelicula = await _context.Peliculas.
+                                 Include(
+                                        p => p.Generos.
+                                        Where(g => g.Id == genero.Id).
+                                        FirstOrDefault()
+                                        ).
+                                  Where(x => x.Id == genero.PeliculaId).
+                                  FirstOrDefaultAsync();
 
-            if (genero != null)
+
+            if (pelicula != null)
             {
-                _context.Generos.Remove(genero);
+                var gen = pelicula.Generos.FirstOrDefault(x => x.Id == genero.Id);
+                //Estoy seguro que existe porque sino pelicula == null.
+                _context.Generos.Remove(gen);
                 return true;
             }
 
@@ -37,15 +48,50 @@ namespace Peliculas.Data.Repositorios.Generos
         }
 
 
-        public async Task<List<Genero>> GetAll()
+        public async Task<List<Genero>> GetAll(int? peliculaId)
         {
-            return await _context.Generos.ToListAsync();
+            List<Genero> generos = null;
+
+            if (peliculaId != null)
+            {
+                var t = Task.Run(() =>
+                    {
+                        _context.Peliculas.
+                                 Include(
+                                    p => p.Generos
+                                    ).
+                                    Where(x => x.Id == peliculaId).
+                                    Select(selector: x => x.Generos).
+                                    ToList();
+                    });
+
+                t.Wait();
+            }
+
+            return generos;
+
         }
 
-        public new async Task<Genero> GetById(int? id)
+        public async Task<Genero> GetById(int? id, int? peliculaId)
         {
-            var genero = await _context.Generos.FindAsync(id);
-            return genero;
+            Genero generos = new Genero();
+
+
+            if (peliculaId != null)
+            {
+                var t = Task.Run(() =>
+                {
+                    var generos = _context.Peliculas.
+                                        Include(p => p.Generos).
+                                        Where(x => x.Id == peliculaId).
+                                        Select(selector: x => x.Generos.Where(x => x.Id == id));
+
+                });
+
+                t.Wait();
+            }
+
+            return generos;
         }
 
         public async Task<bool> Update(Genero entity)

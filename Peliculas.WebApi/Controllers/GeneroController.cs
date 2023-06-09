@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Peliculas.Common.Utils;
-using Peliculas.WebApi.Entidades;
 using Peliculas.Servicios;
-using Peliculas.Web.Dto;
 using Peliculas.Web.Filters;
 using Peliculas.Web.Mapeos;
-using Peliculas.WebApi.Dto;
-using Peliculas.WebApi.Mapeos;
+using Peliculas.WebApi.Dto.Genero;
+using Peliculas.WebApi.Entidades;
 using System.Net;
 
 namespace Peliculas.WebApi.Controllers
@@ -15,18 +13,15 @@ namespace Peliculas.WebApi.Controllers
     [PeliculasActionFilter]
     [ApiController]
     [Route("api/[controller]")]
-    // [Authorize]
-    //Agregar /[action] solucion el issue "500 Error when setting up Swagger in asp .net CORE"
-    //https://stackoverflow.com/questions/35788911/500-error-when-setting-up-swagger-in-asp-net-core-mvc-6-app
     public class GeneroController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IServicioGeneros _servicioGeneros;
-        private readonly IGenericMapper<GeneroDto, Genero> _generoMapper;
+        private readonly IGeneroMapper _generoMapper;
 
         public GeneroController(IMapper mapper,
                                 IServicioGeneros servicioGeneros,
-                                IGenericMapper<GeneroDto, Genero> generoMapper )
+                                IGeneroMapper generoMapper)
         {
             _mapper = mapper;
             _servicioGeneros = servicioGeneros;
@@ -35,36 +30,24 @@ namespace Peliculas.WebApi.Controllers
 
         // GET: Generos
         [HttpGet]
-        [Route("")]
         public async Task<IActionResult> GetAll()
         {
             try
             {
                 var generos = await _servicioGeneros.GetAll();
-                var generoVMJson = _generoMapper.Map(generos);
+                var generoDto = _generoMapper.Map(generos);
 
                 //´Los permisos se obtienes de otra tabla.
                 //Para esto se requiere implemenetar el módulo de Autorización.
-                var user = new UserLoginDto()
-                {
-                    UserName = "admin",
-                    Password = "a12345678"
-                };
-
+                var user = Utils.GetCurrentUserLogin();
 
                 var acciones = Utils.GetAcciones("generos", user);
-
-                generoVMJson = generoVMJson.Select(g =>
-                {
-                    g.Acciones = acciones;
-                    return g;
-                }).ToList();
-
 
                 return Ok(
                         new
                         {
-                            datos = generoVMJson,
+                            datos = generoDto,
+                            acciones,
                             estado = StatusCode((int)HttpStatusCode.OK),
                         });
             }
@@ -81,7 +64,7 @@ namespace Peliculas.WebApi.Controllers
 
         [HttpGet]
         [Route("{id?}")]
-        public async Task<IActionResult> GetByID(int? id)
+        public async Task<IActionResult> GetById(int? id)
         {
             try
             {
@@ -89,19 +72,21 @@ namespace Peliculas.WebApi.Controllers
                 {
                     throw new ArgumentException($"id {id} is invalid");
                 }
-
+                var user = Utils.GetCurrentUserLogin();
+                var acciones = Utils.GetAcciones("generos", user);
                 var genero = await _servicioGeneros.GetById(id);
 
                 if (genero == null)
                 {
                     throw new ArgumentException($"id {id} is invalid");
                 }
-                var generoVM = _mapper.Map<GeneroDto>(genero);
+                var generoDto = _mapper.Map<GeneroDto>(genero);
 
                 return Ok(
                           new
                           {
-                              datos = generoVM,
+                              datos = generoDto,
+                              acciones,
                               estado = StatusCode((int)HttpStatusCode.OK),
                           });
             }
@@ -122,10 +107,8 @@ namespace Peliculas.WebApi.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("create")]
-
-        public async Task<IActionResult> Create([FromBody] GeneroRequestDto generoDto)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([FromBody] GeneroCreateDto generoDto)
         {
             try
             {
@@ -159,9 +142,9 @@ namespace Peliculas.WebApi.Controllers
         //To protect from overposting attacks, enable the specific properties you want to bind to.
         //For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("edit")]
+        // PUT api/generos/5
+        [HttpPut]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([FromBody] GeneroDto generoDto)
         {
             try
@@ -214,9 +197,8 @@ namespace Peliculas.WebApi.Controllers
         // POST: Generos/Edit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("delete")]
+        [HttpDelete("{id}")]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int? id)
         {
             try

@@ -1,15 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Peliculas.WebApi.Entidades;
 using Peliculas.Repositorio.Peliculas;
 using Peliculas.UnitOfWorks;
-using Peliculas.WebApi.Data;
+using Peliculas.WebApi.Entidades;
 
 public class RepositorioPeliculas : RepositorioGenerico<Pelicula>, IRepositorioPeliculas
 {
-    private readonly PeliculasDbContext _context;
-    public RepositorioPeliculas(PeliculasDbContext context) : base(context)
+    private readonly ILogger _logger;
+    private readonly PeliculasContext _context;
+
+    public RepositorioPeliculas(ILogger<RepositorioPeliculas> logger,
+                                PeliculasContext context) : base(logger,
+                                                                   context)
     {
-        _context = context;
+        this._logger = logger;
+        this._context = context;
     }
 
     public async Task<bool> Create(Pelicula entity)

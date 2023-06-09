@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Peliculas.Common.Utils;
-using Peliculas.WebApi.Entidades;
 using Peliculas.Servicios;
 using Peliculas.Web.Filters;
 using Peliculas.WebApi.Dto;
 using Peliculas.WebApi.Dto.Comentarios;
+using Peliculas.WebApi.Entidades;
 using Peliculas.WebApi.Mapeos;
 using System.Net;
 
@@ -48,17 +48,12 @@ namespace Peliculas.WebApi.Controllers
 
                 var acciones = Utils.GetAcciones("comentarios", null);
 
-                comentariosDto = comentariosDto.Select(c =>
-                {
-                    c.Acciones = acciones;
-                    return c;
-                }).ToList();
-
 
                 return Ok(
                         new
                         {
                             datos = comentariosDto,
+                            acciones = acciones,
                             estado = StatusCode((int)HttpStatusCode.OK),
                         });
             }
@@ -75,7 +70,7 @@ namespace Peliculas.WebApi.Controllers
 
         [HttpGet]
         [Route("{id?}")]
-        public async Task<IActionResult> GetByID(int? id)
+        public async Task<IActionResult> GetById(int? id)
         {
             try
             {

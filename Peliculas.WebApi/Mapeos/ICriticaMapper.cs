@@ -1,5 +1,5 @@
-﻿using Peliculas.WebApi.Entidades;
-using Peliculas.Web.Dto;
+﻿using Peliculas.Web.Dto;
+using Peliculas.WebApi.Entidades;
 using Peliculas.WebApi.Mapeos;
 
 namespace Peliculas.WebApi.Controllers

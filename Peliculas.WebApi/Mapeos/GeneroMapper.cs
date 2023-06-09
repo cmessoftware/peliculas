@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
+using Peliculas.WebApi.Dto.Genero;
 using Peliculas.WebApi.Entidades;
-using Peliculas.Web.Dto;
-using Peliculas.WebApi.Mapeos;
 
 namespace Peliculas.Web.Mapeos
 {
@@ -19,14 +18,14 @@ namespace Peliculas.Web.Mapeos
             _mapper = mapper;
         }
 
-        public List<Genero> Map(List<GeneroDto> generos)
+        public List<GeneroDto> Map(List<Genero> generos)
         {
-            List<Genero> generosResponse = null;
+            List<GeneroDto> generosResponse = null;
 
             foreach (var gen in generos)
             {
-                generosResponse ??= new List<Genero>();
-                generosResponse.Add(_mapper.Map<GeneroDto, Genero>(gen));
+                generosResponse ??= new List<GeneroDto>();
+                generosResponse.Add(_mapper.Map<Genero, GeneroDto>(gen));
             }
 
             return generosResponse;

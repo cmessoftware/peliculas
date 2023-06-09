@@ -1,5 +1,5 @@
-﻿using Peliculas.WebApi.Entidades;
-using Peliculas.UnitOfWorks;
+﻿using Peliculas.UnitOfWorks;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.Data.Repositorios.Cines
 {

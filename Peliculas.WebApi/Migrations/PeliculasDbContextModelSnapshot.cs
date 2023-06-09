@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
-using Peliculas.WebApi.Data;
+using Peliculas.WebApi.Entidades;
 
 #nullable disable
 
 namespace Peliculas.WebApi.Migrations
 {
-    [DbContext(typeof(PeliculasDbContext))]
+    [DbContext(typeof(PeliculasContext))]
     partial class PeliculasDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -33,9 +33,9 @@ namespace Peliculas.WebApi.Migrations
 
                     b.HasKey("ActoresId", "PeliculasId");
 
-                    b.HasIndex("PeliculasId");
+                    b.HasIndex(new[] { "PeliculasId" }, "IX_ActorPelicula_PeliculasId");
 
-                    b.ToTable("ActorPelicula");
+                    b.ToTable("ActorPelicula", (string)null);
                 });
 
             modelBuilder.Entity("GeneroPelicula", b =>
@@ -48,12 +48,12 @@ namespace Peliculas.WebApi.Migrations
 
                     b.HasKey("GenerosId", "PeliculasId");
 
-                    b.HasIndex("PeliculasId");
+                    b.HasIndex(new[] { "PeliculasId" }, "IX_GeneroPelicula_PeliculasId");
 
-                    b.ToTable("GeneroPelicula");
+                    b.ToTable("GeneroPelicula", (string)null);
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Actor", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Actor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,23 +62,22 @@ namespace Peliculas.WebApi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Biografia")
-                        .IsRequired()
                         .HasMaxLength(2000)
                         .HasColumnType("nvarchar(2000)");
 
                     b.Property<int>("Edad")
                         .HasColumnType("int");
 
-                    b.Property<string>("FotoURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("FotoUrl")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("FotoURL");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("PaisOrigen")
+                    b.Property<int?>("PaisOrigen")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -86,7 +85,7 @@ namespace Peliculas.WebApi.Migrations
                     b.ToTable("Actores");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Cine", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Cine", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -105,18 +104,18 @@ namespace Peliculas.WebApi.Migrations
                     b.Property<int>("PeliculaId")
                         .HasColumnType("int");
 
-                    b.Property<Point>("Ubicacion")
+                    b.Property<Geometry>("Ubicacion")
                         .IsRequired()
                         .HasColumnType("geography");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PeliculaId");
+                    b.HasIndex(new[] { "PeliculaId" }, "IX_Cines_PeliculaId");
 
                     b.ToTable("Cines");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.CineOferta", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.CineOferta", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -134,17 +133,16 @@ namespace Peliculas.WebApi.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("PorcentajeDescuento")
-                        .HasPrecision(2, 2)
-                        .HasColumnType("decimal(2,2)");
+                        .HasColumnType("decimal(2, 2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CineId");
+                    b.HasIndex(new[] { "CineId" }, "IX_CineOfertas_CineId");
 
                     b.ToTable("CineOfertas");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Cliente", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,8 +154,9 @@ namespace Peliculas.WebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DNI")
-                        .HasColumnType("int");
+                    b.Property<int>("Dni")
+                        .HasColumnType("int")
+                        .HasColumnName("DNI");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -168,7 +167,7 @@ namespace Peliculas.WebApi.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Comentario", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Comentario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -192,12 +191,12 @@ namespace Peliculas.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PeliculaId");
+                    b.HasIndex(new[] { "PeliculaId" }, "IX_Comentarios_PeliculaId");
 
                     b.ToTable("Comentarios");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Critica", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Critica", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -218,22 +217,18 @@ namespace Peliculas.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PeliculaId");
+                    b.HasIndex(new[] { "PeliculaId" }, "IX_Criticas_PeliculaId");
 
                     b.ToTable("Criticas");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Direccion", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Direccion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CP")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Calle")
                         .IsRequired()
@@ -243,6 +238,11 @@ namespace Peliculas.WebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Cp")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CP");
+
                     b.Property<int>("Numero")
                         .HasColumnType("int");
 
@@ -251,10 +251,10 @@ namespace Peliculas.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Direccion");
+                    b.ToTable("Direccion", (string)null);
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Entrada", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Entrada", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -273,28 +273,28 @@ namespace Peliculas.WebApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Precio")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasColumnType("decimal(5, 2)");
 
-                    b.Property<byte[]>("QRCodeImage")
+                    b.Property<byte[]>("QrcodeImage")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("varbinary(max)")
+                        .HasColumnName("QRCodeImage");
 
                     b.Property<int?>("SalaCineId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex(new[] { "ClienteId" }, "IX_Entradas_ClienteId");
 
-                    b.HasIndex("FuncionId");
+                    b.HasIndex(new[] { "FuncionId" }, "IX_Entradas_FuncionId");
 
-                    b.HasIndex("SalaCineId");
+                    b.HasIndex(new[] { "SalaCineId" }, "IX_Entradas_SalaCineId");
 
                     b.ToTable("Entradas");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Funcion", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Funcion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -314,12 +314,12 @@ namespace Peliculas.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PeliculaId");
+                    b.HasIndex(new[] { "PeliculaId" }, "IX_Funciones_PeliculaId");
 
                     b.ToTable("Funciones");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Genero", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Genero", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -337,7 +337,7 @@ namespace Peliculas.WebApi.Migrations
                     b.ToTable("Generos");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Pelicula", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Pelicula", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -384,7 +384,7 @@ namespace Peliculas.WebApi.Migrations
                     b.ToTable("Peliculas");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.SalaCine", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.SalasCine", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -407,12 +407,12 @@ namespace Peliculas.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CineId");
+                    b.HasIndex(new[] { "CineId" }, "IX_SalasCine_CineId");
 
-                    b.ToTable("SalasCine");
+                    b.ToTable("SalasCine", (string)null);
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.UbicacionEnSala", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.UbicacionesEnSala", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -434,12 +434,12 @@ namespace Peliculas.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalaCineId");
+                    b.HasIndex(new[] { "SalaCineId" }, "IX_UbicacionesEnSala_SalaCineId");
 
-                    b.ToTable("UbicacionesEnSala");
+                    b.ToTable("UbicacionesEnSala", (string)null);
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.User", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -471,12 +471,12 @@ namespace Peliculas.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DireccionId");
+                    b.HasIndex(new[] { "DireccionId" }, "IX_Users_DireccionId");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.UserLogin", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.UserLogin", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -512,21 +512,21 @@ namespace Peliculas.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
+                    b.HasIndex(new[] { "UserId" }, "IX_UserLogin_UserId")
                         .IsUnique();
 
-                    b.ToTable("UserLogin");
+                    b.ToTable("UserLogin", (string)null);
                 });
 
             modelBuilder.Entity("ActorPelicula", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.Actor", null)
+                    b.HasOne("Peliculas.WebApi.Entidades.Actor", null)
                         .WithMany()
                         .HasForeignKey("ActoresId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Peliculas.Entidades.Pelicula", null)
+                    b.HasOne("Peliculas.WebApi.Entidades.Pelicula", null)
                         .WithMany()
                         .HasForeignKey("PeliculasId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -535,22 +535,22 @@ namespace Peliculas.WebApi.Migrations
 
             modelBuilder.Entity("GeneroPelicula", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.Genero", null)
+                    b.HasOne("Peliculas.WebApi.Entidades.Genero", null)
                         .WithMany()
                         .HasForeignKey("GenerosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Peliculas.Entidades.Pelicula", null)
+                    b.HasOne("Peliculas.WebApi.Entidades.Pelicula", null)
                         .WithMany()
                         .HasForeignKey("PeliculasId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Cine", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Cine", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.Pelicula", "Pelicula")
+                    b.HasOne("Peliculas.WebApi.Entidades.Pelicula", "Pelicula")
                         .WithMany("Cines")
                         .HasForeignKey("PeliculaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -559,10 +559,10 @@ namespace Peliculas.WebApi.Migrations
                     b.Navigation("Pelicula");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.CineOferta", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.CineOferta", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.Cine", "Cine")
-                        .WithMany("CineOfertas")
+                    b.HasOne("Peliculas.WebApi.Entidades.Cine", "Cine")
+                        .WithMany("CineOferta")
                         .HasForeignKey("CineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -570,9 +570,9 @@ namespace Peliculas.WebApi.Migrations
                     b.Navigation("Cine");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Comentario", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Comentario", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.Pelicula", "Pelicula")
+                    b.HasOne("Peliculas.WebApi.Entidades.Pelicula", "Pelicula")
                         .WithMany("Comentarios")
                         .HasForeignKey("PeliculaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -581,9 +581,9 @@ namespace Peliculas.WebApi.Migrations
                     b.Navigation("Pelicula");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Critica", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Critica", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.Pelicula", "Pelicula")
+                    b.HasOne("Peliculas.WebApi.Entidades.Pelicula", "Pelicula")
                         .WithMany("Criticas")
                         .HasForeignKey("PeliculaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -592,28 +592,30 @@ namespace Peliculas.WebApi.Migrations
                     b.Navigation("Pelicula");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Entrada", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Entrada", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.Cliente", "Cliente")
-                        .WithMany("Entradas")
+                    b.HasOne("Peliculas.WebApi.Entidades.Cliente", "Cliente")
+                        .WithMany("Entrada")
                         .HasForeignKey("ClienteId");
 
-                    b.HasOne("Peliculas.Entidades.Funcion", "Funcion")
-                        .WithMany("Entradas")
+                    b.HasOne("Peliculas.WebApi.Entidades.Funcion", "Funcion")
+                        .WithMany("Entrada")
                         .HasForeignKey("FuncionId");
 
-                    b.HasOne("Peliculas.Entidades.SalaCine", null)
-                        .WithMany("Entradas")
+                    b.HasOne("Peliculas.WebApi.Entidades.SalasCine", "SalaCine")
+                        .WithMany("Entrada")
                         .HasForeignKey("SalaCineId");
 
                     b.Navigation("Cliente");
 
                     b.Navigation("Funcion");
+
+                    b.Navigation("SalaCine");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Funcion", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Funcion", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.Pelicula", "Pelicula")
+                    b.HasOne("Peliculas.WebApi.Entidades.Pelicula", "Pelicula")
                         .WithMany("Funciones")
                         .HasForeignKey("PeliculaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -622,10 +624,10 @@ namespace Peliculas.WebApi.Migrations
                     b.Navigation("Pelicula");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.SalaCine", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.SalasCine", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.Cine", "Cine")
-                        .WithMany("SalasCine")
+                    b.HasOne("Peliculas.WebApi.Entidades.Cine", "Cine")
+                        .WithMany("SalasCines")
                         .HasForeignKey("CineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -633,10 +635,10 @@ namespace Peliculas.WebApi.Migrations
                     b.Navigation("Cine");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.UbicacionEnSala", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.UbicacionesEnSala", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.SalaCine", "SalaCine")
-                        .WithMany("UbicacionesEnSala")
+                    b.HasOne("Peliculas.WebApi.Entidades.SalasCine", "SalaCine")
+                        .WithMany("UbicacionesEnSalas")
                         .HasForeignKey("SalaCineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -644,10 +646,10 @@ namespace Peliculas.WebApi.Migrations
                     b.Navigation("SalaCine");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.User", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.User", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.Direccion", "Direccion")
-                        .WithMany()
+                    b.HasOne("Peliculas.WebApi.Entidades.Direccion", "Direccion")
+                        .WithMany("Users")
                         .HasForeignKey("DireccionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -655,33 +657,40 @@ namespace Peliculas.WebApi.Migrations
                     b.Navigation("Direccion");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.UserLogin", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.UserLogin", b =>
                 {
-                    b.HasOne("Peliculas.Entidades.User", null)
+                    b.HasOne("Peliculas.WebApi.Entidades.User", "User")
                         .WithOne("UserLogin")
-                        .HasForeignKey("Peliculas.Entidades.UserLogin", "UserId")
+                        .HasForeignKey("Peliculas.WebApi.Entidades.UserLogin", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Cine", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Cine", b =>
                 {
-                    b.Navigation("CineOfertas");
+                    b.Navigation("CineOferta");
 
-                    b.Navigation("SalasCine");
+                    b.Navigation("SalasCines");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Cliente", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Cliente", b =>
                 {
-                    b.Navigation("Entradas");
+                    b.Navigation("Entrada");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Funcion", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Direccion", b =>
                 {
-                    b.Navigation("Entradas");
+                    b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.Pelicula", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Funcion", b =>
+                {
+                    b.Navigation("Entrada");
+                });
+
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.Pelicula", b =>
                 {
                     b.Navigation("Cines");
 
@@ -692,17 +701,16 @@ namespace Peliculas.WebApi.Migrations
                     b.Navigation("Funciones");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.SalaCine", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.SalasCine", b =>
                 {
-                    b.Navigation("Entradas");
+                    b.Navigation("Entrada");
 
-                    b.Navigation("UbicacionesEnSala");
+                    b.Navigation("UbicacionesEnSalas");
                 });
 
-            modelBuilder.Entity("Peliculas.Entidades.User", b =>
+            modelBuilder.Entity("Peliculas.WebApi.Entidades.User", b =>
                 {
-                    b.Navigation("UserLogin")
-                        .IsRequired();
+                    b.Navigation("UserLogin");
                 });
 #pragma warning restore 612, 618
         }

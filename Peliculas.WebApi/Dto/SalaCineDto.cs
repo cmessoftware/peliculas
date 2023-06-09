@@ -1,6 +1,6 @@
 ﻿namespace Peliculas.Web.Dto
 {
-    public class SalaDto
+    public class SalaCineDto
     {
         public string Nombre { get; set; }
         public TipoDto Tipo { get; set; }

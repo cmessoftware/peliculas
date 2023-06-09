@@ -1,8 +1,6 @@
-﻿using Peliculas.Web.Dto;
-
-namespace Peliculas.WebApi.Dto
+﻿namespace Peliculas.WebApi.Dto
 {
-    public class ComentarioDto : DtoBase
+    public class ComentarioDto
     {
         public int Id { get; set; }
         public string Contenido { get; set; }

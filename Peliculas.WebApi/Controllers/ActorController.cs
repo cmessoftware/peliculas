@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Peliculas.WebApi.Entidades;
+using Peliculas.Common.Extensiones;
 using Peliculas.Servicios;
 using Peliculas.Web.Filters;
 using Peliculas.WebApi.Dto;
 using Peliculas.WebApi.Dto.Actores;
+using Peliculas.WebApi.Entidades;
 using Peliculas.WebApi.Mapeos;
 using System.Net;
 
@@ -19,20 +20,22 @@ namespace Peliculas.WebApi.Controllers
         private readonly IMapper _mapper;
         private readonly IServicioActores _servicioActor;
         private readonly IActorMapper _actorMapper;
+        private readonly ILogger<ActorController> _logger;
 
         public ActorController(IMapper mapper,
                                IServicioActores servicioActor,
-                               IActorMapper actorMapper
+                               IActorMapper actorMapper,
+                               ILogger<ActorController> logger
                                )
         {
             _mapper = mapper;
             _servicioActor = servicioActor;
             _actorMapper = actorMapper;
+            this._logger = logger;
         }
 
         // GET: Generos
         [HttpGet]
-        [Route("")]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -66,7 +69,7 @@ namespace Peliculas.WebApi.Controllers
 
         [HttpGet]
         [Route("{id?}")]
-        public async Task<IActionResult> GetByID(int? id)
+        public async Task<IActionResult> GetById(int? id)
         {
             try
             {
@@ -106,7 +109,6 @@ namespace Peliculas.WebApi.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Route("create")]
         public async Task<IActionResult> Create([FromBody] ActorCreateRequestDto actorDto)
         {
             try
@@ -131,18 +133,17 @@ namespace Peliculas.WebApi.Controllers
                 return BadRequest(
                     new
                     {
-                        errors = new List<string> { ex.Message },
+                        errors = new List<string> { _logger.GetMessage(ex) },
                         estado = StatusCode((int)HttpStatusCode.InternalServerError),
-                    });
+                    }); ;
             }
 
         }
 
-        // POST: Generos/Edit
+        // PUT: Generos/Edit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [Route("edit")]
+        [HttpPut]
         public async Task<IActionResult> Edit([FromBody] ActorDto actorDto)
         {
             try
@@ -190,23 +191,34 @@ namespace Peliculas.WebApi.Controllers
         }
 
 
-        // POST: Generos/Edit
+        // DELETE: Generos/delete/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [Route("delete")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    await _servicioActor.Delete(id);
-                    return Ok(
-                         new
-                         {
-                             estado = StatusCode((int)HttpStatusCode.OK),
-                         });
+                    if (await _servicioActor.Delete(id))
+                    {
+                        return Ok(
+                             new
+                             {
+                                 datos = $"Actor con id {id} eliminado satisfactoriamente",
+                                 estado = StatusCode((int)HttpStatusCode.OK),
+                             });
+                    }
+                    else 
+                    {
+                        return NotFound(
+                                new
+                                {
+                                    datos = $"Actor con id {id} no existe",
+                                    estado = StatusCode((int)HttpStatusCode.NotFound),
+                                });
+                    }
                 }
                 else
                     return BadRequest(

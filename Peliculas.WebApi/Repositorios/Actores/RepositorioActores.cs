@@ -1,46 +1,45 @@
-﻿using Peliculas.WebApi.Entidades;
-using Peliculas.UnitOfWorks;
-using Peliculas.WebApi.Data;
+﻿using Peliculas.UnitOfWorks;
+using Peliculas.WebApi.Entidades;
+
 
 namespace Peliculas.Data.Repositorios.Actores
 {
     public class RepositorioActores : RepositorioGenerico<Actor>, IRepositorioActores
     {
-        private readonly PeliculasDbContext _context;
+        private readonly ILogger _logger;
+        private readonly PeliculasContext _context;
 
-        public RepositorioActores(PeliculasDbContext context) : base(context)
+        public RepositorioActores(ILogger<RepositorioActores> logger, PeliculasContext context) : base(logger,
+                                                                                                         context)
         {
+            this._logger = logger;
             this._context = context;
         }
 
-        public Task<bool> Create(Actor entity)
+        public async Task<bool> Create(Actor entity)
         {
-            throw new NotImplementedException();
+            return await base.Create(entity);
         }
 
-        public Task<bool> Delete(int? id)
+        public async Task<bool> Delete(int? id)
         {
-            throw new NotImplementedException();
+
+            return await base.Delete(id);
         }
 
-        public Task<bool> DeleteConfirmed(int? id)
+        public async Task<List<Actor>> GetAll()
         {
-            throw new NotImplementedException();
+            return await base.GetAll();
         }
 
-        public Task<List<Actor>> GetAll()
+        public async Task<Actor> GetById(int? id)
         {
-            throw new NotImplementedException();
+            return await base.GetById(id);
         }
 
-        public Task<Actor> GetById(int? id)
+        public async Task<bool> Update(Actor entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> Update(Actor entity)
-        {
-            throw new NotImplementedException();
+            return await base.Update(entity);
         }
     }
 }

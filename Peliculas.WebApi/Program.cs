@@ -3,11 +3,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Peliculas.Common.Extensiones;
 using Peliculas.Web.Filters;
-using Peliculas.WebApi.Data;
+using Peliculas.WebApi.Entidades;
 using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Configure loggers.
+var logger = LoggerFactory.Create(config =>
+{
+    config.AddConsole();
+}).CreateLogger("Program");
 
 //Read connections strings
 //Configuracion del EF Core.
@@ -18,7 +24,7 @@ var AzureconnectionString = builder.Configuration.GetConnectionString("AzureConn
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<PeliculasDbContext>(options =>
+builder.Services.AddDbContext<PeliculasContext>(options =>
 {
     options.UseSqlServer(connectionString, sqlServer =>
                          sqlServer.UseNetTopologySuite());
@@ -40,8 +46,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddCustomServices();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddCustomServices();
 
 //Set authetication setting using JWT
 builder.Services.AddAuthentication(options =>
@@ -84,6 +90,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+};
+
 
 app.UseHttpsRedirection();
 
@@ -91,6 +103,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 
 app.Run();

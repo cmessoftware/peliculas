@@ -1,31 +1,67 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Peliculas.WebApi.Data;
+using Peliculas.Common.Extensiones;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.UnitOfWorks
 {
     public abstract class RepositorioGenerico<TEntity> : IRepositorioGenerico<TEntity> where TEntity : class
     {
-        protected readonly PeliculasDbContext _context;
+        private readonly ILogger _log;
+        protected readonly PeliculasContext _context;
+      
+        protected RepositorioGenerico(ILogger log,
+                                      PeliculasContext context)
+        {
+            _context = context;
+            _log = log;
+        }
 
-        protected RepositorioGenerico(PeliculasDbContext context)
+        protected RepositorioGenerico(PeliculasContext context)
         {
             _context = context;
         }
 
         public async Task<TEntity> GetById(int? id)
         {
-            return await _context.Set<TEntity>().FindAsync(id);
+            try
+            {
+                return await _context.Set<TEntity>().FindAsync(id);
+            }
+            catch (Exception ex)
+            {
+                _log.LogException(ex);
+
+                throw;
+            }
         }
 
         public async Task<List<TEntity>> GetAll()
         {
-            return await _context.Set<TEntity>().ToListAsync();
+            try
+            {
+                return await _context.Set<TEntity>().ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _log.LogException(ex);
+                throw;
+            }
         }
 
         public async Task<bool> Create(TEntity entity)
         {
-            await _context.Set<TEntity>().AddAsync(entity);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.Set<TEntity>().AddAsync(entity);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _log.LogException(ex);
+
+                throw;
+            }
+
 
             return true;
         }
@@ -34,26 +70,47 @@ namespace Peliculas.UnitOfWorks
         public async Task<bool> Delete(int? id)
         {
 
-            var entity = await GetById(id);
+            try
+            {
+                var entity = await GetById(id);
+                if (entity == null) return false;
 
-            var enEntryRemove = _context.Set<TEntity>().Remove(entity);
-            await _context.SaveChangesAsync();
+                var enEntryRemove = _context.Set<TEntity>().Remove(entity);
+                if (enEntryRemove == null) return false;
 
-            if (enEntryRemove.State == EntityState.Deleted)
+                await _context.SaveChangesAsync();
+
                 return true;
-            else
-                return false;
+             }
+            catch (Exception ex)
+            {
+                _log.LogException(ex);
+
+                throw;
+            }
         }
 
         public async Task<bool> Update(TEntity entity)
         {
-            var enEntry = _context.Set<TEntity>().Update(entity);
-            await _context.SaveChangesAsync();
+            try
+            {
+                if (entity == null) return false;
+                var enEntry = _context.Set<TEntity>().Update(entity);
 
-            if (enEntry.State == EntityState.Modified)
-                return true;
-            else
-                return false;
+                if (enEntry == null) return false;
+                await _context.SaveChangesAsync();
+
+                if (enEntry.State == EntityState.Modified)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                _log.LogException(ex);
+
+                throw;
+            }
 
         }
 

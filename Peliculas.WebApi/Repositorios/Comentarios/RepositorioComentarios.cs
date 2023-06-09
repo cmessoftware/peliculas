@@ -1,16 +1,19 @@
-﻿using Peliculas.WebApi.Entidades;
-using Peliculas.Repositorio.Peliculas;
+﻿using Peliculas.Repositorio.Peliculas;
 using Peliculas.UnitOfWorks;
-using Peliculas.WebApi.Data;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.Data.Repositorios.Generos
 {
     public class RepositorioComentarios : RepositorioGenerico<Comentario>, IRepositorioComentarios
     {
-        private readonly PeliculasDbContext _context;
-        public RepositorioComentarios(PeliculasDbContext context) : base(context)
+        private readonly ILogger _logger;
+        private readonly PeliculasContext _context;
+
+        public RepositorioComentarios(ILogger<RepositorioComentarios> logger, PeliculasContext context) : base(logger,
+                                                                                                               context)
         {
-            _context = context;
+            this._logger = logger;
+            this._context = context;
         }
 
         public new async Task<bool> Create(Comentario entity)

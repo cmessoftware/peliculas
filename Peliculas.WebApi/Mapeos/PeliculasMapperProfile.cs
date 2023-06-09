@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
-using Peliculas.WebApi.Entidades;
 using Peliculas.Web.Dto;
 using Peliculas.WebApi.Dto;
+using Peliculas.WebApi.Dto.Actores;
 using Peliculas.WebApi.Dto.Comentarios;
+using Peliculas.WebApi.Dto.Genero;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.Mapeos
 {
@@ -23,29 +25,37 @@ namespace Peliculas.Mapeos
             //Genero Mapper
             CreateMap<Genero, GeneroDto>();
             CreateMap<GeneroDto, Genero>();
-            CreateMap<GeneroRequestDto, Genero>();
+            CreateMap<GeneroCreateDto, Genero>();
 
             //UserLogin Mapper
             CreateMap<UserLogin, UserLoginDto>();
             CreateMap<UserLoginDto, UserLogin>();
 
 
-
+            //Actor Mapper
             CreateMap<ActorDto, Actor>();
-            CreateMap<CineDto, Cine>();
-            CreateMap<CriticaDto, Critica>();
-            CreateMap<GeneroDto, Genero>();
-            CreateMap<PeliculaDto, Pelicula>();
-            CreateMap<SalaDto, SalasCine>();
-
             CreateMap<Actor, ActorDto>();
-            CreateMap<Cine, CineDto>();
-            CreateMap<Critica, CriticaDto>();
-            CreateMap<Genero, GeneroDto>();
-            CreateMap<Pelicula, PeliculaDto>();
-            CreateMap<SalasCine, SalaDto>();
+            CreateMap<ActorCreateRequestDto, Actor>();
 
-          
+            //Cine Mapper
+            CreateMap<CineDto, Cine>();
+            CreateMap<Cine, CineDto>();
+
+            //Critica Mapper
+            CreateMap<CriticaDto, Critica>();
+            CreateMap<Critica, CriticaDto>();
+
+            //Genero Mapper
+            CreateMap<GeneroDto, Genero>();
+            CreateMap<Genero, GeneroDto>();
+
+            //Pelicula Mapper
+            CreateMap<PeliculaDto, Pelicula>();
+            CreateMap<Pelicula, PeliculaDto>();
+
+            //Sala Mapper
+            CreateMap<SalaCineDto, SalasCine>();
+            CreateMap<SalasCine, SalaCineDto>();
         }
     }
 }

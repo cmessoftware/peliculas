@@ -1,17 +1,20 @@
-﻿using Peliculas.WebApi.Entidades;
-using Peliculas.UnitOfWorks;
-using Peliculas.WebApi.Data;
+﻿using Peliculas.UnitOfWorks;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.Data.Repositorios.Funciones
 {
     public class RepositorioFunciones : RepositorioGenerico<Funcion>, IRepositorioFunciones
     {
-        private readonly PeliculasDbContext _context;
+        private readonly ILogger _logger;
+        private readonly PeliculasContext _context;
 
-        public RepositorioFunciones(PeliculasDbContext context) : base(context)
+        public RepositorioFunciones(ILogger<RepositorioFunciones> logger, PeliculasContext context) : base(logger,
+                                                                                                           context)
         {
-            this._context = context;
+            _logger = logger;
+            _context = context;
         }
+
         public Task<bool> Create(Funcion entity)
         {
             throw new NotImplementedException();

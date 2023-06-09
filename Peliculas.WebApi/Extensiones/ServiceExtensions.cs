@@ -8,21 +8,18 @@ using Peliculas.Data.Repositorios.Criticas;
 using Peliculas.Data.Repositorios.Entradas;
 using Peliculas.Data.Repositorios.Funciones;
 using Peliculas.Data.Repositorios.Generos;
-using Peliculas.WebApi.Entidades;
 using Peliculas.Repositorio.Peliculas;
 using Peliculas.Servicios;
 using Peliculas.Servicios.Peliculas;
 using Peliculas.UnitOfWorks;
-using Peliculas.Web.Dto;
 using Peliculas.Web.Mapeos;
 using Peliculas.WebApi.Controllers;
-using Peliculas.WebApi.Dto;
 using Peliculas.WebApi.Mapeos;
 
 
 namespace Peliculas.Common.Extensiones
 {
-    public static class ServiceExtensiones
+    public static class ServiceExtensions
     {
         public static void AddCustomServices(this IServiceCollection services)
         {
@@ -60,16 +57,18 @@ namespace Peliculas.Common.Extensiones
             services.AddScoped<ICriticaMapper, CriticaMapper>();
             services.AddScoped<IComentarioMapper, ComentarioMapper>();
             services.AddScoped<IActorMapper, ActorMapper>();
+            services.AddScoped<IPeliculaMapper, PeliculaMapper>();
 
             //Inyeccion de dependencias para configuracion de seguridad.
             services.AddScoped<ITokenConfigManager, TokenConfigManager>();
             services.AddScoped<ITokenManager, TokenManager>();
 
+
         }
 
         public static string JoinString<T>(this IEnumerable<T> source, string delimiter, Func<T, string> func)
         {
-            return String.Join(delimiter, source.Select(func).ToArray());
+            return string.Join(delimiter, source.Select(func).ToArray());
         }
     }
 }

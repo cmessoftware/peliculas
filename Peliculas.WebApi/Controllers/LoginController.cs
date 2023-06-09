@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using Peliculas.WebApi.Entidades;
 using Peliculas.Servicios;
 using Peliculas.Web.Filters;
 using Peliculas.WebApi.Dto;
+using Peliculas.WebApi.Entidades;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

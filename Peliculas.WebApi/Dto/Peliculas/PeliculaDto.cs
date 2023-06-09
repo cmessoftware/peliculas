@@ -1,8 +1,9 @@
 ﻿using Peliculas.Data;
-using Peliculas.WebApi.Dto;
+using Peliculas.Web.Dto;
+using Peliculas.WebApi.Dto.Genero;
 using System.ComponentModel.DataAnnotations;
 
-namespace Peliculas.Web.Dto
+namespace Peliculas.WebApi.Dto
 {
     public class PeliculaDto
     {
@@ -28,3 +29,6 @@ namespace Peliculas.Web.Dto
 
     }
 }
+
+
+

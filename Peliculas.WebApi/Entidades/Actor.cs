@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Peliculas.WebApi.Entidades;
+﻿namespace Peliculas.WebApi.Entidades;
 
 public partial class Actor
 {
@@ -11,11 +8,11 @@ public partial class Actor
 
     public int Edad { get; set; }
 
-    public string FotoUrl { get; set; } = null!;
+    public string? FotoUrl { get; set; } = null!;
 
-    public int PaisOrigen { get; set; }
+    public int? PaisOrigen { get; set; }
 
-    public string Biografia { get; set; } = null!;
+    public string? Biografia { get; set; } = null!;
 
-    public virtual ICollection<Pelicula> Peliculas { get; set; } = new List<Pelicula>();
+    public virtual ICollection<Pelicula>? Peliculas { get; set; } = new List<Pelicula>();
 }

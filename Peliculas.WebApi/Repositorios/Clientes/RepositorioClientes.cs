@@ -1,16 +1,18 @@
-﻿using Peliculas.WebApi.Entidades;
-using Peliculas.UnitOfWorks;
-using Peliculas.WebApi.Data;
+﻿using Peliculas.UnitOfWorks;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.Data.Repositorios.Clientes
 {
     public class RepositorioClientes : RepositorioGenerico<Cliente>, IRepositorioClientes
     {
 
-        private readonly PeliculasDbContext _context;
+        private readonly ILogger _logger;
+        private readonly PeliculasContext _context;
 
-        public RepositorioClientes(PeliculasDbContext context) : base(context)
+        public RepositorioClientes(ILogger<RepositorioClientes> logger, PeliculasContext context) : base(logger,
+                                                                                     context)
         {
+            this._logger = logger;
             this._context = context;
         }
         public Task<bool> Create(Cliente entity)

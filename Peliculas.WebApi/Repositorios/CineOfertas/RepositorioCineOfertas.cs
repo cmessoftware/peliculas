@@ -1,15 +1,17 @@
-﻿using Peliculas.WebApi.Entidades;
-using Peliculas.UnitOfWorks;
-using Peliculas.WebApi.Data;
+﻿using Peliculas.UnitOfWorks;
+using Peliculas.WebApi.Entidades;
 
 namespace Peliculas.Data.Repositorios.CineOfertas
 {
     public class RepositorioCineOfertas : RepositorioGenerico<CineOferta>, IRepositorioCineOfertas
     {
-        private readonly PeliculasDbContext _context;
+        private readonly ILogger _logger;
+        private readonly PeliculasContext _context;
 
-        public RepositorioCineOfertas(PeliculasDbContext context) : base(context)
+        public RepositorioCineOfertas(ILogger<RepositorioCineOfertas> logger, PeliculasContext context) : base(logger,
+                                                                                                               context)
         {
+            this._logger = logger;
             this._context = context;
         }
 
